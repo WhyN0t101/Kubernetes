@@ -81,10 +81,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\background1.jpg" />
+    <None Include="Resources\kuber1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\kuber1.png" />
+    <None Include="Resources\background1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
