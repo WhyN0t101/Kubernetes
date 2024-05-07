@@ -84,9 +84,6 @@
     <None Include="Resources\background1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\kuber.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\kuber1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
