@@ -15,6 +15,8 @@ namespace Kubernetes
         public Form1()
         {
             InitializeComponent();
+            pictureBox1.BackColor = Color.Transparent;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
