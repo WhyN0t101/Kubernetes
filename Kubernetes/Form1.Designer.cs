@@ -29,8 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.loginTab = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,20 +44,41 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxLoginToken = new System.Windows.Forms.TextBox();
             this.textBoxLoginIp = new System.Windows.Forms.TextBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ResourcesTab = new System.Windows.Forms.TabPage();
+            this.NodesTab = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.listViewNodes = new System.Windows.Forms.ListView();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.columnHeaderNodeName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeCpuUsed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeCpuAvai = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeAddrType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeAddr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeOS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeOSImg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeArch = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ResourcesTab.SuspendLayout();
+            this.NodesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.loginTab);
             this.tabControl1.Controls.Add(this.ResourcesTab);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.NodesTab);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
@@ -61,16 +88,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(886, 463);
             this.tabControl1.TabIndex = 3;
-            // 
-            // ResourcesTab
-            // 
-            this.ResourcesTab.Location = new System.Drawing.Point(4, 27);
-            this.ResourcesTab.Name = "ResourcesTab";
-            this.ResourcesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ResourcesTab.Size = new System.Drawing.Size(878, 432);
-            this.ResourcesTab.TabIndex = 1;
-            this.ResourcesTab.Text = "Resources";
-            this.ResourcesTab.UseVisualStyleBackColor = true;
             // 
             // loginTab
             // 
@@ -153,45 +170,207 @@
             this.textBoxLoginIp.Size = new System.Drawing.Size(175, 26);
             this.textBoxLoginIp.TabIndex = 1;
             // 
-            // tabPage1
+            // ResourcesTab
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(878, 432);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.ResourcesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ResourcesTab.Controls.Add(this.label4);
+            this.ResourcesTab.Controls.Add(this.label3);
+            this.ResourcesTab.Controls.Add(this.chart2);
+            this.ResourcesTab.Controls.Add(this.chart1);
+            this.ResourcesTab.Location = new System.Drawing.Point(4, 27);
+            this.ResourcesTab.Name = "ResourcesTab";
+            this.ResourcesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ResourcesTab.Size = new System.Drawing.Size(878, 432);
+            this.ResourcesTab.TabIndex = 1;
+            this.ResourcesTab.Text = "Resources";
+            // 
+            // NodesTab
+            // 
+            this.NodesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.NodesTab.Controls.Add(this.label5);
+            this.NodesTab.Controls.Add(this.listViewNodes);
+            this.NodesTab.Location = new System.Drawing.Point(4, 27);
+            this.NodesTab.Name = "NodesTab";
+            this.NodesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.NodesTab.Size = new System.Drawing.Size(878, 432);
+            this.NodesTab.TabIndex = 2;
+            this.NodesTab.Text = "Nodes";
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(878, 432);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(878, 432);
             this.tabPage3.TabIndex = 4;
             this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.Gainsboro;
             this.tabPage4.Location = new System.Drawing.Point(4, 27);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(878, 432);
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // listViewNodes
+            // 
+            this.listViewNodes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderNodeName,
+            this.columnHeaderNodeLabels,
+            this.columnHeaderNodeType,
+            this.columnHeaderNodeCpuUsed,
+            this.columnHeaderNodeCpuAvai,
+            this.columnHeaderNodeAddrType,
+            this.columnHeaderNodeAddr,
+            this.columnHeaderNodeOS,
+            this.columnHeaderNodeOSImg,
+            this.columnHeaderNodeArch});
+            this.listViewNodes.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            this.listViewNodes.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
+            this.listViewNodes.HideSelection = false;
+            this.listViewNodes.Location = new System.Drawing.Point(8, 62);
+            this.listViewNodes.Name = "listViewNodes";
+            this.listViewNodes.Size = new System.Drawing.Size(860, 360);
+            this.listViewNodes.TabIndex = 0;
+            this.listViewNodes.UseCompatibleStateImageBehavior = false;
+            this.listViewNodes.View = System.Windows.Forms.View.Details;
+            // 
+            // chart1
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(18, 40);
+            this.chart1.Name = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(300, 300);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // chart2
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
+            this.chart2.Location = new System.Drawing.Point(506, 40);
+            this.chart2.Name = "chart2";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
+            this.chart2.Size = new System.Drawing.Size(300, 300);
+            this.chart2.TabIndex = 1;
+            this.chart2.Text = "chart2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(109, 343);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 16);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Chart 1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(595, 343);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 16);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Chart 1";
+            // 
+            // columnHeaderNodeName
+            // 
+            this.columnHeaderNodeName.Text = "Name";
+            this.columnHeaderNodeName.Width = 55;
+            // 
+            // columnHeaderNodeLabels
+            // 
+            this.columnHeaderNodeLabels.Text = "Labels";
+            this.columnHeaderNodeLabels.Width = 58;
+            // 
+            // columnHeaderNodeType
+            // 
+            this.columnHeaderNodeType.Text = "Type";
+            this.columnHeaderNodeType.Width = 57;
+            // 
+            // columnHeaderNodeCpuUsed
+            // 
+            this.columnHeaderNodeCpuUsed.Text = "Used CPU";
+            this.columnHeaderNodeCpuUsed.Width = 85;
+            // 
+            // columnHeaderNodeCpuAvai
+            // 
+            this.columnHeaderNodeCpuAvai.Text = "Available CPU";
+            this.columnHeaderNodeCpuAvai.Width = 111;
+            // 
+            // columnHeaderNodeAddrType
+            // 
+            this.columnHeaderNodeAddrType.Text = "Address Type";
+            this.columnHeaderNodeAddrType.Width = 114;
+            // 
+            // columnHeaderNodeAddr
+            // 
+            this.columnHeaderNodeAddr.Text = "Address";
+            this.columnHeaderNodeAddr.Width = 71;
+            // 
+            // columnHeaderNodeOS
+            // 
+            this.columnHeaderNodeOS.Text = "OS";
+            this.columnHeaderNodeOS.Width = 35;
+            // 
+            // columnHeaderNodeOSImg
+            // 
+            this.columnHeaderNodeOSImg.Text = "OS Image";
+            this.columnHeaderNodeOSImg.Width = 88;
+            // 
+            // columnHeaderNodeArch
+            // 
+            this.columnHeaderNodeArch.Text = "Architecture";
+            this.columnHeaderNodeArch.Width = 104;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(8, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 18);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Nodes:";
             // 
             // Form1
             // 
@@ -210,6 +389,12 @@
             this.loginTab.ResumeLayout(false);
             this.loginTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResourcesTab.ResumeLayout(false);
+            this.ResourcesTab.PerformLayout();
+            this.NodesTab.ResumeLayout(false);
+            this.NodesTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -225,10 +410,26 @@
         private System.Windows.Forms.TabPage ResourcesTab;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage NodesTab;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ListView listViewNodes;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeName;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeLabels;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeType;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeCpuUsed;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeCpuAvai;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeAddrType;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeAddr;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeOS;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeOSImg;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeArch;
     }
 }
 
