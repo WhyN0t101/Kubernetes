@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loginTab = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,11 +67,25 @@
             this.columnHeaderNodeArch = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
             this.ServiceIngressTab = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeaderNamespaceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNamespaceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNamespaceCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNamespaceFinalizers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNamespacePhase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBoxNamespaceName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxNamespaceLabels = new System.Windows.Forms.TextBox();
+            this.buttonNamespaceCreate = new System.Windows.Forms.Button();
+            this.buttonNamespaceDelete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ResourcesTab.SuspendLayout();
             this.NodesTab.SuspendLayout();
+            this.NamespacesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
@@ -201,6 +216,14 @@
             // NamespacesTab
             // 
             this.NamespacesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.NamespacesTab.Controls.Add(this.buttonNamespaceDelete);
+            this.NamespacesTab.Controls.Add(this.buttonNamespaceCreate);
+            this.NamespacesTab.Controls.Add(this.label8);
+            this.NamespacesTab.Controls.Add(this.textBoxNamespaceLabels);
+            this.NamespacesTab.Controls.Add(this.label7);
+            this.NamespacesTab.Controls.Add(this.textBoxNamespaceName);
+            this.NamespacesTab.Controls.Add(this.label6);
+            this.NamespacesTab.Controls.Add(this.listView1);
             this.NamespacesTab.Location = new System.Drawing.Point(4, 27);
             this.NamespacesTab.Name = "NamespacesTab";
             this.NamespacesTab.Padding = new System.Windows.Forms.Padding(3);
@@ -242,10 +265,10 @@
             this.columnHeaderNodeOSImg,
             this.columnHeaderNodeArch});
             this.listViewNodes.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "listViewGroup1";
             this.listViewNodes.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup4});
             this.listViewNodes.HideSelection = false;
             this.listViewNodes.Location = new System.Drawing.Point(8, 62);
             this.listViewNodes.Name = "listViewNodes";
@@ -256,34 +279,34 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(18, 40);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
             this.chart2.Location = new System.Drawing.Point(506, 40);
             this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
             this.chart2.Size = new System.Drawing.Size(300, 300);
             this.chart2.TabIndex = 1;
             this.chart2.Text = "chart2";
@@ -384,6 +407,122 @@
             this.ServiceIngressTab.TabIndex = 6;
             this.ServiceIngressTab.Text = " Services/Ingress";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(8, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 18);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Namespaces:";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderNamespaceName,
+            this.columnHeaderNamespaceLabels,
+            this.columnHeaderNamespaceCreationTime,
+            this.columnHeaderNamespaceFinalizers,
+            this.columnHeaderNamespacePhase});
+            this.listView1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "listViewGroup1";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup3});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(11, 62);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(537, 360);
+            this.listView1.TabIndex = 7;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderNamespaceName
+            // 
+            this.columnHeaderNamespaceName.Text = "Name";
+            this.columnHeaderNamespaceName.Width = 72;
+            // 
+            // columnHeaderNamespaceLabels
+            // 
+            this.columnHeaderNamespaceLabels.Text = "Labels";
+            this.columnHeaderNamespaceLabels.Width = 132;
+            // 
+            // columnHeaderNamespaceCreationTime
+            // 
+            this.columnHeaderNamespaceCreationTime.Text = "Created";
+            this.columnHeaderNamespaceCreationTime.Width = 95;
+            // 
+            // columnHeaderNamespaceFinalizers
+            // 
+            this.columnHeaderNamespaceFinalizers.Text = "Finalizers";
+            this.columnHeaderNamespaceFinalizers.Width = 85;
+            // 
+            // columnHeaderNamespacePhase
+            // 
+            this.columnHeaderNamespacePhase.Text = "Available CPU";
+            this.columnHeaderNamespacePhase.Width = 111;
+            // 
+            // textBoxNamespaceName
+            // 
+            this.textBoxNamespaceName.Location = new System.Drawing.Point(581, 159);
+            this.textBoxNamespaceName.Name = "textBoxNamespaceName";
+            this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxNamespaceName.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(578, 142);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 14);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Name:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(720, 142);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 14);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Label:";
+            // 
+            // textBoxNamespaceLabels
+            // 
+            this.textBoxNamespaceLabels.Location = new System.Drawing.Point(723, 159);
+            this.textBoxNamespaceLabels.Name = "textBoxNamespaceLabels";
+            this.textBoxNamespaceLabels.Size = new System.Drawing.Size(115, 26);
+            this.textBoxNamespaceLabels.TabIndex = 11;
+            // 
+            // buttonNamespaceCreate
+            // 
+            this.buttonNamespaceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNamespaceCreate.Location = new System.Drawing.Point(581, 385);
+            this.buttonNamespaceCreate.Name = "buttonNamespaceCreate";
+            this.buttonNamespaceCreate.Size = new System.Drawing.Size(75, 25);
+            this.buttonNamespaceCreate.TabIndex = 13;
+            this.buttonNamespaceCreate.Text = "Create";
+            this.buttonNamespaceCreate.UseVisualStyleBackColor = true;
+            // 
+            // buttonNamespaceDelete
+            // 
+            this.buttonNamespaceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNamespaceDelete.Location = new System.Drawing.Point(691, 385);
+            this.buttonNamespaceDelete.Name = "buttonNamespaceDelete";
+            this.buttonNamespaceDelete.Size = new System.Drawing.Size(75, 25);
+            this.buttonNamespaceDelete.TabIndex = 14;
+            this.buttonNamespaceDelete.Text = "Delete";
+            this.buttonNamespaceDelete.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -405,6 +544,8 @@
             this.ResourcesTab.PerformLayout();
             this.NodesTab.ResumeLayout(false);
             this.NodesTab.PerformLayout();
+            this.NamespacesTab.ResumeLayout(false);
+            this.NamespacesTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
@@ -443,6 +584,19 @@
         private System.Windows.Forms.ColumnHeader columnHeaderNodeOSImg;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeArch;
         private System.Windows.Forms.TabPage ServiceIngressTab;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeaderNamespaceName;
+        private System.Windows.Forms.ColumnHeader columnHeaderNamespaceLabels;
+        private System.Windows.Forms.ColumnHeader columnHeaderNamespaceCreationTime;
+        private System.Windows.Forms.ColumnHeader columnHeaderNamespaceFinalizers;
+        private System.Windows.Forms.ColumnHeader columnHeaderNamespacePhase;
+        private System.Windows.Forms.TextBox textBoxNamespaceName;
+        private System.Windows.Forms.Button buttonNamespaceDelete;
+        private System.Windows.Forms.Button buttonNamespaceCreate;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxNamespaceLabels;
+        private System.Windows.Forms.Label label7;
     }
 }
 
