@@ -46,9 +46,9 @@
             this.textBoxLoginIp = new System.Windows.Forms.TextBox();
             this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.NodesTab = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.NamespacesTab = new System.Windows.Forms.TabPage();
+            this.PodsTab = new System.Windows.Forms.TabPage();
+            this.DeploymentsTab = new System.Windows.Forms.TabPage();
             this.listViewNodes = new System.Windows.Forms.ListView();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -65,6 +65,7 @@
             this.columnHeaderNodeOSImg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNodeArch = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
+            this.ServiceIngressTab = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,9 +80,10 @@
             this.tabControl1.Controls.Add(this.loginTab);
             this.tabControl1.Controls.Add(this.ResourcesTab);
             this.tabControl1.Controls.Add(this.NodesTab);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.NamespacesTab);
+            this.tabControl1.Controls.Add(this.PodsTab);
+            this.tabControl1.Controls.Add(this.DeploymentsTab);
+            this.tabControl1.Controls.Add(this.ServiceIngressTab);
             this.tabControl1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -196,35 +198,35 @@
             this.NodesTab.TabIndex = 2;
             this.NodesTab.Text = "Nodes";
             // 
-            // tabPage2
+            // NamespacesTab
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(878, 432);
-            this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "tabPage2";
+            this.NamespacesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.NamespacesTab.Location = new System.Drawing.Point(4, 27);
+            this.NamespacesTab.Name = "NamespacesTab";
+            this.NamespacesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.NamespacesTab.Size = new System.Drawing.Size(878, 432);
+            this.NamespacesTab.TabIndex = 3;
+            this.NamespacesTab.Text = "Namespaces";
             // 
-            // tabPage3
+            // PodsTab
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPage3.Location = new System.Drawing.Point(4, 27);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(878, 432);
-            this.tabPage3.TabIndex = 4;
-            this.tabPage3.Text = "tabPage3";
+            this.PodsTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.PodsTab.Location = new System.Drawing.Point(4, 27);
+            this.PodsTab.Name = "PodsTab";
+            this.PodsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PodsTab.Size = new System.Drawing.Size(878, 432);
+            this.PodsTab.TabIndex = 4;
+            this.PodsTab.Text = "Pods";
             // 
-            // tabPage4
+            // DeploymentsTab
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabPage4.Location = new System.Drawing.Point(4, 27);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(878, 432);
-            this.tabPage4.TabIndex = 5;
-            this.tabPage4.Text = "tabPage4";
+            this.DeploymentsTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
+            this.DeploymentsTab.Name = "DeploymentsTab";
+            this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.DeploymentsTab.Size = new System.Drawing.Size(878, 432);
+            this.DeploymentsTab.TabIndex = 5;
+            this.DeploymentsTab.Text = "Deployments";
             // 
             // listViewNodes
             // 
@@ -372,6 +374,16 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Nodes:";
             // 
+            // ServiceIngressTab
+            // 
+            this.ServiceIngressTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
+            this.ServiceIngressTab.Name = "ServiceIngressTab";
+            this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 432);
+            this.ServiceIngressTab.TabIndex = 6;
+            this.ServiceIngressTab.Text = " Services/Ingress";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -411,9 +423,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage NodesTab;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage NamespacesTab;
+        private System.Windows.Forms.TabPage PodsTab;
+        private System.Windows.Forms.TabPage DeploymentsTab;
         private System.Windows.Forms.ListView listViewNodes;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label4;
@@ -430,6 +442,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderNodeOS;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeOSImg;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeArch;
+        private System.Windows.Forms.TabPage ServiceIngressTab;
     }
 }
 
