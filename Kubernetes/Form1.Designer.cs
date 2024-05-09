@@ -499,9 +499,9 @@
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup2});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(11, 62);
+            this.listView1.Location = new System.Drawing.Point(33, 121);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(537, 360);
+            this.listView1.Size = new System.Drawing.Size(537, 286);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -690,7 +690,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(31, 58);
+            this.label12.Location = new System.Drawing.Point(30, 55);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(124, 14);
             this.label12.TabIndex = 13;
@@ -703,7 +703,7 @@
             "Everything",
             "Namespace",
             "Deployment Name"});
-            this.comboBoxDeploymentOpcao.Location = new System.Drawing.Point(34, 75);
+            this.comboBoxDeploymentOpcao.Location = new System.Drawing.Point(33, 72);
             this.comboBoxDeploymentOpcao.Name = "comboBoxDeploymentOpcao";
             this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 26);
             this.comboBoxDeploymentOpcao.TabIndex = 12;
@@ -746,7 +746,7 @@
             this.listView3.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup4});
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(11, 136);
+            this.listView3.Location = new System.Drawing.Point(33, 121);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(482, 286);
             this.listView3.TabIndex = 16;
@@ -842,7 +842,7 @@
             // buttonDeploymentDelete
             // 
             this.buttonDeploymentDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeploymentDelete.Location = new System.Drawing.Point(602, 217);
+            this.buttonDeploymentDelete.Location = new System.Drawing.Point(639, 215);
             this.buttonDeploymentDelete.Name = "buttonDeploymentDelete";
             this.buttonDeploymentDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonDeploymentDelete.TabIndex = 26;
@@ -852,7 +852,7 @@
             // buttonDeploymentCreate
             // 
             this.buttonDeploymentCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeploymentCreate.Location = new System.Drawing.Point(521, 217);
+            this.buttonDeploymentCreate.Location = new System.Drawing.Point(558, 215);
             this.buttonDeploymentCreate.Name = "buttonDeploymentCreate";
             this.buttonDeploymentCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonDeploymentCreate.TabIndex = 25;
@@ -865,7 +865,7 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(685, 144);
+            this.label15.Location = new System.Drawing.Point(722, 142);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(46, 14);
             this.label15.TabIndex = 24;
@@ -873,7 +873,7 @@
             // 
             // textBoxDeploymentLabel
             // 
-            this.textBoxDeploymentLabel.Location = new System.Drawing.Point(688, 161);
+            this.textBoxDeploymentLabel.Location = new System.Drawing.Point(725, 159);
             this.textBoxDeploymentLabel.Name = "textBoxDeploymentLabel";
             this.textBoxDeploymentLabel.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentLabel.TabIndex = 23;
@@ -884,7 +884,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(518, 141);
+            this.label16.Location = new System.Drawing.Point(555, 139);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 14);
             this.label16.TabIndex = 22;
@@ -892,7 +892,7 @@
             // 
             // textBoxDeploymentName
             // 
-            this.textBoxDeploymentName.Location = new System.Drawing.Point(521, 161);
+            this.textBoxDeploymentName.Location = new System.Drawing.Point(558, 159);
             this.textBoxDeploymentName.Name = "textBoxDeploymentName";
             this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentName.TabIndex = 21;
