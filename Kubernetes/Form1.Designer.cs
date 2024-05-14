@@ -81,11 +81,12 @@
             this.columnHeaderNamespaceFinalizers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNamespacePhase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PodsTab = new System.Windows.Forms.TabPage();
-            this.DeploymentsTab = new System.Windows.Forms.TabPage();
-            this.ServiceIngressTab = new System.Windows.Forms.TabPage();
-            this.comboBoxNamespacePod = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.buttonPodDelete = new System.Windows.Forms.Button();
+            this.buttonPodCreate = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxPodLabel = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxPodName = new System.Windows.Forms.TextBox();
             this.listViewPods = new System.Windows.Forms.ListView();
             this.columnHeaderPodName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPodNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -94,42 +95,41 @@
             this.columnHeaderPodPorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPodNodename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPodPhase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBoxDeploymentOpcao = new System.Windows.Forms.ComboBox();
-            this.labelDeployment = new System.Windows.Forms.Label();
-            this.comboBoxDeploymentType = new System.Windows.Forms.ComboBox();
-            this.listViewDeployments = new System.Windows.Forms.ListView();
-            this.columnHeaderDeploymentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDeploymentNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDeploymentCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDeploymentLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDeploymentType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonPodDelete = new System.Windows.Forms.Button();
-            this.buttonPodCreate = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxPodLabel = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxPodName = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxNamespacePod = new System.Windows.Forms.ComboBox();
+            this.DeploymentsTab = new System.Windows.Forms.TabPage();
             this.buttonDeploymentDelete = new System.Windows.Forms.Button();
             this.buttonDeploymentCreate = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.textBoxDeploymentLabel = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.textBoxDeploymentName = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.listViewServices = new System.Windows.Forms.ListView();
-            this.columnHeaderServiceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderServiceNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderServiceCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderServiceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderServicePorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewDeployments = new System.Windows.Forms.ListView();
+            this.columnHeaderDeploymentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDeploymentLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDeploymentNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDeploymentCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDeploymentType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.labelDeployment = new System.Windows.Forms.Label();
+            this.comboBoxDeploymentType = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBoxDeploymentOpcao = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ServiceIngressTab = new System.Windows.Forms.TabPage();
             this.buttonServiceDelete = new System.Windows.Forms.Button();
             this.buttonServiceCreate = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.textBoxServicesLabels = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.textBoxServicesName = new System.Windows.Forms.TextBox();
+            this.listViewServices = new System.Windows.Forms.ListView();
+            this.columnHeaderServiceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderServiceNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderServiceCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderServiceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderServicePorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -176,6 +176,7 @@
             this.loginTab.TabIndex = 0;
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
+            this.loginTab.Click += new System.EventHandler(this.loginTab_Click);
             // 
             // label2
             // 
@@ -566,77 +567,63 @@
             this.PodsTab.TabIndex = 4;
             this.PodsTab.Text = "Pods";
             // 
-            // DeploymentsTab
+            // buttonPodDelete
             // 
-            this.DeploymentsTab.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.DeploymentsTab.Controls.Add(this.buttonDeploymentDelete);
-            this.DeploymentsTab.Controls.Add(this.buttonDeploymentCreate);
-            this.DeploymentsTab.Controls.Add(this.label15);
-            this.DeploymentsTab.Controls.Add(this.textBoxDeploymentLabel);
-            this.DeploymentsTab.Controls.Add(this.label16);
-            this.DeploymentsTab.Controls.Add(this.textBoxDeploymentName);
-            this.DeploymentsTab.Controls.Add(this.listViewDeployments);
-            this.DeploymentsTab.Controls.Add(this.labelDeployment);
-            this.DeploymentsTab.Controls.Add(this.comboBoxDeploymentType);
-            this.DeploymentsTab.Controls.Add(this.label12);
-            this.DeploymentsTab.Controls.Add(this.comboBoxDeploymentOpcao);
-            this.DeploymentsTab.Controls.Add(this.label11);
-            this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
-            this.DeploymentsTab.Name = "DeploymentsTab";
-            this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DeploymentsTab.Size = new System.Drawing.Size(878, 432);
-            this.DeploymentsTab.TabIndex = 5;
-            this.DeploymentsTab.Text = "Deployments";
+            this.buttonPodDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPodDelete.Location = new System.Drawing.Point(753, 266);
+            this.buttonPodDelete.Name = "buttonPodDelete";
+            this.buttonPodDelete.Size = new System.Drawing.Size(75, 25);
+            this.buttonPodDelete.TabIndex = 20;
+            this.buttonPodDelete.Text = "Delete";
+            this.buttonPodDelete.UseVisualStyleBackColor = true;
             // 
-            // ServiceIngressTab
+            // buttonPodCreate
             // 
-            this.ServiceIngressTab.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ServiceIngressTab.Controls.Add(this.buttonServiceDelete);
-            this.ServiceIngressTab.Controls.Add(this.buttonServiceCreate);
-            this.ServiceIngressTab.Controls.Add(this.label18);
-            this.ServiceIngressTab.Controls.Add(this.textBoxServicesLabels);
-            this.ServiceIngressTab.Controls.Add(this.label19);
-            this.ServiceIngressTab.Controls.Add(this.textBoxServicesName);
-            this.ServiceIngressTab.Controls.Add(this.listViewServices);
-            this.ServiceIngressTab.Controls.Add(this.label17);
-            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
-            this.ServiceIngressTab.Name = "ServiceIngressTab";
-            this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 432);
-            this.ServiceIngressTab.TabIndex = 6;
-            this.ServiceIngressTab.Text = " Services/Ingress";
+            this.buttonPodCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPodCreate.Location = new System.Drawing.Point(672, 266);
+            this.buttonPodCreate.Name = "buttonPodCreate";
+            this.buttonPodCreate.Size = new System.Drawing.Size(75, 25);
+            this.buttonPodCreate.TabIndex = 19;
+            this.buttonPodCreate.Text = "Create";
+            this.buttonPodCreate.UseVisualStyleBackColor = true;
             // 
-            // comboBoxNamespacePod
+            // label13
             // 
-            this.comboBoxNamespacePod.FormattingEnabled = true;
-            this.comboBoxNamespacePod.Location = new System.Drawing.Point(33, 72);
-            this.comboBoxNamespacePod.Name = "comboBoxNamespacePod";
-            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 26);
-            this.comboBoxNamespacePod.TabIndex = 0;
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(669, 185);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(46, 14);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Label:";
             // 
-            // label9
+            // textBoxPodLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(8, 23);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 18);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Pods:";
+            this.textBoxPodLabel.Location = new System.Drawing.Point(672, 202);
+            this.textBoxPodLabel.Name = "textBoxPodLabel";
+            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodLabel.TabIndex = 17;
             // 
-            // label10
+            // label14
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(30, 55);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 14);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Namespace:";
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(669, 121);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(48, 14);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "Name:";
+            // 
+            // textBoxPodName
+            // 
+            this.textBoxPodName.Location = new System.Drawing.Point(672, 141);
+            this.textBoxPodName.Name = "textBoxPodName";
+            this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodName.TabIndex = 15;
             // 
             // listViewPods
             // 
@@ -695,172 +682,59 @@
             // 
             this.columnHeaderPodPhase.Text = "Phase";
             // 
-            // label11
+            // label10
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(8, 23);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 18);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Deployments:";
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(30, 55);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 14);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Namespace:";
             // 
-            // label12
+            // label9
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(30, 55);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 14);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Opção de Procura:";
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(8, 23);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 18);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Pods:";
             // 
-            // comboBoxDeploymentOpcao
+            // comboBoxNamespacePod
             // 
-            this.comboBoxDeploymentOpcao.FormattingEnabled = true;
-            this.comboBoxDeploymentOpcao.Items.AddRange(new object[] {
-            "Everything",
-            "Namespace",
-            "Deployment Name"});
-            this.comboBoxDeploymentOpcao.Location = new System.Drawing.Point(33, 72);
-            this.comboBoxDeploymentOpcao.Name = "comboBoxDeploymentOpcao";
-            this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 26);
-            this.comboBoxDeploymentOpcao.TabIndex = 12;
+            this.comboBoxNamespacePod.FormattingEnabled = true;
+            this.comboBoxNamespacePod.Location = new System.Drawing.Point(33, 72);
+            this.comboBoxNamespacePod.Name = "comboBoxNamespacePod";
+            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxNamespacePod.TabIndex = 0;
             // 
-            // labelDeployment
+            // DeploymentsTab
             // 
-            this.labelDeployment.AutoSize = true;
-            this.labelDeployment.BackColor = System.Drawing.Color.Transparent;
-            this.labelDeployment.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDeployment.ForeColor = System.Drawing.Color.Black;
-            this.labelDeployment.Location = new System.Drawing.Point(250, 58);
-            this.labelDeployment.Name = "labelDeployment";
-            this.labelDeployment.Size = new System.Drawing.Size(87, 14);
-            this.labelDeployment.TabIndex = 15;
-            this.labelDeployment.Text = "Deployment:";
-            // 
-            // comboBoxDeploymentType
-            // 
-            this.comboBoxDeploymentType.FormattingEnabled = true;
-            this.comboBoxDeploymentType.Items.AddRange(new object[] {
-            "Everything",
-            "Namespace",
-            "Deployment Name"});
-            this.comboBoxDeploymentType.Location = new System.Drawing.Point(253, 75);
-            this.comboBoxDeploymentType.Name = "comboBoxDeploymentType";
-            this.comboBoxDeploymentType.Size = new System.Drawing.Size(161, 26);
-            this.comboBoxDeploymentType.TabIndex = 14;
-            // 
-            // listViewDeployments
-            // 
-            this.listViewDeployments.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderDeploymentName,
-            this.columnHeaderDeploymentLabels,
-            this.columnHeaderDeploymentNamespace,
-            this.columnHeaderDeploymentCreationTime,
-            this.columnHeaderDeploymentType});
-            this.listViewDeployments.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup4.Header = "ListViewGroup";
-            listViewGroup4.Name = "listViewGroup1";
-            this.listViewDeployments.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup4});
-            this.listViewDeployments.HideSelection = false;
-            this.listViewDeployments.Location = new System.Drawing.Point(33, 121);
-            this.listViewDeployments.Name = "listViewDeployments";
-            this.listViewDeployments.Size = new System.Drawing.Size(482, 286);
-            this.listViewDeployments.TabIndex = 16;
-            this.listViewDeployments.UseCompatibleStateImageBehavior = false;
-            this.listViewDeployments.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeaderDeploymentName
-            // 
-            this.columnHeaderDeploymentName.Text = "Name";
-            this.columnHeaderDeploymentName.Width = 68;
-            // 
-            // columnHeaderDeploymentNamespace
-            // 
-            this.columnHeaderDeploymentNamespace.DisplayIndex = 1;
-            this.columnHeaderDeploymentNamespace.Text = "Namespace";
-            this.columnHeaderDeploymentNamespace.Width = 100;
-            // 
-            // columnHeaderDeploymentCreationTime
-            // 
-            this.columnHeaderDeploymentCreationTime.DisplayIndex = 2;
-            this.columnHeaderDeploymentCreationTime.Text = "Created";
-            this.columnHeaderDeploymentCreationTime.Width = 95;
-            // 
-            // columnHeaderDeploymentLabels
-            // 
-            this.columnHeaderDeploymentLabels.DisplayIndex = 3;
-            this.columnHeaderDeploymentLabels.Text = "Labels";
-            this.columnHeaderDeploymentLabels.Width = 120;
-            // 
-            // columnHeaderDeploymentType
-            // 
-            this.columnHeaderDeploymentType.Text = "Type";
-            this.columnHeaderDeploymentType.Width = 64;
-            // 
-            // buttonPodDelete
-            // 
-            this.buttonPodDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPodDelete.Location = new System.Drawing.Point(753, 266);
-            this.buttonPodDelete.Name = "buttonPodDelete";
-            this.buttonPodDelete.Size = new System.Drawing.Size(75, 25);
-            this.buttonPodDelete.TabIndex = 20;
-            this.buttonPodDelete.Text = "Delete";
-            this.buttonPodDelete.UseVisualStyleBackColor = true;
-            // 
-            // buttonPodCreate
-            // 
-            this.buttonPodCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPodCreate.Location = new System.Drawing.Point(672, 266);
-            this.buttonPodCreate.Name = "buttonPodCreate";
-            this.buttonPodCreate.Size = new System.Drawing.Size(75, 25);
-            this.buttonPodCreate.TabIndex = 19;
-            this.buttonPodCreate.Text = "Create";
-            this.buttonPodCreate.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(669, 185);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(46, 14);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "Label:";
-            // 
-            // textBoxPodLabel
-            // 
-            this.textBoxPodLabel.Location = new System.Drawing.Point(672, 202);
-            this.textBoxPodLabel.Name = "textBoxPodLabel";
-            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 26);
-            this.textBoxPodLabel.TabIndex = 17;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(669, 121);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 14);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "Name:";
-            // 
-            // textBoxPodName
-            // 
-            this.textBoxPodName.Location = new System.Drawing.Point(672, 141);
-            this.textBoxPodName.Name = "textBoxPodName";
-            this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
-            this.textBoxPodName.TabIndex = 15;
+            this.DeploymentsTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DeploymentsTab.Controls.Add(this.buttonDeploymentDelete);
+            this.DeploymentsTab.Controls.Add(this.buttonDeploymentCreate);
+            this.DeploymentsTab.Controls.Add(this.label15);
+            this.DeploymentsTab.Controls.Add(this.textBoxDeploymentLabel);
+            this.DeploymentsTab.Controls.Add(this.label16);
+            this.DeploymentsTab.Controls.Add(this.textBoxDeploymentName);
+            this.DeploymentsTab.Controls.Add(this.listViewDeployments);
+            this.DeploymentsTab.Controls.Add(this.labelDeployment);
+            this.DeploymentsTab.Controls.Add(this.comboBoxDeploymentType);
+            this.DeploymentsTab.Controls.Add(this.label12);
+            this.DeploymentsTab.Controls.Add(this.comboBoxDeploymentOpcao);
+            this.DeploymentsTab.Controls.Add(this.label11);
+            this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
+            this.DeploymentsTab.Name = "DeploymentsTab";
+            this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.DeploymentsTab.Size = new System.Drawing.Size(878, 432);
+            this.DeploymentsTab.TabIndex = 5;
+            this.DeploymentsTab.Text = "Deployments";
             // 
             // buttonDeploymentDelete
             // 
@@ -920,63 +794,132 @@
             this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentName.TabIndex = 21;
             // 
-            // label17
+            // listViewDeployments
             // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(8, 23);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(156, 18);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "Services/Ingress:";
+            this.listViewDeployments.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderDeploymentName,
+            this.columnHeaderDeploymentLabels,
+            this.columnHeaderDeploymentNamespace,
+            this.columnHeaderDeploymentCreationTime,
+            this.columnHeaderDeploymentType});
+            this.listViewDeployments.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "listViewGroup1";
+            this.listViewDeployments.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup4});
+            this.listViewDeployments.HideSelection = false;
+            this.listViewDeployments.Location = new System.Drawing.Point(33, 121);
+            this.listViewDeployments.Name = "listViewDeployments";
+            this.listViewDeployments.Size = new System.Drawing.Size(482, 286);
+            this.listViewDeployments.TabIndex = 16;
+            this.listViewDeployments.UseCompatibleStateImageBehavior = false;
+            this.listViewDeployments.View = System.Windows.Forms.View.Details;
             // 
-            // listViewServices
+            // columnHeaderDeploymentName
             // 
-            this.listViewServices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderServiceName,
-            this.columnHeaderServiceNamespace,
-            this.columnHeaderServiceCreationTime,
-            this.columnHeaderServiceLabels,
-            this.columnHeaderServicePorts});
-            this.listViewServices.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup5.Header = "ListViewGroup";
-            listViewGroup5.Name = "listViewGroup1";
-            this.listViewServices.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5});
-            this.listViewServices.HideSelection = false;
-            this.listViewServices.Location = new System.Drawing.Point(33, 121);
-            this.listViewServices.Name = "listViewServices";
-            this.listViewServices.Size = new System.Drawing.Size(527, 286);
-            this.listViewServices.TabIndex = 12;
-            this.listViewServices.UseCompatibleStateImageBehavior = false;
-            this.listViewServices.View = System.Windows.Forms.View.Details;
+            this.columnHeaderDeploymentName.Text = "Name";
+            this.columnHeaderDeploymentName.Width = 68;
             // 
-            // columnHeaderServiceName
+            // columnHeaderDeploymentLabels
             // 
-            this.columnHeaderServiceName.Text = "Name";
-            this.columnHeaderServiceName.Width = 72;
+            this.columnHeaderDeploymentLabels.DisplayIndex = 3;
+            this.columnHeaderDeploymentLabels.Text = "Labels";
+            this.columnHeaderDeploymentLabels.Width = 120;
             // 
-            // columnHeaderServiceNamespace
+            // columnHeaderDeploymentNamespace
             // 
-            this.columnHeaderServiceNamespace.Text = "Namespace";
-            this.columnHeaderServiceNamespace.Width = 132;
+            this.columnHeaderDeploymentNamespace.DisplayIndex = 1;
+            this.columnHeaderDeploymentNamespace.Text = "Namespace";
+            this.columnHeaderDeploymentNamespace.Width = 100;
             // 
-            // columnHeaderServiceCreationTime
+            // columnHeaderDeploymentCreationTime
             // 
-            this.columnHeaderServiceCreationTime.Text = "Created";
-            this.columnHeaderServiceCreationTime.Width = 95;
+            this.columnHeaderDeploymentCreationTime.DisplayIndex = 2;
+            this.columnHeaderDeploymentCreationTime.Text = "Created";
+            this.columnHeaderDeploymentCreationTime.Width = 95;
             // 
-            // columnHeaderServiceLabels
+            // columnHeaderDeploymentType
             // 
-            this.columnHeaderServiceLabels.Text = "Labels";
-            this.columnHeaderServiceLabels.Width = 85;
+            this.columnHeaderDeploymentType.Text = "Type";
+            this.columnHeaderDeploymentType.Width = 64;
             // 
-            // columnHeaderServicePorts
+            // labelDeployment
             // 
-            this.columnHeaderServicePorts.Text = "Ports";
-            this.columnHeaderServicePorts.Width = 111;
+            this.labelDeployment.AutoSize = true;
+            this.labelDeployment.BackColor = System.Drawing.Color.Transparent;
+            this.labelDeployment.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDeployment.ForeColor = System.Drawing.Color.Black;
+            this.labelDeployment.Location = new System.Drawing.Point(250, 58);
+            this.labelDeployment.Name = "labelDeployment";
+            this.labelDeployment.Size = new System.Drawing.Size(87, 14);
+            this.labelDeployment.TabIndex = 15;
+            this.labelDeployment.Text = "Deployment:";
+            // 
+            // comboBoxDeploymentType
+            // 
+            this.comboBoxDeploymentType.FormattingEnabled = true;
+            this.comboBoxDeploymentType.Items.AddRange(new object[] {
+            "Everything",
+            "Namespace",
+            "Deployment Name"});
+            this.comboBoxDeploymentType.Location = new System.Drawing.Point(253, 75);
+            this.comboBoxDeploymentType.Name = "comboBoxDeploymentType";
+            this.comboBoxDeploymentType.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentType.TabIndex = 14;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(30, 55);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(124, 14);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Opção de Procura:";
+            // 
+            // comboBoxDeploymentOpcao
+            // 
+            this.comboBoxDeploymentOpcao.FormattingEnabled = true;
+            this.comboBoxDeploymentOpcao.Items.AddRange(new object[] {
+            "Everything",
+            "Namespace",
+            "Deployment Name"});
+            this.comboBoxDeploymentOpcao.Location = new System.Drawing.Point(33, 72);
+            this.comboBoxDeploymentOpcao.Name = "comboBoxDeploymentOpcao";
+            this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentOpcao.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(8, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(122, 18);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Deployments:";
+            // 
+            // ServiceIngressTab
+            // 
+            this.ServiceIngressTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ServiceIngressTab.Controls.Add(this.buttonServiceDelete);
+            this.ServiceIngressTab.Controls.Add(this.buttonServiceCreate);
+            this.ServiceIngressTab.Controls.Add(this.label18);
+            this.ServiceIngressTab.Controls.Add(this.textBoxServicesLabels);
+            this.ServiceIngressTab.Controls.Add(this.label19);
+            this.ServiceIngressTab.Controls.Add(this.textBoxServicesName);
+            this.ServiceIngressTab.Controls.Add(this.listViewServices);
+            this.ServiceIngressTab.Controls.Add(this.label17);
+            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
+            this.ServiceIngressTab.Name = "ServiceIngressTab";
+            this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 432);
+            this.ServiceIngressTab.TabIndex = 6;
+            this.ServiceIngressTab.Text = " Services/Ingress";
             // 
             // buttonServiceDelete
             // 
@@ -1035,6 +978,64 @@
             this.textBoxServicesName.Name = "textBoxServicesName";
             this.textBoxServicesName.Size = new System.Drawing.Size(115, 26);
             this.textBoxServicesName.TabIndex = 27;
+            // 
+            // listViewServices
+            // 
+            this.listViewServices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderServiceName,
+            this.columnHeaderServiceNamespace,
+            this.columnHeaderServiceCreationTime,
+            this.columnHeaderServiceLabels,
+            this.columnHeaderServicePorts});
+            this.listViewServices.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listViewGroup5.Header = "ListViewGroup";
+            listViewGroup5.Name = "listViewGroup1";
+            this.listViewServices.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup5});
+            this.listViewServices.HideSelection = false;
+            this.listViewServices.Location = new System.Drawing.Point(33, 121);
+            this.listViewServices.Name = "listViewServices";
+            this.listViewServices.Size = new System.Drawing.Size(527, 286);
+            this.listViewServices.TabIndex = 12;
+            this.listViewServices.UseCompatibleStateImageBehavior = false;
+            this.listViewServices.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderServiceName
+            // 
+            this.columnHeaderServiceName.Text = "Name";
+            this.columnHeaderServiceName.Width = 72;
+            // 
+            // columnHeaderServiceNamespace
+            // 
+            this.columnHeaderServiceNamespace.Text = "Namespace";
+            this.columnHeaderServiceNamespace.Width = 132;
+            // 
+            // columnHeaderServiceCreationTime
+            // 
+            this.columnHeaderServiceCreationTime.Text = "Created";
+            this.columnHeaderServiceCreationTime.Width = 95;
+            // 
+            // columnHeaderServiceLabels
+            // 
+            this.columnHeaderServiceLabels.Text = "Labels";
+            this.columnHeaderServiceLabels.Width = 85;
+            // 
+            // columnHeaderServicePorts
+            // 
+            this.columnHeaderServicePorts.Text = "Ports";
+            this.columnHeaderServicePorts.Width = 111;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(8, 23);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(156, 18);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Services/Ingress:";
             // 
             // Form1
             // 

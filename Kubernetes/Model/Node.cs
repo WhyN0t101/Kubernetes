@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Kubernetes.Model
+namespace Kubernetes.Model.Node
 {
     internal class Node
     {
