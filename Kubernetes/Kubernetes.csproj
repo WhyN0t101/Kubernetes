@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Model\Namespaces.cs" />
     <Compile Include="Model\Node.cs" />
+    <Compile Include="Model\Pod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
