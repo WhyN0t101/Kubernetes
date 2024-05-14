@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,16 +22,44 @@ namespace Kubernetes
         private string baseUrl;
         private bool isConnected = false;
         private MethodsController Controller;
-
+        private string token;
 
         public Form1()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
             httpClient = new HttpClient();
+            //token = getToken();
             InitializeComponent();
             pictureBox1.BackColor = Color.Transparent;
 
         }
+        /*
+        private string getToken(string ipAddress)
+        {
+            try
+            {
+                string username = "ubuntu";
+                string password = "ubuntu";
+                string command = "microk8s kubectl -n kube-system describe secret $token | grep token:";
+
+                using (var client = new SshClient(ipAddress, username, password))
+                {
+                    client.Connect();
+
+                    if (client.IsConnected)
+                    {
+                        var commandResult = client.RunCommand(command);
+                        Console.WriteLine($"Command output: {commandResult.Result}");
+                    }
+
+                    client.Disconnect();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+        }*/
 
         private void tabControl1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -77,6 +107,11 @@ namespace Kubernetes
             string protocol = (checkBoxHttps.Checked) ? "https://" : "http://";
             string port = (checkBoxHttps.Checked) ? ":16443" : ":8001";
             int control = (checkBoxHttps.Checked) ? 1 : 0;
+
+            if(control == 1)
+            {
+                //token = getToken(ipAddress);
+            }
 
             try
             {
