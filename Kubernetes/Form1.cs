@@ -31,7 +31,7 @@ namespace Kubernetes
 
         }
 
-        private async void tabControl1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void tabControl1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             // Check if connected to router before allowing access to other tabs
             if (!isConnected && tabControl1.SelectedIndex != 0)
@@ -42,11 +42,14 @@ namespace Kubernetes
 
         }
 
-        private async Task Connect(string ipAddress, string token)
+        private async Task Connect(string ipAddress, string token, int control)
         {
             baseUrl = ipAddress;
-            //string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{token}"));
-            //httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);
+            if(control == 1)
+            {
+                //string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{token}"));
+                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
             await Controller.TestConnection(); // Test connection asynchronously
             isConnected = true;
             textBoxLoginIp.Enabled = false; // IP Address textbox
@@ -71,20 +74,21 @@ namespace Kubernetes
             string token = textBoxLoginToken.Text.Trim();
 
             // Determine the protocol (HTTP or HTTPS) based on user selection
-            //string protocol = (HTTPs.Checked) ? "https://" : "http://";
-
+            string protocol = (checkBoxHttps.Checked) ? "https://" : "http://";
+            string port = (checkBoxHttps.Checked) ? ":16443" : ":8001";
+            int control = (checkBoxHttps.Checked) ? 1 : 0;
 
             try
             {
                 // Construct the base URL using the determined protocol and IP address
                 //string baseUrl = protocol + ipAddress;
-                string baseUrl = "http://" + ipAddress + ":8001";
+                string baseUrl = protocol + ipAddress + port;
 
                 // Instantiate MethodsController class with user credentials and base URL
-                Controller = new MethodsController(baseUrl, token);
+                Controller = new MethodsController(baseUrl, token, control);
 
                 // Attempt to connect to the router
-                await Connect(baseUrl, token);
+                await Connect(baseUrl, token, control);
 
                 // If connection successful, display success message
                 MessageBox.Show("Connected to " + ipAddress, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -97,6 +101,18 @@ namespace Kubernetes
                 MessageBox.Show("Error connecting to router: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void checkBoxHttps_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxHttps.Checked)
+            {
+                textBoxLoginToken.Enabled = true;
+            }
+            else
+            {
+                textBoxLoginToken.Enabled = false;
+            }
         }
     }
 }

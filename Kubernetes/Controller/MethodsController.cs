@@ -12,7 +12,7 @@ namespace Kubernetes.Controller
         private readonly HttpClient httpClient;
         private readonly string baseUrl;
 
-        public MethodsController(string ipAddress, string token)
+        public MethodsController(string ipAddress, string token, int control)
         {
             if (string.IsNullOrEmpty(ipAddress))
             {
@@ -24,7 +24,10 @@ namespace Kubernetes.Controller
             // Instantiate the HttpClient and set the Authorization header
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(this.baseUrl); // Set the base address
-            //httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{token}:{token}")));
+            if(control == 1)
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
         }
 
         public async Task TestConnection()
