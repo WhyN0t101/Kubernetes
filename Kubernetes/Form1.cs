@@ -23,5 +23,10 @@ namespace Kubernetes
         {
 
         }
+
+        private void loginTab_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
