@@ -57,6 +57,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Deployments.cs" />
+    <Compile Include="Model\Ingress.cs" />
     <Compile Include="Model\Namespaces.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\Pod.cs" />
