@@ -137,6 +137,5 @@ namespace Kubernetes.Model.Deployments
             [JsonProperty("type")]
             public string Type { get; set; }
         }
-        }
     }
 }
