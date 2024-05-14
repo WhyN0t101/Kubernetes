@@ -13,7 +13,7 @@ namespace Kubernetes.Model.Deployments
         internal class Deployment
         {
             [JsonProperty("apiVersion")]
-            public string ApiVersion { get; set; } = "apps/v1";
+            public string ApiVersion { get; set; } = "v1";
 
             [JsonProperty("kind")]
             public string Kind { get; set; } = "Deployment";
