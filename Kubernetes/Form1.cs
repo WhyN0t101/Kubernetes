@@ -40,9 +40,29 @@ namespace Kubernetes
             //token = getToken();
             InitializeComponent();
             pictureBox1.BackColor = Color.Transparent;
+            textBoxLoginIp.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
+            textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
 
         }
-        
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the Enter key was pressed
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Prevent the default beep sound
+                e.Handled = true;
+
+                // Trigger the login button click event
+                buttonLogin.PerformClick();
+            }
+
+        }
 
         private void tabControl1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -58,6 +78,12 @@ namespace Kubernetes
             {
                 case 2:
                     PopulateNodeInfoAsync();
+                    break;
+                case 3:
+                    PopulateListViewNamespaces();
+                    break;
+                case 4:
+                    PopulatePods("default");
                     break;
             }
 
@@ -80,8 +106,25 @@ namespace Kubernetes
             InitializeTimer();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void buttonDisconnect_Click(object sender, EventArgs e)
         {
+            // Reset isConnected flag to indicate disconnection
+            isConnected = false;
+
+            // Optionally, dispose of the HttpClient instance to release associated resources
+            httpClient.Dispose();
+            // Disable the textboxes after successful connection
+            textBoxLoginIp.Enabled = true; // Username textbox
+            if (checkBoxHttps.Checked)
+            {
+                textBoxLoginToken.Enabled = true; // token textbox
+            }
+            else
+            {
+                textBoxLoginToken.Enabled = false; // token textbox
+            }
+
+            MessageBox.Show("Disconnected from router.");
 
         }
 
@@ -367,6 +410,6 @@ namespace Kubernetes
             }
         }
 
-
+        
     }
 }
