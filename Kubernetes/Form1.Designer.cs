@@ -42,6 +42,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loginTab = new System.Windows.Forms.TabPage();
+            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLogin = new System.Windows.Forms.Button();
@@ -130,7 +131,6 @@
             this.columnHeaderServiceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderServicePorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label17 = new System.Windows.Forms.Label();
-            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -178,7 +178,18 @@
             this.loginTab.TabIndex = 0;
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
-            this.loginTab.Click += new System.EventHandler(this.loginTab_Click);
+            // 
+            // checkBoxHttps
+            // 
+            this.checkBoxHttps.AutoSize = true;
+            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
+            this.checkBoxHttps.Name = "checkBoxHttps";
+            this.checkBoxHttps.Size = new System.Drawing.Size(88, 27);
+            this.checkBoxHttps.TabIndex = 6;
+            this.checkBoxHttps.Text = "https";
+            this.checkBoxHttps.UseVisualStyleBackColor = false;
+            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
             // label2
             // 
@@ -548,8 +559,8 @@
             // 
             // columnHeaderNamespacePhase
             // 
-            this.columnHeaderNamespacePhase.Text = "Available CPU";
-            this.columnHeaderNamespacePhase.Width = 111;
+            this.columnHeaderNamespacePhase.Text = "Available";
+            this.columnHeaderNamespacePhase.Width = 130;
             // 
             // PodsTab
             // 
@@ -599,7 +610,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(669, 185);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(46, 14);
+            this.label13.Size = new System.Drawing.Size(53, 18);
             this.label13.TabIndex = 18;
             this.label13.Text = "Label:";
             // 
@@ -607,7 +618,7 @@
             // 
             this.textBoxPodLabel.Location = new System.Drawing.Point(672, 202);
             this.textBoxPodLabel.Name = "textBoxPodLabel";
-            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 30);
             this.textBoxPodLabel.TabIndex = 17;
             // 
             // label14
@@ -618,7 +629,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(669, 121);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 14);
+            this.label14.Size = new System.Drawing.Size(59, 18);
             this.label14.TabIndex = 16;
             this.label14.Text = "Name:";
             // 
@@ -626,7 +637,7 @@
             // 
             this.textBoxPodName.Location = new System.Drawing.Point(672, 141);
             this.textBoxPodName.Name = "textBoxPodName";
-            this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodName.Size = new System.Drawing.Size(115, 30);
             this.textBoxPodName.TabIndex = 15;
             // 
             // listViewPods
@@ -694,7 +705,7 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(30, 55);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 14);
+            this.label10.Size = new System.Drawing.Size(102, 18);
             this.label10.TabIndex = 11;
             this.label10.Text = "Namespace:";
             // 
@@ -706,7 +717,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(8, 23);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 18);
+            this.label9.Size = new System.Drawing.Size(69, 23);
             this.label9.TabIndex = 9;
             this.label9.Text = "Pods:";
             // 
@@ -715,7 +726,7 @@
             this.comboBoxNamespacePod.FormattingEnabled = true;
             this.comboBoxNamespacePod.Location = new System.Drawing.Point(33, 72);
             this.comboBoxNamespacePod.Name = "comboBoxNamespacePod";
-            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 31);
             this.comboBoxNamespacePod.TabIndex = 0;
             // 
             // DeploymentsTab
@@ -733,10 +744,10 @@
             this.DeploymentsTab.Controls.Add(this.label12);
             this.DeploymentsTab.Controls.Add(this.comboBoxDeploymentOpcao);
             this.DeploymentsTab.Controls.Add(this.label11);
-            this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
+            this.DeploymentsTab.Location = new System.Drawing.Point(4, 32);
             this.DeploymentsTab.Name = "DeploymentsTab";
             this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DeploymentsTab.Size = new System.Drawing.Size(878, 432);
+            this.DeploymentsTab.Size = new System.Drawing.Size(878, 427);
             this.DeploymentsTab.TabIndex = 5;
             this.DeploymentsTab.Text = "Deployments";
             // 
@@ -855,7 +866,7 @@
             this.labelDeployment.ForeColor = System.Drawing.Color.Black;
             this.labelDeployment.Location = new System.Drawing.Point(250, 58);
             this.labelDeployment.Name = "labelDeployment";
-            this.labelDeployment.Size = new System.Drawing.Size(87, 14);
+            this.labelDeployment.Size = new System.Drawing.Size(105, 18);
             this.labelDeployment.TabIndex = 15;
             this.labelDeployment.Text = "Deployment:";
             // 
@@ -868,7 +879,7 @@
             "Deployment Name"});
             this.comboBoxDeploymentType.Location = new System.Drawing.Point(253, 75);
             this.comboBoxDeploymentType.Name = "comboBoxDeploymentType";
-            this.comboBoxDeploymentType.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentType.Size = new System.Drawing.Size(161, 31);
             this.comboBoxDeploymentType.TabIndex = 14;
             // 
             // label12
@@ -879,7 +890,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(30, 55);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 14);
+            this.label12.Size = new System.Drawing.Size(148, 18);
             this.label12.TabIndex = 13;
             this.label12.Text = "Opção de Procura:";
             // 
@@ -892,7 +903,7 @@
             "Deployment Name"});
             this.comboBoxDeploymentOpcao.Location = new System.Drawing.Point(33, 72);
             this.comboBoxDeploymentOpcao.Name = "comboBoxDeploymentOpcao";
-            this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 31);
             this.comboBoxDeploymentOpcao.TabIndex = 12;
             // 
             // label11
@@ -903,7 +914,7 @@
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(8, 23);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 18);
+            this.label11.Size = new System.Drawing.Size(159, 23);
             this.label11.TabIndex = 10;
             this.label11.Text = "Deployments:";
             // 
@@ -918,10 +929,10 @@
             this.ServiceIngressTab.Controls.Add(this.textBoxServicesName);
             this.ServiceIngressTab.Controls.Add(this.listViewServices);
             this.ServiceIngressTab.Controls.Add(this.label17);
-            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
+            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 32);
             this.ServiceIngressTab.Name = "ServiceIngressTab";
             this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 432);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 427);
             this.ServiceIngressTab.TabIndex = 6;
             this.ServiceIngressTab.Text = " Services/Ingress";
             // 
@@ -1037,21 +1048,9 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(8, 23);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(156, 18);
+            this.label17.Size = new System.Drawing.Size(202, 23);
             this.label17.TabIndex = 11;
             this.label17.Text = "Services/Ingress:";
-            // 
-            // checkBoxHttps
-            // 
-            this.checkBoxHttps.AutoSize = true;
-            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
-            this.checkBoxHttps.Name = "checkBoxHttps";
-            this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
-            this.checkBoxHttps.TabIndex = 6;
-            this.checkBoxHttps.Text = "https";
-            this.checkBoxHttps.UseVisualStyleBackColor = false;
-            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
             // Form1
             // 
