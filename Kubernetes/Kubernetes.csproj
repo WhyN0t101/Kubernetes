@@ -61,7 +61,7 @@
     <Compile Include="Model\Ingress.cs" />
     <Compile Include="Model\NamespacesList.cs" />
     <Compile Include="Model\Node.cs" />
-    <Compile Include="Model\Pod.cs" />
+    <Compile Include="Model\PodList.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

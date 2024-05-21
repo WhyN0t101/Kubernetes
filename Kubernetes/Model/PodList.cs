@@ -1,52 +1,46 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Kubernetes.Model.Pod
+namespace Kubernetes.Model.PodList
 {
-    internal class Pod
+    internal class PodList
     {
-        [JsonProperty("apiVersion")]
-        public string ApiVersion { get; set; } = "v1";
-
-        [JsonProperty("kind")]
-        public string Kind { get; set; } = "Pod";
-
-        [JsonProperty("metadata")]
-        public Metadata Metadata { get; set; }
-
-        [JsonProperty("spec")]
-        public Spec Spec { get; set; }
-
-        [JsonProperty("status")]
-        public Status Status { get; set; }
-
-        public JObject ToJObject()
-        {
-            return JObject.FromObject(this);
-        }
+        [JsonProperty("items")]
+        public List<PodItem> Items { get; set; }
     }
 
-    internal class Metadata
+    internal class PodItem
+    {
+        [JsonProperty("metadata")]
+        public PodMetadata Metadata { get; set; }
+
+        [JsonProperty("spec")]
+        public PodSpec Spec { get; set; }
+
+        [JsonProperty("status")]
+        public PodStatus Status { get; set; }
+    }
+
+    internal class PodMetadata
     {
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("namespace")]
         public string Namespace { get; set; }
+
+        [JsonProperty("creationTimestamp")]
+        public DateTime CreationTimestamp { get; set; }
+
+        [JsonProperty("ownerReferences")]
+        public List<PodOwnerRef> OwnerReferences { get; set; }
 
         [JsonProperty("labels")]
         public Dictionary<string, string> Labels { get; set; }
-
-        [JsonProperty("OwnerRefs")]
-        public List<OwnerRef> OwnerRefs { get; set; }
     }
 
-    internal class OwnerRef
+    internal class PodOwnerRef
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -54,20 +48,20 @@ namespace Kubernetes.Model.Pod
         [JsonProperty("namespace")]
         public string Namespace { get; set; }
 
-        [JsonProperty("creationTimeStamp")]
-        public DateTime CreationTimeStamp { get; set; }
+        [JsonProperty("creationTimestamp")]
+        public DateTime CreationTimestamp { get; set; }
     }
 
-    internal class Spec
+    internal class PodSpec
     {
         [JsonProperty("containers")]
-        public List<Container> Containers { get; set; }
+        public List<PodContainer> Containers { get; set; }
 
         [JsonProperty("nodeName")]
         public string NodeName { get; set; }
     }
 
-    internal class Container
+    internal class PodContainer
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -76,16 +70,16 @@ namespace Kubernetes.Model.Pod
         public string Image { get; set; }
 
         [JsonProperty("ports")]
-        public List<Port> Ports { get; set; }
+        public List<PodPort> Ports { get; set; }
     }
 
-    internal class Port
+    internal class PodPort
     {
         [JsonProperty("containerPort")]
         public int ContainerPort { get; set; }
     }
 
-    internal class Status
+    internal class PodStatus
     {
         [JsonProperty("phase")]
         public string Phase { get; set; }

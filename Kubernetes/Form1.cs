@@ -1,5 +1,6 @@
 ﻿using Kubernetes.Controller;
 using Kubernetes.Model.Namespaces;
+using Kubernetes.Model.PodList;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -164,9 +165,83 @@ namespace Kubernetes
         }
 
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private async void PopulatePods(string namespaceText)
         {
-            // Update ListView data
+            try
+            {
+                // Fetch pods from the Kubernetes service for the specified namespace
+                PodList podList = await kubernetesService.RetrievePods(namespaceText);
+                if (podList == null || podList.Items == null)
+                {
+                    throw new Exception("Pod list is null or empty");
+                }
+
+                // Clear existing items in the ListView
+                listViewPods.Items.Clear();
+
+                // Add new items or update existing items in the ListView
+                foreach (var pod in podList.Items)
+                {
+                    ListViewItem item = new ListViewItem(new[]
+                    {
+                pod.Metadata?.Name ?? "N/A",
+                pod.Metadata?.Namespace ?? "N/A",
+                pod.Metadata?.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ssZ") ?? "N/A",
+                GetImageString(pod.Spec?.Containers) ?? "N/A", // Use helper method to get image string
+                GetPortsString(pod.Spec?.Containers) ?? "N/A", // Use helper method to get ports string
+                pod.Spec?.NodeName ?? "N/A",
+                pod.Status?.Phase ?? "N/A"
+            });
+                    listViewPods.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or display an error message
+                MessageBox.Show("Error fetching pods: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Helper method to get image string
+        private string GetImageString(List<PodContainer> containers)
+        {
+            if (containers == null)
+            {
+                return "N/A";
+            }
+
+            var images = containers.Select(c => c.Image);
+            return images.Any() ? string.Join(", ", images) : "N/A";
+        }
+
+        // Helper method to get ports string
+        private string GetPortsString(List<PodContainer> containers)
+        {
+            if (containers == null)
+            {
+                return "N/A";
+            }
+
+            var ports = containers.SelectMany(c => c.Ports).Select(p => p.ContainerPort.ToString());
+            return ports.Any() ? string.Join(", ", ports) : "N/A";
+        }
+
+        // Helper method to get ports string
+        private string GetPortsString(List<PodPort> ports)
+        {
+            if (ports == null || ports.Count == 0)
+            {
+                return "N/A";
+            }
+
+            var portNumbers = ports.Select(port => port.ContainerPort.ToString());
+            return string.Join(", ", portNumbers);
+        }
+
+
+        private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            // Update ListView data for namespaces
             Invoke((MethodInvoker)delegate {
                 PopulateListViewNamespaces();
             });
@@ -180,5 +255,33 @@ namespace Kubernetes
             timer.Start();
         }
 
+        private async void comboBoxNamespacePod_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                // Fetch namespaces from the Kubernetes service
+                IEnumerable<string> namespaces = await kubernetesService.GetNamespaceNames();
+
+                // Clear existing items in the combo box
+                comboBoxNamespacePod.Items.Clear();
+
+                // Add fetched namespaces to the combo box
+                foreach (string ns in namespaces)
+                {
+                    comboBoxNamespacePod.Items.Add(ns);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or display an error message
+                MessageBox.Show("Error fetching namespaces: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           string nameSpaceSelected= comboBoxNamespacePod.SelectedItem.ToString();
+           PopulatePods(nameSpaceSelected);
+        }
     }
 }

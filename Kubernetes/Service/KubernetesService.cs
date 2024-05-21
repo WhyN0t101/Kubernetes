@@ -1,12 +1,13 @@
 ﻿using Kubernetes.Model.Namespaces;
+using Kubernetes.Model.PodList;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Kubernetes.Controller
 {
@@ -64,6 +65,50 @@ namespace Kubernetes.Controller
             }
         }
 
+        public async Task<PodList> RetrievePods(string namespaceName)
+        {
+            HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/namespaces/{namespaceName}/pods");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<PodList>(responseBody);
+        }
 
+        public async Task<IEnumerable<string>> GetNamespaceNames()
+        {
+            try
+            {
+                // Make an HTTP GET request to fetch namespaces from the Kubernetes API
+                HttpResponseMessage response = await httpClient.GetAsync(baseUrl + "/api/v1/namespaces");
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read the response content
+                    string responseBody = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize the JSON response
+                    var namespaceList = JsonConvert.DeserializeObject<NamespaceList>(responseBody);
+
+                    // Extract namespace names
+                    List<string> namespaceNames = new List<string>();
+                    foreach (var ns in namespaceList.Items)
+                    {
+                        namespaceNames.Add(ns.Metadata.Name);
+                    }
+
+                    return namespaceNames;
+                }
+                else
+                {
+                    // If the request fails, throw an exception
+                    throw new Exception("Failed to fetch namespaces: " + response.ReasonPhrase);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or throw it
+                throw new Exception("Error fetching namespaces: " + ex.Message);
+            }
+        }
     }
 }
