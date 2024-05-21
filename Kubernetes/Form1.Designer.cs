@@ -42,6 +42,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loginTab = new System.Windows.Forms.TabPage();
+            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLogin = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@
             this.listViewNodes = new System.Windows.Forms.ListView();
             this.columnHeaderNodeName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNodeLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderNodeType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNodeCreation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNodeCpuUsed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNodeCpuAvai = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderNodeAddrType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -130,7 +131,6 @@
             this.columnHeaderServiceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderServicePorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label17 = new System.Windows.Forms.Label();
-            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -159,6 +159,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(886, 463);
             this.tabControl1.TabIndex = 3;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             // 
             // loginTab
             // 
@@ -179,6 +180,18 @@
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
             this.loginTab.Click += new System.EventHandler(this.loginTab_Click);
+            // 
+            // checkBoxHttps
+            // 
+            this.checkBoxHttps.AutoSize = true;
+            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
+            this.checkBoxHttps.Name = "checkBoxHttps";
+            this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
+            this.checkBoxHttps.TabIndex = 6;
+            this.checkBoxHttps.Text = "https";
+            this.checkBoxHttps.UseVisualStyleBackColor = false;
+            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
             // label2
             // 
@@ -346,7 +359,7 @@
             this.listViewNodes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderNodeName,
             this.columnHeaderNodeLabels,
-            this.columnHeaderNodeType,
+            this.columnHeaderNodeCreation,
             this.columnHeaderNodeCpuUsed,
             this.columnHeaderNodeCpuAvai,
             this.columnHeaderNodeAddrType,
@@ -377,10 +390,9 @@
             this.columnHeaderNodeLabels.Text = "Labels";
             this.columnHeaderNodeLabels.Width = 58;
             // 
-            // columnHeaderNodeType
+            // columnHeaderNodeCreation
             // 
-            this.columnHeaderNodeType.Text = "Type";
-            this.columnHeaderNodeType.Width = 57;
+            this.columnHeaderNodeCreation.Text = "Created";
             // 
             // columnHeaderNodeCpuUsed
             // 
@@ -1041,18 +1053,6 @@
             this.label17.TabIndex = 11;
             this.label17.Text = "Services/Ingress:";
             // 
-            // checkBoxHttps
-            // 
-            this.checkBoxHttps.AutoSize = true;
-            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
-            this.checkBoxHttps.Name = "checkBoxHttps";
-            this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
-            this.checkBoxHttps.TabIndex = 6;
-            this.checkBoxHttps.Text = "https";
-            this.checkBoxHttps.UseVisualStyleBackColor = false;
-            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1110,7 +1110,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeName;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeLabels;
-        private System.Windows.Forms.ColumnHeader columnHeaderNodeType;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeCpuUsed;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeCpuAvai;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeAddrType;
@@ -1181,6 +1180,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBoxServicesName;
         private System.Windows.Forms.CheckBox checkBoxHttps;
+        private System.Windows.Forms.ColumnHeader columnHeaderNodeCreation;
     }
 }
 

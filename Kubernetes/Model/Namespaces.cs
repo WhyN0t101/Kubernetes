@@ -38,8 +38,8 @@ namespace Kubernetes.Model.Namespaces
         [JsonProperty("labels")]
         public Labels Labels { get; set; }
 
-        [JsonProperty("creationStamp")]
-        public string CreationStamp { get; set; }
+        [JsonProperty("creationTimestamp")]
+        public DateTime creationTimestamp { get; set; }
     }
 
     internal class Labels
