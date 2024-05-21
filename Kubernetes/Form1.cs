@@ -191,13 +191,11 @@ namespace Kubernetes
             timer.Start();
         }
 
-        }
-
         private async void PopulateNodeInfoAsync()
         {
             try
             {
-                NodeList nodeList = await Controller.RetrieveNodes();
+                NodeList nodeList = await kubernetesService.RetrieveNodes();
 
                 // Clear existing items
                 listViewNodes.Items.Clear();
