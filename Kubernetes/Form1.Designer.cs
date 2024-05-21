@@ -130,6 +130,7 @@
             this.columnHeaderServiceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderServicePorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label17 = new System.Windows.Forms.Label();
+            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -163,6 +164,7 @@
             // 
             this.loginTab.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("loginTab.BackgroundImage")));
             this.loginTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginTab.Controls.Add(this.checkBoxHttps);
             this.loginTab.Controls.Add(this.label2);
             this.loginTab.Controls.Add(this.label1);
             this.loginTab.Controls.Add(this.buttonLogin);
@@ -213,6 +215,7 @@
             this.buttonLogin.TabIndex = 3;
             this.buttonLogin.Text = "Connect";
             this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // pictureBox1
             // 
@@ -228,6 +231,7 @@
             // textBoxLoginToken
             // 
             this.textBoxLoginToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxLoginToken.Enabled = false;
             this.textBoxLoginToken.Location = new System.Drawing.Point(352, 297);
             this.textBoxLoginToken.Name = "textBoxLoginToken";
             this.textBoxLoginToken.Size = new System.Drawing.Size(175, 30);
@@ -1037,6 +1041,18 @@
             this.label17.TabIndex = 11;
             this.label17.Text = "Services/Ingress:";
             // 
+            // checkBoxHttps
+            // 
+            this.checkBoxHttps.AutoSize = true;
+            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
+            this.checkBoxHttps.Name = "checkBoxHttps";
+            this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
+            this.checkBoxHttps.TabIndex = 6;
+            this.checkBoxHttps.Text = "https";
+            this.checkBoxHttps.UseVisualStyleBackColor = false;
+            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -1164,6 +1180,7 @@
         private System.Windows.Forms.TextBox textBoxServicesLabels;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBoxServicesName;
+        private System.Windows.Forms.CheckBox checkBoxHttps;
     }
 }
 

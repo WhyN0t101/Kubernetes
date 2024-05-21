@@ -11,7 +11,7 @@ namespace Kubernetes.Model.Ingress
     internal class Ingress
     {
         [JsonProperty("apiVersion")]
-        public string ApiVersion { get; set; } = "networking.k8s.io/v1";
+        public string ApiVersion { get; set; } = "v1";
 
         [JsonProperty("kind")]
         public string Kind { get; set; } = "Ingress";
