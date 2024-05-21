@@ -187,11 +187,14 @@ namespace Kubernetes
             try
             {
                 // Fetch namespaces from the Kubernetes service
-                NamespaceList namespaceList = await kubernetesService.RetrieveNamespaces();
+                namespaceList = await kubernetesService.RetrieveNamespaces();
                 if (namespaceList == null)
                 {
                     throw new Exception("Namespace list is null");
                 }
+
+                // List of default namespaces to exclude
+                var defaultNamespaces = new HashSet<string> { "kube-system", "kube-public", "kube-node-lease", "default" };
 
                 // Clear existing items in the ListView
                 listViewNamespaces.Items.Clear();
@@ -199,6 +202,12 @@ namespace Kubernetes
                 // Add new items or update existing items in the ListView
                 foreach (var ns in namespaceList.Items)
                 {
+                    // Skip default namespaces
+                    if (defaultNamespaces.Contains(ns.Metadata?.Name))
+                    {
+                        continue;
+                    }
+
                     ListViewItem item = new ListViewItem(new[]
                     {
                 ns.Metadata.Name,
@@ -206,7 +215,6 @@ namespace Kubernetes
                 ns.Metadata.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ssZ"),
                 ns.Spec.Finalizers != null ? string.Join(", ", ns.Spec.Finalizers) : "",
                 ns.Status.Phase,
-                
             });
                     listViewNamespaces.Items.Add(item);
                 }
@@ -217,7 +225,6 @@ namespace Kubernetes
                 MessageBox.Show("Error fetching namespaces: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private async void PopulatePods(string namespaceText)
         {
@@ -230,12 +237,21 @@ namespace Kubernetes
                     throw new Exception("Pod list is null or empty");
                 }
 
+                // List of default namespaces to exclude
+                var defaultNamespaces = new HashSet<string> { "kube-system", "kube-public", "kube-node-lease", "default" };
+
                 // Clear existing items in the ListView
                 listViewPods.Items.Clear();
 
                 // Add new items or update existing items in the ListView
                 foreach (var pod in podList.Items)
                 {
+                    // Skip pods that belong to default namespaces
+                    if (defaultNamespaces.Contains(pod.Metadata?.Namespace))
+                    {
+                        continue;
+                    }
+
                     ListViewItem item = new ListViewItem(new[]
                     {
                 pod.Metadata?.Name ?? "N/A",
@@ -280,18 +296,6 @@ namespace Kubernetes
             return ports.Any() ? string.Join(", ", ports) : "N/A";
         }
 
-        // Helper method to get ports string
-        private string GetPortsString(List<PodPort> ports)
-        {
-            if (ports == null || ports.Count == 0)
-            {
-                return "N/A";
-            }
-
-            var portNumbers = ports.Select(port => port.ContainerPort.ToString());
-            return string.Join(", ", portNumbers);
-        }
-
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -316,13 +320,19 @@ namespace Kubernetes
                 // Fetch namespaces from the Kubernetes service
                 IEnumerable<string> namespaces = await kubernetesService.GetNamespaceNames();
 
+                // List of default namespaces to exclude
+                var defaultNamespaces = new HashSet<string> { "kube-system", "kube-public", "kube-node-lease", "default" };
+
                 // Clear existing items in the combo box
                 comboBoxNamespacePod.Items.Clear();
 
-                // Add fetched namespaces to the combo box
+                // Add fetched namespaces to the combo box, excluding default namespaces
                 foreach (string ns in namespaces)
                 {
-                    comboBoxNamespacePod.Items.Add(ns);
+                    if (!defaultNamespaces.Contains(ns))
+                    {
+                        comboBoxNamespacePod.Items.Add(ns);
+                    }
                 }
             }
             catch (Exception ex)
@@ -331,6 +341,7 @@ namespace Kubernetes
                 MessageBox.Show("Error fetching namespaces: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
         {
