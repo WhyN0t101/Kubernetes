@@ -50,6 +50,13 @@ namespace Kubernetes.Controller
                 throw new Exception("Error testing connection: " + ex.Message);
             }
         }
+        public async Task<PodList> RetrievePods(string namespaceName)
+        {
+            HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/namespaces/{namespaceName}/pods");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<PodList>(responseBody);
+        }
         public async Task<NamespaceList> RetrieveNamespaces()
         {
             try
@@ -76,20 +83,6 @@ namespace Kubernetes.Controller
                 // Make an HTTP GET request to the specified endpoint
                 HttpResponseMessage response = await httpClient.GetAsync(baseUrl + "/api/v1/nodes");
                 response.EnsureSuccessStatusCode(); // Throw an exception if the response is not successful
-        public async Task<IEnumerable<string>> GetNamespaceNames()
-        {
-            try
-            {
-                // Make an HTTP GET request to fetch namespaces from the Kubernetes API
-                HttpResponseMessage response = await httpClient.GetAsync(baseUrl + "/api/v1/namespaces");
-
-                // Check if the request was successful
-                if (response.IsSuccessStatusCode)
-                {
-                    // Read the response content
-                    string responseBody = await response.Content.ReadAsStringAsync();
-
-                // Read the response content as a string
                 string responseBody = await response.Content.ReadAsStringAsync();
 
                 // Deserialize the JSON response into a WifiSecurityProfile object
@@ -104,6 +97,21 @@ namespace Kubernetes.Controller
                 return null;
             }
         }
+
+
+        public async Task<IEnumerable<string>> GetNamespaceNames()
+        {
+            try
+            {
+                // Make an HTTP GET request to fetch namespaces from the Kubernetes API
+                HttpResponseMessage response = await httpClient.GetAsync(baseUrl + "/api/v1/namespaces");
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read the response content
+                    string responseBody = await response.Content.ReadAsStringAsync();
+              
                     // Deserialize the JSON response
                     var namespaceList = JsonConvert.DeserializeObject<NamespaceList>(responseBody);
 
