@@ -172,14 +172,25 @@
             this.loginTab.Controls.Add(this.pictureBox1);
             this.loginTab.Controls.Add(this.textBoxLoginToken);
             this.loginTab.Controls.Add(this.textBoxLoginIp);
-            this.loginTab.Location = new System.Drawing.Point(4, 27);
+            this.loginTab.Location = new System.Drawing.Point(4, 32);
             this.loginTab.Name = "loginTab";
             this.loginTab.Padding = new System.Windows.Forms.Padding(3);
-            this.loginTab.Size = new System.Drawing.Size(878, 432);
+            this.loginTab.Size = new System.Drawing.Size(878, 427);
             this.loginTab.TabIndex = 0;
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
-            this.loginTab.Click += new System.EventHandler(this.loginTab_Click);
+            // 
+            // checkBoxHttps
+            // 
+            this.checkBoxHttps.AutoSize = true;
+            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
+            this.checkBoxHttps.Name = "checkBoxHttps";
+            this.checkBoxHttps.Size = new System.Drawing.Size(88, 27);
+            this.checkBoxHttps.TabIndex = 6;
+            this.checkBoxHttps.Text = "https";
+            this.checkBoxHttps.UseVisualStyleBackColor = false;
+            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
             // checkBoxHttps
             // 
@@ -202,7 +213,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(408, 274);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.Size = new System.Drawing.Size(86, 25);
             this.label2.TabIndex = 5;
             this.label2.Text = "Token:";
             // 
@@ -215,7 +226,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(425, 216);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 20);
+            this.label1.Size = new System.Drawing.Size(44, 25);
             this.label1.TabIndex = 4;
             this.label1.Text = "IP:";
             // 
@@ -247,7 +258,7 @@
             this.textBoxLoginToken.Enabled = false;
             this.textBoxLoginToken.Location = new System.Drawing.Point(352, 297);
             this.textBoxLoginToken.Name = "textBoxLoginToken";
-            this.textBoxLoginToken.Size = new System.Drawing.Size(175, 26);
+            this.textBoxLoginToken.Size = new System.Drawing.Size(175, 30);
             this.textBoxLoginToken.TabIndex = 2;
             // 
             // textBoxLoginIp
@@ -255,7 +266,7 @@
             this.textBoxLoginIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLoginIp.Location = new System.Drawing.Point(352, 239);
             this.textBoxLoginIp.Name = "textBoxLoginIp";
-            this.textBoxLoginIp.Size = new System.Drawing.Size(175, 26);
+            this.textBoxLoginIp.Size = new System.Drawing.Size(175, 30);
             this.textBoxLoginIp.TabIndex = 1;
             // 
             // ResourcesTab
@@ -265,10 +276,10 @@
             this.ResourcesTab.Controls.Add(this.label3);
             this.ResourcesTab.Controls.Add(this.chart2);
             this.ResourcesTab.Controls.Add(this.chart1);
-            this.ResourcesTab.Location = new System.Drawing.Point(4, 27);
+            this.ResourcesTab.Location = new System.Drawing.Point(4, 32);
             this.ResourcesTab.Name = "ResourcesTab";
             this.ResourcesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ResourcesTab.Size = new System.Drawing.Size(878, 432);
+            this.ResourcesTab.Size = new System.Drawing.Size(878, 427);
             this.ResourcesTab.TabIndex = 1;
             this.ResourcesTab.Text = "Resources";
             // 
@@ -280,7 +291,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(595, 343);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
+            this.label4.Size = new System.Drawing.Size(78, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Chart 1";
             // 
@@ -292,7 +303,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(109, 343);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 16);
+            this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Chart 1";
             // 
@@ -335,10 +346,10 @@
             this.NodesTab.BackColor = System.Drawing.Color.WhiteSmoke;
             this.NodesTab.Controls.Add(this.label5);
             this.NodesTab.Controls.Add(this.listViewNodes);
-            this.NodesTab.Location = new System.Drawing.Point(4, 27);
+            this.NodesTab.Location = new System.Drawing.Point(4, 32);
             this.NodesTab.Name = "NodesTab";
             this.NodesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NodesTab.Size = new System.Drawing.Size(878, 432);
+            this.NodesTab.Size = new System.Drawing.Size(878, 427);
             this.NodesTab.TabIndex = 2;
             this.NodesTab.Text = "Nodes";
             // 
@@ -350,7 +361,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(8, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 18);
+            this.label5.Size = new System.Drawing.Size(84, 23);
             this.label5.TabIndex = 6;
             this.label5.Text = "Nodes:";
             // 
@@ -440,10 +451,10 @@
             this.NamespacesTab.Controls.Add(this.textBoxNamespaceName);
             this.NamespacesTab.Controls.Add(this.label6);
             this.NamespacesTab.Controls.Add(this.listViewNamespaces);
-            this.NamespacesTab.Location = new System.Drawing.Point(4, 27);
+            this.NamespacesTab.Location = new System.Drawing.Point(4, 32);
             this.NamespacesTab.Name = "NamespacesTab";
             this.NamespacesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NamespacesTab.Size = new System.Drawing.Size(878, 432);
+            this.NamespacesTab.Size = new System.Drawing.Size(878, 427);
             this.NamespacesTab.TabIndex = 3;
             this.NamespacesTab.Text = "Namespaces";
             // 
@@ -475,7 +486,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(720, 142);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 14);
+            this.label8.Size = new System.Drawing.Size(53, 18);
             this.label8.TabIndex = 12;
             this.label8.Text = "Label:";
             // 
@@ -483,7 +494,7 @@
             // 
             this.textBoxNamespaceLabels.Location = new System.Drawing.Point(723, 159);
             this.textBoxNamespaceLabels.Name = "textBoxNamespaceLabels";
-            this.textBoxNamespaceLabels.Size = new System.Drawing.Size(115, 26);
+            this.textBoxNamespaceLabels.Size = new System.Drawing.Size(115, 30);
             this.textBoxNamespaceLabels.TabIndex = 11;
             // 
             // label7
@@ -494,7 +505,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(578, 142);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 14);
+            this.label7.Size = new System.Drawing.Size(59, 18);
             this.label7.TabIndex = 10;
             this.label7.Text = "Name:";
             // 
@@ -502,7 +513,7 @@
             // 
             this.textBoxNamespaceName.Location = new System.Drawing.Point(581, 159);
             this.textBoxNamespaceName.Name = "textBoxNamespaceName";
-            this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 30);
             this.textBoxNamespaceName.TabIndex = 9;
             // 
             // label6
@@ -513,7 +524,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(8, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 18);
+            this.label6.Size = new System.Drawing.Size(152, 23);
             this.label6.TabIndex = 8;
             this.label6.Text = "Namespaces:";
             // 
@@ -560,8 +571,8 @@
             // 
             // columnHeaderNamespacePhase
             // 
-            this.columnHeaderNamespacePhase.Text = "Available CPU";
-            this.columnHeaderNamespacePhase.Width = 111;
+            this.columnHeaderNamespacePhase.Text = "Available";
+            this.columnHeaderNamespacePhase.Width = 130;
             // 
             // PodsTab
             // 
@@ -576,10 +587,10 @@
             this.PodsTab.Controls.Add(this.label10);
             this.PodsTab.Controls.Add(this.label9);
             this.PodsTab.Controls.Add(this.comboBoxNamespacePod);
-            this.PodsTab.Location = new System.Drawing.Point(4, 27);
+            this.PodsTab.Location = new System.Drawing.Point(4, 32);
             this.PodsTab.Name = "PodsTab";
             this.PodsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PodsTab.Size = new System.Drawing.Size(878, 432);
+            this.PodsTab.Size = new System.Drawing.Size(878, 427);
             this.PodsTab.TabIndex = 4;
             this.PodsTab.Text = "Pods";
             // 
@@ -611,7 +622,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(669, 185);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(46, 14);
+            this.label13.Size = new System.Drawing.Size(53, 18);
             this.label13.TabIndex = 18;
             this.label13.Text = "Label:";
             // 
@@ -619,7 +630,7 @@
             // 
             this.textBoxPodLabel.Location = new System.Drawing.Point(672, 202);
             this.textBoxPodLabel.Name = "textBoxPodLabel";
-            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 30);
             this.textBoxPodLabel.TabIndex = 17;
             // 
             // label14
@@ -630,7 +641,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(669, 121);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 14);
+            this.label14.Size = new System.Drawing.Size(59, 18);
             this.label14.TabIndex = 16;
             this.label14.Text = "Name:";
             // 
@@ -638,7 +649,7 @@
             // 
             this.textBoxPodName.Location = new System.Drawing.Point(672, 141);
             this.textBoxPodName.Name = "textBoxPodName";
-            this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodName.Size = new System.Drawing.Size(115, 30);
             this.textBoxPodName.TabIndex = 15;
             // 
             // listViewPods
@@ -706,7 +717,7 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(30, 55);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 14);
+            this.label10.Size = new System.Drawing.Size(102, 18);
             this.label10.TabIndex = 11;
             this.label10.Text = "Namespace:";
             // 
@@ -718,7 +729,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(8, 23);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 18);
+            this.label9.Size = new System.Drawing.Size(69, 23);
             this.label9.TabIndex = 9;
             this.label9.Text = "Pods:";
             // 
@@ -727,7 +738,7 @@
             this.comboBoxNamespacePod.FormattingEnabled = true;
             this.comboBoxNamespacePod.Location = new System.Drawing.Point(33, 72);
             this.comboBoxNamespacePod.Name = "comboBoxNamespacePod";
-            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 31);
             this.comboBoxNamespacePod.TabIndex = 0;
             // 
             // DeploymentsTab
@@ -745,10 +756,10 @@
             this.DeploymentsTab.Controls.Add(this.label12);
             this.DeploymentsTab.Controls.Add(this.comboBoxDeploymentOpcao);
             this.DeploymentsTab.Controls.Add(this.label11);
-            this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
+            this.DeploymentsTab.Location = new System.Drawing.Point(4, 32);
             this.DeploymentsTab.Name = "DeploymentsTab";
             this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DeploymentsTab.Size = new System.Drawing.Size(878, 432);
+            this.DeploymentsTab.Size = new System.Drawing.Size(878, 427);
             this.DeploymentsTab.TabIndex = 5;
             this.DeploymentsTab.Text = "Deployments";
             // 
@@ -780,7 +791,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(722, 142);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(46, 14);
+            this.label15.Size = new System.Drawing.Size(53, 18);
             this.label15.TabIndex = 24;
             this.label15.Text = "Label:";
             // 
@@ -788,7 +799,7 @@
             // 
             this.textBoxDeploymentLabel.Location = new System.Drawing.Point(725, 159);
             this.textBoxDeploymentLabel.Name = "textBoxDeploymentLabel";
-            this.textBoxDeploymentLabel.Size = new System.Drawing.Size(115, 26);
+            this.textBoxDeploymentLabel.Size = new System.Drawing.Size(115, 30);
             this.textBoxDeploymentLabel.TabIndex = 23;
             // 
             // label16
@@ -799,7 +810,7 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(555, 139);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(48, 14);
+            this.label16.Size = new System.Drawing.Size(59, 18);
             this.label16.TabIndex = 22;
             this.label16.Text = "Name:";
             // 
@@ -807,7 +818,7 @@
             // 
             this.textBoxDeploymentName.Location = new System.Drawing.Point(558, 159);
             this.textBoxDeploymentName.Name = "textBoxDeploymentName";
-            this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 30);
             this.textBoxDeploymentName.TabIndex = 21;
             // 
             // listViewDeployments
@@ -867,7 +878,7 @@
             this.labelDeployment.ForeColor = System.Drawing.Color.Black;
             this.labelDeployment.Location = new System.Drawing.Point(250, 58);
             this.labelDeployment.Name = "labelDeployment";
-            this.labelDeployment.Size = new System.Drawing.Size(87, 14);
+            this.labelDeployment.Size = new System.Drawing.Size(105, 18);
             this.labelDeployment.TabIndex = 15;
             this.labelDeployment.Text = "Deployment:";
             // 
@@ -880,7 +891,7 @@
             "Deployment Name"});
             this.comboBoxDeploymentType.Location = new System.Drawing.Point(253, 75);
             this.comboBoxDeploymentType.Name = "comboBoxDeploymentType";
-            this.comboBoxDeploymentType.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentType.Size = new System.Drawing.Size(161, 31);
             this.comboBoxDeploymentType.TabIndex = 14;
             // 
             // label12
@@ -891,7 +902,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(30, 55);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 14);
+            this.label12.Size = new System.Drawing.Size(148, 18);
             this.label12.TabIndex = 13;
             this.label12.Text = "Opção de Procura:";
             // 
@@ -904,7 +915,7 @@
             "Deployment Name"});
             this.comboBoxDeploymentOpcao.Location = new System.Drawing.Point(33, 72);
             this.comboBoxDeploymentOpcao.Name = "comboBoxDeploymentOpcao";
-            this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentOpcao.Size = new System.Drawing.Size(161, 31);
             this.comboBoxDeploymentOpcao.TabIndex = 12;
             // 
             // label11
@@ -915,7 +926,7 @@
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(8, 23);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 18);
+            this.label11.Size = new System.Drawing.Size(159, 23);
             this.label11.TabIndex = 10;
             this.label11.Text = "Deployments:";
             // 
@@ -930,10 +941,10 @@
             this.ServiceIngressTab.Controls.Add(this.textBoxServicesName);
             this.ServiceIngressTab.Controls.Add(this.listViewServices);
             this.ServiceIngressTab.Controls.Add(this.label17);
-            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
+            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 32);
             this.ServiceIngressTab.Name = "ServiceIngressTab";
             this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 432);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 427);
             this.ServiceIngressTab.TabIndex = 6;
             this.ServiceIngressTab.Text = " Services/Ingress";
             // 
@@ -965,7 +976,7 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(750, 140);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(46, 14);
+            this.label18.Size = new System.Drawing.Size(53, 18);
             this.label18.TabIndex = 30;
             this.label18.Text = "Label:";
             // 
@@ -973,7 +984,7 @@
             // 
             this.textBoxServicesLabels.Location = new System.Drawing.Point(753, 157);
             this.textBoxServicesLabels.Name = "textBoxServicesLabels";
-            this.textBoxServicesLabels.Size = new System.Drawing.Size(115, 26);
+            this.textBoxServicesLabels.Size = new System.Drawing.Size(115, 30);
             this.textBoxServicesLabels.TabIndex = 29;
             // 
             // label19
@@ -984,7 +995,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(583, 137);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(48, 14);
+            this.label19.Size = new System.Drawing.Size(59, 18);
             this.label19.TabIndex = 28;
             this.label19.Text = "Name:";
             // 
@@ -992,7 +1003,7 @@
             // 
             this.textBoxServicesName.Location = new System.Drawing.Point(586, 157);
             this.textBoxServicesName.Name = "textBoxServicesName";
-            this.textBoxServicesName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxServicesName.Size = new System.Drawing.Size(115, 30);
             this.textBoxServicesName.TabIndex = 27;
             // 
             // listViewServices
@@ -1049,13 +1060,13 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(8, 23);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(156, 18);
+            this.label17.Size = new System.Drawing.Size(202, 23);
             this.label17.TabIndex = 11;
             this.label17.Text = "Services/Ingress:";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(884, 461);

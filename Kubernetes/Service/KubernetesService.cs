@@ -1,4 +1,6 @@
-﻿using Kubernetes.Model.Node;
+﻿using Kubernetes.Model.Namespaces;
+using Newtonsoft.Json;
+using Kubernetes.Model.Node;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,14 +14,13 @@ using System.Xml.Linq;
 
 namespace Kubernetes.Controller
 {
-    internal class MethodsController
+    internal class KubernetesService
     {
         private readonly HttpClient httpClient;
         private readonly string baseUrl;
         private NodeList node;
 
-
-        public MethodsController(string ipAddress, string token, int control)
+        public KubernetesService(string ipAddress, string token, int control)
         {
             if (string.IsNullOrEmpty(ipAddress))
             {
@@ -31,7 +32,7 @@ namespace Kubernetes.Controller
             // Instantiate the HttpClient and set the Authorization header
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(this.baseUrl); // Set the base address
-            if(control == 1)
+            if (control == 1)
             {
                 httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             }
@@ -47,6 +48,24 @@ namespace Kubernetes.Controller
             catch (HttpRequestException ex)
             {
                 throw new Exception("Error testing connection: " + ex.Message);
+            }
+        }
+        public async Task<NamespaceList> RetrieveNamespaces()
+        {
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(baseUrl + "/api/v1/namespaces");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                NamespaceList namespaceList = JsonConvert.DeserializeObject<NamespaceList>(responseBody);
+                return namespaceList;
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to fetch namespaces");
+                return null;
             }
         }
 

@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\MethodsController.cs" />
+    <Compile Include="Service\KubernetesService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,7 +59,7 @@
     </Compile>
     <Compile Include="Model\Deployments.cs" />
     <Compile Include="Model\Ingress.cs" />
-    <Compile Include="Model\Namespaces.cs" />
+    <Compile Include="Model\NamespacesList.cs" />
     <Compile Include="Model\NodeList.cs" />
     <Compile Include="Model\Pod.cs" />
     <Compile Include="Model\Service.cs" />

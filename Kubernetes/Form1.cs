@@ -1,5 +1,6 @@
 ﻿using Kubernetes.Controller;
 using Kubernetes.Model.Node;
+using Kubernetes.Model.Namespaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -22,9 +25,12 @@ namespace Kubernetes
         private readonly HttpClient httpClient;
         private string baseUrl;
         private bool isConnected = false;
-        private MethodsController Controller;
         private string token;
+        private KubernetesService kubernetesService;
+        private System.Timers.Timer timer;
+        private NamespaceList namespaceList;
         private NodeList node;
+
 
         public Form1()
         {
@@ -35,33 +41,7 @@ namespace Kubernetes
             pictureBox1.BackColor = Color.Transparent;
 
         }
-        /*
-        private string getToken(string ipAddress)
-        {
-            try
-            {
-                string username = "ubuntu";
-                string password = "ubuntu";
-                string command = "microk8s kubectl -n kube-system describe secret $token | grep token:";
-
-                using (var client = new SshClient(ipAddress, username, password))
-                {
-                    client.Connect();
-
-                    if (client.IsConnected)
-                    {
-                        var commandResult = client.RunCommand(command);
-                        Console.WriteLine($"Command output: {commandResult.Result}");
-                    }
-
-                    client.Disconnect();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception: {ex.Message}");
-            }
-        }*/
+        
 
         private void tabControl1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -91,11 +71,12 @@ namespace Kubernetes
                 //string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{token}"));
                 httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             }
-            await Controller.TestConnection(); // Test connection asynchronously
+            await kubernetesService.TestConnection(); // Test connection asynchronously
             isConnected = true;
             textBoxLoginIp.Enabled = false; // IP Address textbox
             textBoxLoginToken.Enabled = false; // Token textbox
             MessageBox.Show("Connected to Management Interface successfully!");
+            InitializeTimer();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -103,10 +84,6 @@ namespace Kubernetes
 
         }
 
-        private void loginTab_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -131,7 +108,7 @@ namespace Kubernetes
                 string baseUrl = protocol + ipAddress + port;
 
                 // Instantiate MethodsController class with user credentials and base URL
-                Controller = new MethodsController(baseUrl, token, control);
+                kubernetesService = new KubernetesService(baseUrl, token, control);
 
                 // Attempt to connect to the router
                 await Connect(baseUrl, token, control);
@@ -159,6 +136,61 @@ namespace Kubernetes
             {
                 textBoxLoginToken.Enabled = false;
             }
+        }
+
+        private async void PopulateListViewNamespaces()
+        {
+            try
+            {
+                // Fetch namespaces from the Kubernetes service
+                NamespaceList namespaceList = await kubernetesService.RetrieveNamespaces();
+                if (namespaceList == null)
+                {
+                    throw new Exception("Namespace list is null");
+                }
+
+                // Clear existing items in the ListView
+                listViewNamespaces.Items.Clear();
+
+                // Add new items or update existing items in the ListView
+                foreach (var ns in namespaceList.Items)
+                {
+                    ListViewItem item = new ListViewItem(new[]
+                    {
+                ns.Metadata.Name,
+                ns.Metadata.Labels != null ? string.Join(", ", ns.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "",
+                ns.Metadata.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                ns.Spec.Finalizers != null ? string.Join(", ", ns.Spec.Finalizers) : "",
+                ns.Status.Phase,
+                
+            });
+                    listViewNamespaces.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or display an error message
+                MessageBox.Show("Error fetching namespaces: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            // Update ListView data
+            Invoke((MethodInvoker)delegate {
+                PopulateListViewNamespaces();
+            });
+        }
+        private void InitializeTimer()
+        {
+            timer = new System.Timers.Timer();
+            timer.Interval = 5000; // 5000 milliseconds = 5 seconds
+            timer.Elapsed += Timer_Elapsed;
+            timer.AutoReset = true; // Make the timer continuously repeat
+            timer.Start();
+        }
+
         }
 
         private async void PopulateNodeInfoAsync()
