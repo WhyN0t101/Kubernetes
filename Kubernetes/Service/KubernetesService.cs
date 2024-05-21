@@ -1,12 +1,15 @@
 ﻿using Kubernetes.Model.Namespaces;
 using Kubernetes.Model.PodList;
 using Newtonsoft.Json;
+using Kubernetes.Model.Node;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Kubernetes.Controller
@@ -15,6 +18,7 @@ namespace Kubernetes.Controller
     {
         private readonly HttpClient httpClient;
         private readonly string baseUrl;
+        private NodeList node;
 
         public KubernetesService(string ipAddress, string token, int control)
         {
@@ -65,14 +69,13 @@ namespace Kubernetes.Controller
             }
         }
 
-        public async Task<PodList> RetrievePods(string namespaceName)
+        public async Task<NodeList> RetrieveNodes()
         {
-            HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/namespaces/{namespaceName}/pods");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<PodList>(responseBody);
-        }
-
+            try
+            {
+                // Make an HTTP GET request to the specified endpoint
+                HttpResponseMessage response = await httpClient.GetAsync(baseUrl + "/api/v1/nodes");
+                response.EnsureSuccessStatusCode(); // Throw an exception if the response is not successful
         public async Task<IEnumerable<string>> GetNamespaceNames()
         {
             try
@@ -86,6 +89,21 @@ namespace Kubernetes.Controller
                     // Read the response content
                     string responseBody = await response.Content.ReadAsStringAsync();
 
+                // Read the response content as a string
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the JSON response into a WifiSecurityProfile object
+                NodeList nodeList = JsonConvert.DeserializeObject<NodeList>(responseBody);
+
+                return nodeList;
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show("Error Fetching Nodes: " + ex.Message);
+                return null;
+            }
+        }
                     // Deserialize the JSON response
                     var namespaceList = JsonConvert.DeserializeObject<NamespaceList>(responseBody);
 

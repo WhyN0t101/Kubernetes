@@ -1,4 +1,5 @@
 ﻿using Kubernetes.Controller;
+using Kubernetes.Model.Node;
 using Kubernetes.Model.Namespaces;
 using Kubernetes.Model.PodList;
 using System;
@@ -29,6 +30,7 @@ namespace Kubernetes
         private KubernetesService kubernetesService;
         private System.Timers.Timer timer;
         private NamespaceList namespaceList;
+        private NodeList node;
 
 
         public Form1()
@@ -51,7 +53,16 @@ namespace Kubernetes
                 tabControl1.SelectedIndex = 0; // Switch back to the connection tab
             }
 
+            TabControl tabControl = (TabControl)sender;
+            switch (tabControl.SelectedIndex)
+            {
+                case 2:
+                    PopulateNodeInfoAsync();
+                    break;
+            }
+
         }
+
 
         private async Task Connect(string ipAddress, string token, int control)
         {
@@ -283,5 +294,79 @@ namespace Kubernetes
            string nameSpaceSelected= comboBoxNamespacePod.SelectedItem.ToString();
            PopulatePods(nameSpaceSelected);
         }
+        private async void PopulateNodeInfoAsync()
+        {
+            try
+            {
+                NodeList nodeList = await kubernetesService.RetrieveNodes();
+
+                // Clear existing items
+                listViewNodes.Items.Clear();
+
+                foreach (var node in nodeList.Items)
+                {
+                    ListViewItem item = new ListViewItem(node.Metadata.Name);
+
+                    // Labels (if available)
+                    //string labels = string.Join(", ", node.Metadata.Labels?.Select(kv => $"{kv.Key}: {kv.Value}") ?? Enumerable.Empty<string>());
+                    string labels = node.Metadata.Labels != null ? string.Join
+                        (", ", node.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
+                    item.SubItems.Add(labels);
+
+                    // Type (if available)
+                    string created = node.Metadata.creationTimestamp.ToString("yyyy-MM-ddTHH:mm:ss");
+                    item.SubItems.Add(created);
+
+                    // Used CPU (if available)
+                    string usedCpu = "N/A";
+                    if (node.Status.Capacity != null && node.Status.Allocatable != null 
+                        && node.Status.Capacity.ContainsKey("cpu") && node.Status.Allocatable.ContainsKey("cpu"))
+                    {
+                        if (double.TryParse(node.Status.Capacity["cpu"], out double capacity)
+                            && double.TryParse(node.Status.Allocatable["cpu"], out double allocatable))
+                        {
+                            double used = capacity - allocatable;
+                            usedCpu = used >= 0 ? used.ToString() : "N/A";
+                        }
+                    }
+                    item.SubItems.Add(usedCpu);
+
+                    // Available CPU (if available)
+                    string allocatableCpu = node.Status.Allocatable?.ContainsKey("cpu") == true ? node.Status.Capacity["cpu"] : "0";
+                    item.SubItems.Add(allocatableCpu);
+
+
+                    // Address Type and Address (if available)
+                    if (node.Status.Addresses != null && node.Status.Addresses.Count > 0)
+                    {
+                        string addressType = node.Status.Addresses[0].Type;
+                        string address = node.Status.Addresses[0].IpAddress;
+                        item.SubItems.Add(addressType);
+                        item.SubItems.Add(address);
+                    }
+                    else
+                    {
+                        item.SubItems.Add("N/A");
+                        item.SubItems.Add("N/A");
+                    }
+
+                    // OS, OSImage, and Architecture (if available)
+                    item.SubItems.Add(node.Status.NodeInfo?.OS ?? "N/A");
+                    item.SubItems.Add(node.Status.NodeInfo?.OSImage ?? "N/A");
+                    item.SubItems.Add(node.Status.NodeInfo?.Architecture ?? "N/A");
+
+                    // Add the ListViewItem to the ListView
+                    listViewNodes.Items.Add(item);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Populating List: " + ex.Message);
+            }
+        }
+
+
     }
 }
