@@ -51,6 +51,9 @@ namespace Kubernetes.Model.Service
         [JsonProperty("spec")]
         public Spec Spec { get; set; }
 
+        [JsonProperty("status")]
+        public ServiceStatus Status { get; set; }
+
     }
 
     public class Spec
@@ -83,9 +86,19 @@ namespace Kubernetes.Model.Service
         public string Protocol { get; set; }
 
         [JsonProperty("port")]
-        public int IpPort { get; set; }
+        public string IpPort { get; set; }
 
         [JsonProperty("targetPort")]
-        public int TargetPort { get; set; }
+        public string TargetPort { get; set; }
+    }
+    public class ServiceStatus
+    {
+        [JsonProperty("loadBalancer")]
+        public LoadBalancer LoadBalancer { get; set; }
+    }
+
+    public class LoadBalancer
+    {
+
     }
 }

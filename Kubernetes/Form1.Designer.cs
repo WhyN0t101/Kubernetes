@@ -42,6 +42,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loginTab = new System.Windows.Forms.TabPage();
+            this.buttonDisconnect = new System.Windows.Forms.Button();
             this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -129,9 +130,9 @@
             this.columnHeaderServiceNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderServiceCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderServiceLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderServicePorts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderServicePort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderServiceClusterIp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label17 = new System.Windows.Forms.Label();
-            this.buttonDisconnect = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -154,11 +155,12 @@
             this.tabControl1.Controls.Add(this.PodsTab);
             this.tabControl1.Controls.Add(this.DeploymentsTab);
             this.tabControl1.Controls.Add(this.ServiceIngressTab);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(886, 463);
+            this.tabControl1.Size = new System.Drawing.Size(1107, 487);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             // 
@@ -177,16 +179,27 @@
             this.loginTab.Location = new System.Drawing.Point(4, 27);
             this.loginTab.Name = "loginTab";
             this.loginTab.Padding = new System.Windows.Forms.Padding(3);
-            this.loginTab.Size = new System.Drawing.Size(878, 432);
+            this.loginTab.Size = new System.Drawing.Size(1099, 456);
             this.loginTab.TabIndex = 0;
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
+            // 
+            // buttonDisconnect
+            // 
+            this.buttonDisconnect.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDisconnect.Location = new System.Drawing.Point(580, 367);
+            this.buttonDisconnect.Name = "buttonDisconnect";
+            this.buttonDisconnect.Size = new System.Drawing.Size(137, 26);
+            this.buttonDisconnect.TabIndex = 7;
+            this.buttonDisconnect.Text = "Disconnect";
+            this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
             // 
             // checkBoxHttps
             // 
             this.checkBoxHttps.AutoSize = true;
             this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxHttps.Location = new System.Drawing.Point(545, 301);
+            this.checkBoxHttps.Location = new System.Drawing.Point(675, 333);
             this.checkBoxHttps.Name = "checkBoxHttps";
             this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
             this.checkBoxHttps.TabIndex = 6;
@@ -201,7 +214,7 @@
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(408, 274);
+            this.label2.Location = new System.Drawing.Point(538, 306);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 20);
             this.label2.TabIndex = 5;
@@ -214,7 +227,7 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(425, 216);
+            this.label1.Location = new System.Drawing.Point(555, 248);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 20);
             this.label1.TabIndex = 4;
@@ -223,7 +236,7 @@
             // buttonLogin
             // 
             this.buttonLogin.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogin.Location = new System.Drawing.Point(307, 335);
+            this.buttonLogin.Location = new System.Drawing.Point(437, 367);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(137, 26);
             this.buttonLogin.TabIndex = 3;
@@ -235,7 +248,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Kubernetes.Properties.Resources.kuber1;
-            this.pictureBox1.Location = new System.Drawing.Point(359, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(489, 60);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(157, 151);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -246,7 +259,7 @@
             // 
             this.textBoxLoginToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLoginToken.Enabled = false;
-            this.textBoxLoginToken.Location = new System.Drawing.Point(352, 297);
+            this.textBoxLoginToken.Location = new System.Drawing.Point(482, 329);
             this.textBoxLoginToken.Name = "textBoxLoginToken";
             this.textBoxLoginToken.Size = new System.Drawing.Size(175, 26);
             this.textBoxLoginToken.TabIndex = 2;
@@ -254,7 +267,7 @@
             // textBoxLoginIp
             // 
             this.textBoxLoginIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxLoginIp.Location = new System.Drawing.Point(352, 239);
+            this.textBoxLoginIp.Location = new System.Drawing.Point(482, 271);
             this.textBoxLoginIp.Name = "textBoxLoginIp";
             this.textBoxLoginIp.Size = new System.Drawing.Size(175, 26);
             this.textBoxLoginIp.TabIndex = 1;
@@ -269,7 +282,7 @@
             this.ResourcesTab.Location = new System.Drawing.Point(4, 27);
             this.ResourcesTab.Name = "ResourcesTab";
             this.ResourcesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ResourcesTab.Size = new System.Drawing.Size(878, 432);
+            this.ResourcesTab.Size = new System.Drawing.Size(1022, 480);
             this.ResourcesTab.TabIndex = 1;
             this.ResourcesTab.Text = "Resources";
             // 
@@ -339,7 +352,7 @@
             this.NodesTab.Location = new System.Drawing.Point(4, 27);
             this.NodesTab.Name = "NodesTab";
             this.NodesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NodesTab.Size = new System.Drawing.Size(878, 432);
+            this.NodesTab.Size = new System.Drawing.Size(1099, 456);
             this.NodesTab.TabIndex = 2;
             this.NodesTab.Text = "Nodes";
             // 
@@ -444,14 +457,14 @@
             this.NamespacesTab.Location = new System.Drawing.Point(4, 27);
             this.NamespacesTab.Name = "NamespacesTab";
             this.NamespacesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NamespacesTab.Size = new System.Drawing.Size(878, 432);
+            this.NamespacesTab.Size = new System.Drawing.Size(1022, 480);
             this.NamespacesTab.TabIndex = 3;
             this.NamespacesTab.Text = "Namespaces";
             // 
             // buttonNamespaceDelete
             // 
             this.buttonNamespaceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNamespaceDelete.Location = new System.Drawing.Point(691, 385);
+            this.buttonNamespaceDelete.Location = new System.Drawing.Point(869, 382);
             this.buttonNamespaceDelete.Name = "buttonNamespaceDelete";
             this.buttonNamespaceDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonNamespaceDelete.TabIndex = 14;
@@ -461,7 +474,7 @@
             // buttonNamespaceCreate
             // 
             this.buttonNamespaceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNamespaceCreate.Location = new System.Drawing.Point(581, 385);
+            this.buttonNamespaceCreate.Location = new System.Drawing.Point(757, 382);
             this.buttonNamespaceCreate.Name = "buttonNamespaceCreate";
             this.buttonNamespaceCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonNamespaceCreate.TabIndex = 13;
@@ -474,7 +487,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(720, 142);
+            this.label8.Location = new System.Drawing.Point(856, 139);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 14);
             this.label8.TabIndex = 12;
@@ -482,7 +495,7 @@
             // 
             // textBoxNamespaceLabels
             // 
-            this.textBoxNamespaceLabels.Location = new System.Drawing.Point(723, 159);
+            this.textBoxNamespaceLabels.Location = new System.Drawing.Point(859, 156);
             this.textBoxNamespaceLabels.Name = "textBoxNamespaceLabels";
             this.textBoxNamespaceLabels.Size = new System.Drawing.Size(115, 26);
             this.textBoxNamespaceLabels.TabIndex = 11;
@@ -493,7 +506,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(578, 142);
+            this.label7.Location = new System.Drawing.Point(714, 139);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 14);
             this.label7.TabIndex = 10;
@@ -501,7 +514,7 @@
             // 
             // textBoxNamespaceName
             // 
-            this.textBoxNamespaceName.Location = new System.Drawing.Point(581, 159);
+            this.textBoxNamespaceName.Location = new System.Drawing.Point(717, 156);
             this.textBoxNamespaceName.Name = "textBoxNamespaceName";
             this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 26);
             this.textBoxNamespaceName.TabIndex = 9;
@@ -534,7 +547,7 @@
             this.listViewNamespaces.HideSelection = false;
             this.listViewNamespaces.Location = new System.Drawing.Point(33, 121);
             this.listViewNamespaces.Name = "listViewNamespaces";
-            this.listViewNamespaces.Size = new System.Drawing.Size(537, 286);
+            this.listViewNamespaces.Size = new System.Drawing.Size(665, 286);
             this.listViewNamespaces.TabIndex = 7;
             this.listViewNamespaces.UseCompatibleStateImageBehavior = false;
             this.listViewNamespaces.View = System.Windows.Forms.View.Details;
@@ -580,14 +593,14 @@
             this.PodsTab.Location = new System.Drawing.Point(4, 27);
             this.PodsTab.Name = "PodsTab";
             this.PodsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PodsTab.Size = new System.Drawing.Size(878, 432);
+            this.PodsTab.Size = new System.Drawing.Size(1099, 456);
             this.PodsTab.TabIndex = 4;
             this.PodsTab.Text = "Pods";
             // 
             // buttonPodDelete
             // 
             this.buttonPodDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPodDelete.Location = new System.Drawing.Point(753, 266);
+            this.buttonPodDelete.Location = new System.Drawing.Point(923, 382);
             this.buttonPodDelete.Name = "buttonPodDelete";
             this.buttonPodDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonPodDelete.TabIndex = 20;
@@ -597,7 +610,7 @@
             // buttonPodCreate
             // 
             this.buttonPodCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPodCreate.Location = new System.Drawing.Point(672, 266);
+            this.buttonPodCreate.Location = new System.Drawing.Point(842, 382);
             this.buttonPodCreate.Name = "buttonPodCreate";
             this.buttonPodCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonPodCreate.TabIndex = 19;
@@ -610,7 +623,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(669, 185);
+            this.label13.Location = new System.Drawing.Point(857, 314);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(46, 14);
             this.label13.TabIndex = 18;
@@ -618,7 +631,7 @@
             // 
             // textBoxPodLabel
             // 
-            this.textBoxPodLabel.Location = new System.Drawing.Point(672, 202);
+            this.textBoxPodLabel.Location = new System.Drawing.Point(860, 331);
             this.textBoxPodLabel.Name = "textBoxPodLabel";
             this.textBoxPodLabel.Size = new System.Drawing.Size(115, 26);
             this.textBoxPodLabel.TabIndex = 17;
@@ -629,7 +642,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(669, 121);
+            this.label14.Location = new System.Drawing.Point(857, 250);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(48, 14);
             this.label14.TabIndex = 16;
@@ -637,7 +650,7 @@
             // 
             // textBoxPodName
             // 
-            this.textBoxPodName.Location = new System.Drawing.Point(672, 141);
+            this.textBoxPodName.Location = new System.Drawing.Point(860, 270);
             this.textBoxPodName.Name = "textBoxPodName";
             this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
             this.textBoxPodName.TabIndex = 15;
@@ -660,7 +673,7 @@
             this.listViewPods.HideSelection = false;
             this.listViewPods.Location = new System.Drawing.Point(33, 121);
             this.listViewPods.Name = "listViewPods";
-            this.listViewPods.Size = new System.Drawing.Size(630, 286);
+            this.listViewPods.Size = new System.Drawing.Size(782, 286);
             this.listViewPods.TabIndex = 12;
             this.listViewPods.UseCompatibleStateImageBehavior = false;
             this.listViewPods.View = System.Windows.Forms.View.Details;
@@ -751,14 +764,14 @@
             this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
             this.DeploymentsTab.Name = "DeploymentsTab";
             this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DeploymentsTab.Size = new System.Drawing.Size(878, 432);
+            this.DeploymentsTab.Size = new System.Drawing.Size(1099, 456);
             this.DeploymentsTab.TabIndex = 5;
             this.DeploymentsTab.Text = "Deployments";
             // 
             // buttonDeploymentDelete
             // 
             this.buttonDeploymentDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeploymentDelete.Location = new System.Drawing.Point(639, 215);
+            this.buttonDeploymentDelete.Location = new System.Drawing.Point(1002, 382);
             this.buttonDeploymentDelete.Name = "buttonDeploymentDelete";
             this.buttonDeploymentDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonDeploymentDelete.TabIndex = 26;
@@ -768,7 +781,7 @@
             // buttonDeploymentCreate
             // 
             this.buttonDeploymentCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeploymentCreate.Location = new System.Drawing.Point(558, 215);
+            this.buttonDeploymentCreate.Location = new System.Drawing.Point(921, 382);
             this.buttonDeploymentCreate.Name = "buttonDeploymentCreate";
             this.buttonDeploymentCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonDeploymentCreate.TabIndex = 25;
@@ -781,7 +794,7 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(722, 142);
+            this.label15.Location = new System.Drawing.Point(938, 333);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(46, 14);
             this.label15.TabIndex = 24;
@@ -789,7 +802,7 @@
             // 
             // textBoxDeploymentLabel
             // 
-            this.textBoxDeploymentLabel.Location = new System.Drawing.Point(725, 159);
+            this.textBoxDeploymentLabel.Location = new System.Drawing.Point(941, 350);
             this.textBoxDeploymentLabel.Name = "textBoxDeploymentLabel";
             this.textBoxDeploymentLabel.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentLabel.TabIndex = 23;
@@ -800,7 +813,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(555, 139);
+            this.label16.Location = new System.Drawing.Point(938, 279);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 14);
             this.label16.TabIndex = 22;
@@ -808,7 +821,7 @@
             // 
             // textBoxDeploymentName
             // 
-            this.textBoxDeploymentName.Location = new System.Drawing.Point(558, 159);
+            this.textBoxDeploymentName.Location = new System.Drawing.Point(941, 299);
             this.textBoxDeploymentName.Name = "textBoxDeploymentName";
             this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentName.TabIndex = 21;
@@ -829,7 +842,7 @@
             this.listViewDeployments.HideSelection = false;
             this.listViewDeployments.Location = new System.Drawing.Point(33, 121);
             this.listViewDeployments.Name = "listViewDeployments";
-            this.listViewDeployments.Size = new System.Drawing.Size(482, 286);
+            this.listViewDeployments.Size = new System.Drawing.Size(842, 286);
             this.listViewDeployments.TabIndex = 16;
             this.listViewDeployments.UseCompatibleStateImageBehavior = false;
             this.listViewDeployments.View = System.Windows.Forms.View.Details;
@@ -936,14 +949,14 @@
             this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
             this.ServiceIngressTab.Name = "ServiceIngressTab";
             this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ServiceIngressTab.Size = new System.Drawing.Size(878, 432);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(1099, 456);
             this.ServiceIngressTab.TabIndex = 6;
             this.ServiceIngressTab.Text = " Services/Ingress";
             // 
             // buttonServiceDelete
             // 
             this.buttonServiceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceDelete.Location = new System.Drawing.Point(667, 213);
+            this.buttonServiceDelete.Location = new System.Drawing.Point(997, 382);
             this.buttonServiceDelete.Name = "buttonServiceDelete";
             this.buttonServiceDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonServiceDelete.TabIndex = 32;
@@ -953,7 +966,7 @@
             // buttonServiceCreate
             // 
             this.buttonServiceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceCreate.Location = new System.Drawing.Point(586, 213);
+            this.buttonServiceCreate.Location = new System.Drawing.Point(916, 382);
             this.buttonServiceCreate.Name = "buttonServiceCreate";
             this.buttonServiceCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonServiceCreate.TabIndex = 31;
@@ -966,7 +979,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(750, 140);
+            this.label18.Location = new System.Drawing.Point(933, 317);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(46, 14);
             this.label18.TabIndex = 30;
@@ -974,7 +987,7 @@
             // 
             // textBoxServicesLabels
             // 
-            this.textBoxServicesLabels.Location = new System.Drawing.Point(753, 157);
+            this.textBoxServicesLabels.Location = new System.Drawing.Point(936, 334);
             this.textBoxServicesLabels.Name = "textBoxServicesLabels";
             this.textBoxServicesLabels.Size = new System.Drawing.Size(115, 26);
             this.textBoxServicesLabels.TabIndex = 29;
@@ -985,7 +998,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(583, 137);
+            this.label19.Location = new System.Drawing.Point(933, 259);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(48, 14);
             this.label19.TabIndex = 28;
@@ -993,7 +1006,7 @@
             // 
             // textBoxServicesName
             // 
-            this.textBoxServicesName.Location = new System.Drawing.Point(586, 157);
+            this.textBoxServicesName.Location = new System.Drawing.Point(936, 279);
             this.textBoxServicesName.Name = "textBoxServicesName";
             this.textBoxServicesName.Size = new System.Drawing.Size(115, 26);
             this.textBoxServicesName.TabIndex = 27;
@@ -1005,7 +1018,8 @@
             this.columnHeaderServiceNamespace,
             this.columnHeaderServiceCreationTime,
             this.columnHeaderServiceLabels,
-            this.columnHeaderServicePorts});
+            this.columnHeaderServicePort,
+            this.columnHeaderServiceClusterIp});
             this.listViewServices.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             listViewGroup5.Header = "ListViewGroup";
             listViewGroup5.Name = "listViewGroup1";
@@ -1014,7 +1028,7 @@
             this.listViewServices.HideSelection = false;
             this.listViewServices.Location = new System.Drawing.Point(33, 121);
             this.listViewServices.Name = "listViewServices";
-            this.listViewServices.Size = new System.Drawing.Size(527, 286);
+            this.listViewServices.Size = new System.Drawing.Size(818, 286);
             this.listViewServices.TabIndex = 12;
             this.listViewServices.UseCompatibleStateImageBehavior = false;
             this.listViewServices.View = System.Windows.Forms.View.Details;
@@ -1039,10 +1053,15 @@
             this.columnHeaderServiceLabels.Text = "Labels";
             this.columnHeaderServiceLabels.Width = 85;
             // 
-            // columnHeaderServicePorts
+            // columnHeaderServicePort
             // 
-            this.columnHeaderServicePorts.Text = "Ports";
-            this.columnHeaderServicePorts.Width = 111;
+            this.columnHeaderServicePort.Text = "Port";
+            this.columnHeaderServicePort.Width = 111;
+            // 
+            // columnHeaderServiceClusterIp
+            // 
+            this.columnHeaderServiceClusterIp.Text = "Cluster Ip";
+            this.columnHeaderServiceClusterIp.Width = 96;
             // 
             // label17
             // 
@@ -1056,23 +1075,12 @@
             this.label17.TabIndex = 11;
             this.label17.Text = "Services/Ingress:";
             // 
-            // buttonDisconnect
-            // 
-            this.buttonDisconnect.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDisconnect.Location = new System.Drawing.Point(450, 335);
-            this.buttonDisconnect.Name = "buttonDisconnect";
-            this.buttonDisconnect.Size = new System.Drawing.Size(137, 26);
-            this.buttonDisconnect.TabIndex = 7;
-            this.buttonDisconnect.Text = "Disconnect";
-            this.buttonDisconnect.UseVisualStyleBackColor = true;
-            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(884, 461);
+            this.ClientSize = new System.Drawing.Size(1107, 487);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1185,7 +1193,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderServiceNamespace;
         private System.Windows.Forms.ColumnHeader columnHeaderServiceCreationTime;
         private System.Windows.Forms.ColumnHeader columnHeaderServiceLabels;
-        private System.Windows.Forms.ColumnHeader columnHeaderServicePorts;
+        private System.Windows.Forms.ColumnHeader columnHeaderServicePort;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button buttonServiceDelete;
         private System.Windows.Forms.Button buttonServiceCreate;
@@ -1196,6 +1204,7 @@
         private System.Windows.Forms.CheckBox checkBoxHttps;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeCreation;
         private System.Windows.Forms.Button buttonDisconnect;
+        private System.Windows.Forms.ColumnHeader columnHeaderServiceClusterIp;
     }
 }
 

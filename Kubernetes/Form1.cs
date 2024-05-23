@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Kubernetes.Model.Service;
+using System.Xml.Linq;
+using System.Runtime.ConstrainedExecution;
 
 namespace Kubernetes
 {
@@ -31,6 +34,7 @@ namespace Kubernetes
         private System.Timers.Timer timer;
         private NamespaceList namespaceList;
         private NodeList nodeList;
+        private ServiceList serviceList;
 
 
         public Form1()
@@ -85,15 +89,19 @@ namespace Kubernetes
                 case 4:
                     PopulatePods("default");
                     break;
+                case 6:
+                    PopulateServiceAsync();
+                    break;
             }
 
         }
 
 
+
         private async Task Connect(string ipAddress, string token, int control)
         {
             baseUrl = ipAddress;
-            if(control == 1)
+            if (control == 1)
             {
                 //string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{token}"));
                 httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
@@ -129,7 +137,7 @@ namespace Kubernetes
 
         }
 
-        
+
 
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -142,7 +150,7 @@ namespace Kubernetes
             string port = (checkBoxHttps.Checked) ? ":16443" : ":8001";
             int control = (checkBoxHttps.Checked) ? 1 : 0;
 
-            if(control == 1)
+            if (control == 1)
             {
                 //token = getToken(ipAddress);
             }
@@ -174,7 +182,7 @@ namespace Kubernetes
 
         private void checkBoxHttps_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxHttps.Checked)
+            if (checkBoxHttps.Checked)
             {
                 textBoxLoginToken.Enabled = true;
             }
@@ -258,7 +266,7 @@ namespace Kubernetes
                     {
                 pod.Metadata?.Name ?? "N/A",
                 pod.Metadata?.Namespace ?? "N/A",
-                pod.Metadata?.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ssZ") ?? "N/A",
+                pod.Metadata?.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ss") ?? "N/A",
                 GetImageString(pod.Spec?.Containers) ?? "N/A", // Use helper method to get image string
                 GetPortsString(pod.Spec?.Containers) ?? "N/A", // Use helper method to get ports string
                 pod.Spec?.NodeName ?? "N/A",
@@ -304,6 +312,8 @@ namespace Kubernetes
             // Update ListView data for namespaces
             Invoke((MethodInvoker)delegate {
                 PopulateListViewNamespaces();
+                PopulateNodeInfoAsync();
+                PopulateServiceAsync();
             });
         }
         private void InitializeTimer()
@@ -317,7 +327,6 @@ namespace Kubernetes
 
         private void DisableTimer()
         {
-            timer.Stop();
         }
 
         private async void comboBoxNamespacePod_Enter(object sender, EventArgs e)
@@ -352,8 +361,8 @@ namespace Kubernetes
 
         private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
         {
-           string nameSpaceSelected= comboBoxNamespacePod.SelectedItem.ToString();
-           PopulatePods(nameSpaceSelected);
+            string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
+            PopulatePods(nameSpaceSelected);
         }
 
         private async void PopulateNodeInfoAsync()
@@ -365,23 +374,30 @@ namespace Kubernetes
                 // Clear existing items
                 listViewNodes.Items.Clear();
 
+
                 foreach (var node in nodeList.Items)
                 {
                     ListViewItem item = new ListViewItem(node.Metadata.Name);
 
-                    // Labels (if available)
+                    /*// Labels (if available)
                     //string labels = string.Join(", ", node.Metadata.Labels?.Select(kv => $"{kv.Key}: {kv.Value}") ?? Enumerable.Empty<string>());
                     string labels = node.Metadata.Labels != null ? string.Join
                         (", ", node.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
+                    item.SubItems.Add(labels);*/
+
+                    // Labels (if available)
+                    string labels = node.Metadata.Labels != null ? string.Join
+                        (",", node.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
                     item.SubItems.Add(labels);
 
-                    // Type (if available)
+
+                    // CreationTimeStamp (if available)
                     string created = node.Metadata.creationTimestamp.ToString("yyyy-MM-ddTHH:mm:ss");
                     item.SubItems.Add(created);
 
                     // Used CPU (if available)
                     string usedCpu = "N/A";
-                    if (node.Status.Capacity != null && node.Status.Allocatable != null 
+                    if (node.Status.Capacity != null && node.Status.Allocatable != null
                         && node.Status.Capacity.ContainsKey("cpu") && node.Status.Allocatable.ContainsKey("cpu"))
                     {
                         if (double.TryParse(node.Status.Capacity["cpu"], out double capacity)
@@ -429,6 +445,56 @@ namespace Kubernetes
             }
         }
 
-        
+        private async void PopulateServiceAsync()
+        {
+            try
+            {
+                serviceList = await kubernetesService.RetrieveServices();
+
+                //Clear existing items
+                listViewServices.Items.Clear();
+
+                foreach (var service in serviceList.Items)
+                {
+                    //Name
+                    ListViewItem listView = new ListViewItem(service.Metadata.Name);
+
+                    //namespace
+                    listView.SubItems.Add(service.Metadata.Namespace);
+
+                    //CreationTimeStamp
+                    string created = service.Metadata.CreationTimeStamp.ToString("yyyy-MM-ddTHH:mm:ss");
+                    listView.SubItems.Add(created);
+
+                    // Labels (if available)
+                    //string labels = string.Join(", ", node.Metadata.Labels?.Select(kv => $"{kv.Key}: {kv.Value}") ?? Enumerable.Empty<string>());
+                    string labels = service.Metadata.Labels != null ? string.Join
+                        (", ", service.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
+                    listView.SubItems.Add(labels);
+
+                    //Port
+                    string ports = service.Spec.Ports != null
+                     ? string.Join(", ", service.Spec.Ports.Select(p => $"{p.Name} ({p.Protocol}): {p.IpPort}->{p.TargetPort}"))
+                     : "N/A";
+                    listView.SubItems.Add(ports);
+
+                    //ClusterIps
+                    listView.SubItems.Add(service.Spec.ClusterIP);
+
+                    // Add the ListViewItem to the ListView
+                    listViewServices.Items.Add(listView);
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Populating List: " + ex.Message);
+            }
+            //throw new NotImplementedException();
+        }
+
+
     }
 }
