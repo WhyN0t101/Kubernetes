@@ -115,7 +115,7 @@ namespace Kubernetes
             httpClient.Dispose();
             // Disable the textboxes after successful connection
             textBoxLoginIp.Enabled = true; // Username textbox
-            DisableTimer();
+            timer.Stop();
             if (checkBoxHttps.Checked)
             {
                 textBoxLoginToken.Enabled = true; // token textbox
@@ -315,10 +315,7 @@ namespace Kubernetes
             timer.Start();
         }
 
-        private void DisableTimer()
-        {
-            timer.Stop();
-        }
+
 
         private async void comboBoxNamespacePod_Enter(object sender, EventArgs e)
         {
