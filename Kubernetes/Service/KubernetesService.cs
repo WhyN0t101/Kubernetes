@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Kubernetes.Model.Ingress;
+using Kubernetes.Model.Service;
 
 namespace Kubernetes.Controller
 {
@@ -18,7 +20,6 @@ namespace Kubernetes.Controller
     {
         private readonly HttpClient httpClient;
         private readonly string baseUrl;
-        private NodeList node;
 
         public KubernetesService(string ipAddress, string token, int control)
         {
@@ -52,11 +53,21 @@ namespace Kubernetes.Controller
         }
         public async Task<PodList> RetrievePods(string namespaceName)
         {
-            HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/namespaces/{namespaceName}/pods");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<PodList>(responseBody);
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/namespaces/{namespaceName}/pods");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<PodList>(responseBody);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to fetch Pods");
+                return null;
+            }
         }
+
         public async Task<NamespaceList> RetrieveNamespaces()
         {
             try
@@ -111,7 +122,7 @@ namespace Kubernetes.Controller
                 {
                     // Read the response content
                     string responseBody = await response.Content.ReadAsStringAsync();
-              
+
                     // Deserialize the JSON response
                     var namespaceList = JsonConvert.DeserializeObject<NamespaceList>(responseBody);
 
@@ -134,6 +145,23 @@ namespace Kubernetes.Controller
             {
                 // Handle the exception or throw it
                 throw new Exception("Error fetching namespaces: " + ex.Message);
+            }
+        }
+
+        public async Task<ServiceList> RetrieveServices()
+        {
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/services");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ServiceList>(responseBody);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to fetch Services");
+                return null;
             }
         }
     }

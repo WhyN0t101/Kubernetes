@@ -62,7 +62,7 @@
     <Compile Include="Model\NamespacesList.cs" />
     <Compile Include="Model\NodeList.cs" />
     <Compile Include="Model\PodList.cs" />
-    <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\ServiceList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
