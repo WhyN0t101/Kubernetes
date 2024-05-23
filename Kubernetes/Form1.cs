@@ -30,7 +30,7 @@ namespace Kubernetes
         private KubernetesService kubernetesService;
         private System.Timers.Timer timer;
         private NamespaceList namespaceList;
-        private NodeList node;
+        private NodeList nodeList;
 
 
         public Form1()
@@ -355,11 +355,12 @@ namespace Kubernetes
            string nameSpaceSelected= comboBoxNamespacePod.SelectedItem.ToString();
            PopulatePods(nameSpaceSelected);
         }
+
         private async void PopulateNodeInfoAsync()
         {
             try
             {
-                NodeList nodeList = await kubernetesService.RetrieveNodes();
+                nodeList = await kubernetesService.RetrieveNodes();
 
                 // Clear existing items
                 listViewNodes.Items.Clear();

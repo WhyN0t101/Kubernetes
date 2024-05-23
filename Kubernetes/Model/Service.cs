@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kubernetes.Model.Service
 {
-    internal class Service
+    public class ServiceList
     {
         [JsonProperty("apiVersion")]
         public string ApiVersion { get; set; } = "v1";
@@ -19,8 +19,8 @@ namespace Kubernetes.Model.Service
         [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
 
-        [JsonProperty("spec")]
-        public Spec Spec { get; set; }
+        [JsonProperty("items")]
+        public List<ServiceItem> Items { get; set; }
 
         public JObject ToJObject()
         {
@@ -28,7 +28,7 @@ namespace Kubernetes.Model.Service
         }
     }
 
-    internal class Metadata
+    public class Metadata
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -43,7 +43,17 @@ namespace Kubernetes.Model.Service
         public Dictionary<string, string> Labels { get; set; }
     }
 
-    internal class Spec
+    public class ServiceItem
+    {
+        [JsonProperty("metadata")]
+        public Metadata Metadata { get; set; }
+
+        [JsonProperty("spec")]
+        public Spec Spec { get; set; }
+
+    }
+
+    public class Spec
     {
         [JsonProperty("selector")]
         public Dictionary<string, string> Selector { get; set; }
@@ -59,9 +69,12 @@ namespace Kubernetes.Model.Service
 
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        [JsonProperty("ipFamilies")]
+        public List<string> IPFamilies { get; set; }
     }
 
-    internal class Port
+    public class Port
     {
         [JsonProperty("name")]
         public string Name { get; set; }
