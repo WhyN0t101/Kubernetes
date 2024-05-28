@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
@@ -35,6 +36,11 @@ namespace Kubernetes.Model.Namespaces
 
         [JsonProperty("status")]
         public Status Status { get; set; }
+
+        public JObject ToJObject()
+        {
+            return JObject.FromObject(this);
+        }
     }
 
     internal class Metadata

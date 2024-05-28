@@ -41,6 +41,9 @@ namespace Kubernetes.Model.Service
 
         [JsonProperty("labels")]
         public Dictionary<string, string> Labels { get; set; }
+
+        [JsonProperty("annotations")]
+        public Dictionary<string, string> Annotations { get; set; }
     }
 
     public class ServiceItem

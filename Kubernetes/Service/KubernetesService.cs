@@ -14,6 +14,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Kubernetes.Model.Ingress;
 using Kubernetes.Model.Service;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Newtonsoft.Json.Linq;
+using System.Reflection.Emit;
 
 namespace Kubernetes.Controller
 {
@@ -164,6 +166,45 @@ namespace Kubernetes.Controller
                 MessageBox.Show("Failed to fetch Services");
                 return null;
             }
+        }
+
+        public async Task CreateNamespace(NamespaceItem namespaceItem)
+        {
+            try
+            {
+                JObject payload = namespaceItem.ToJObject();
+
+                /*
+                JObject payload = new JObject
+                {
+                    ["name"] = namespaceItem.Metadata.Name
+                };
+                foreach (var label in namespaceItem.Metadata.Labels)
+                {
+                    payload[label.Key] = label.Value;
+                }
+                foreach (var annos in namespaceItem.Metadata.Annotations)
+                {
+                    payload[annos.Key] = annos.Value;
+                }
+                */
+                string apiUrl = baseUrl + "/api/v1/namespaces";
+                HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Namespace created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to Create Namespace");
+            }
+
+        }
+
+        public async Task<HttpResponseMessage> SendPostRequest(string apiUrl, JObject payload)
+        {
+            string jsonPayload = payload.ToString();
+            return await httpClient.PostAsync(apiUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
         }
     }
 }

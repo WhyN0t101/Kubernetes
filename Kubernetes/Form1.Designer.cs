@@ -147,6 +147,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.LabelsToolTipNamespaces = new System.Windows.Forms.ToolTip(this.components);
             this.NameTooltop = new System.Windows.Forms.ToolTip(this.components);
+            this.textBoxNamespacesAnnotations = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -549,6 +551,8 @@
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.Controls.Add(this.textBoxNamespacesAnnotations);
+            this.panel4.Controls.Add(this.label22);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.buttonNamespaceDelete);
             this.panel4.Controls.Add(this.listViewNamespaces);
@@ -577,7 +581,7 @@
             // buttonNamespaceDelete
             // 
             this.buttonNamespaceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNamespaceDelete.Location = new System.Drawing.Point(854, 300);
+            this.buttonNamespaceDelete.Location = new System.Drawing.Point(855, 378);
             this.buttonNamespaceDelete.Name = "buttonNamespaceDelete";
             this.buttonNamespaceDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonNamespaceDelete.TabIndex = 14;
@@ -633,7 +637,7 @@
             // buttonNamespaceCreate
             // 
             this.buttonNamespaceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNamespaceCreate.Location = new System.Drawing.Point(761, 300);
+            this.buttonNamespaceCreate.Location = new System.Drawing.Point(761, 378);
             this.buttonNamespaceCreate.Name = "buttonNamespaceCreate";
             this.buttonNamespaceCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonNamespaceCreate.TabIndex = 13;
@@ -730,7 +734,7 @@
             // buttonPodDelete
             // 
             this.buttonPodDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPodDelete.Location = new System.Drawing.Point(946, 224);
+            this.buttonPodDelete.Location = new System.Drawing.Point(879, 335);
             this.buttonPodDelete.Name = "buttonPodDelete";
             this.buttonPodDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonPodDelete.TabIndex = 20;
@@ -755,7 +759,7 @@
             this.listViewPods.HideSelection = false;
             this.listViewPods.Location = new System.Drawing.Point(11, 92);
             this.listViewPods.Name = "listViewPods";
-            this.listViewPods.Size = new System.Drawing.Size(831, 350);
+            this.listViewPods.Size = new System.Drawing.Size(729, 346);
             this.listViewPods.TabIndex = 12;
             this.listViewPods.UseCompatibleStateImageBehavior = false;
             this.listViewPods.View = System.Windows.Forms.View.Details;
@@ -797,7 +801,7 @@
             // buttonPodCreate
             // 
             this.buttonPodCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPodCreate.Location = new System.Drawing.Point(865, 224);
+            this.buttonPodCreate.Location = new System.Drawing.Point(768, 335);
             this.buttonPodCreate.Name = "buttonPodCreate";
             this.buttonPodCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonPodCreate.TabIndex = 19;
@@ -820,11 +824,11 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(862, 153);
+            this.label13.Location = new System.Drawing.Point(765, 172);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(46, 14);
+            this.label13.Size = new System.Drawing.Size(53, 14);
             this.label13.TabIndex = 18;
-            this.label13.Text = "Label:";
+            this.label13.Text = "Labels:";
             // 
             // label10
             // 
@@ -840,9 +844,10 @@
             // 
             // textBoxPodLabel
             // 
-            this.textBoxPodLabel.Location = new System.Drawing.Point(865, 170);
+            this.textBoxPodLabel.Location = new System.Drawing.Point(768, 189);
+            this.textBoxPodLabel.Multiline = true;
             this.textBoxPodLabel.Name = "textBoxPodLabel";
-            this.textBoxPodLabel.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodLabel.Size = new System.Drawing.Size(288, 117);
             this.textBoxPodLabel.TabIndex = 17;
             // 
             // label14
@@ -851,7 +856,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(862, 89);
+            this.label14.Location = new System.Drawing.Point(765, 108);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(48, 14);
             this.label14.TabIndex = 16;
@@ -859,7 +864,7 @@
             // 
             // textBoxPodName
             // 
-            this.textBoxPodName.Location = new System.Drawing.Point(865, 109);
+            this.textBoxPodName.Location = new System.Drawing.Point(768, 128);
             this.textBoxPodName.Name = "textBoxPodName";
             this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
             this.textBoxPodName.TabIndex = 15;
@@ -913,7 +918,7 @@
             this.listViewDeployments.HideSelection = false;
             this.listViewDeployments.Location = new System.Drawing.Point(12, 106);
             this.listViewDeployments.Name = "listViewDeployments";
-            this.listViewDeployments.Size = new System.Drawing.Size(887, 336);
+            this.listViewDeployments.Size = new System.Drawing.Size(729, 336);
             this.listViewDeployments.TabIndex = 16;
             this.listViewDeployments.UseCompatibleStateImageBehavior = false;
             this.listViewDeployments.View = System.Windows.Forms.View.Details;
@@ -949,7 +954,7 @@
             // buttonDeploymentDelete
             // 
             this.buttonDeploymentDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeploymentDelete.Location = new System.Drawing.Point(986, 200);
+            this.buttonDeploymentDelete.Location = new System.Drawing.Point(861, 338);
             this.buttonDeploymentDelete.Name = "buttonDeploymentDelete";
             this.buttonDeploymentDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonDeploymentDelete.TabIndex = 26;
@@ -971,7 +976,7 @@
             // buttonDeploymentCreate
             // 
             this.buttonDeploymentCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeploymentCreate.Location = new System.Drawing.Point(905, 200);
+            this.buttonDeploymentCreate.Location = new System.Drawing.Point(780, 338);
             this.buttonDeploymentCreate.Name = "buttonDeploymentCreate";
             this.buttonDeploymentCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonDeploymentCreate.TabIndex = 25;
@@ -984,11 +989,11 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(922, 151);
+            this.label15.Location = new System.Drawing.Point(777, 183);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(46, 14);
+            this.label15.Size = new System.Drawing.Size(53, 14);
             this.label15.TabIndex = 24;
-            this.label15.Text = "Label:";
+            this.label15.Text = "Labels:";
             // 
             // comboBoxDeploymentOpcao
             // 
@@ -1004,9 +1009,10 @@
             // 
             // textBoxDeploymentLabel
             // 
-            this.textBoxDeploymentLabel.Location = new System.Drawing.Point(925, 168);
+            this.textBoxDeploymentLabel.Location = new System.Drawing.Point(780, 200);
+            this.textBoxDeploymentLabel.Multiline = true;
             this.textBoxDeploymentLabel.Name = "textBoxDeploymentLabel";
-            this.textBoxDeploymentLabel.Size = new System.Drawing.Size(115, 26);
+            this.textBoxDeploymentLabel.Size = new System.Drawing.Size(288, 117);
             this.textBoxDeploymentLabel.TabIndex = 23;
             // 
             // label12
@@ -1027,7 +1033,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(922, 97);
+            this.label16.Location = new System.Drawing.Point(777, 114);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 14);
             this.label16.TabIndex = 22;
@@ -1047,7 +1053,7 @@
             // 
             // textBoxDeploymentName
             // 
-            this.textBoxDeploymentName.Location = new System.Drawing.Point(925, 117);
+            this.textBoxDeploymentName.Location = new System.Drawing.Point(780, 134);
             this.textBoxDeploymentName.Name = "textBoxDeploymentName";
             this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentName.TabIndex = 21;
@@ -1110,7 +1116,7 @@
             this.listViewServices.HideSelection = false;
             this.listViewServices.Location = new System.Drawing.Point(11, 44);
             this.listViewServices.Name = "listViewServices";
-            this.listViewServices.Size = new System.Drawing.Size(889, 398);
+            this.listViewServices.Size = new System.Drawing.Size(729, 398);
             this.listViewServices.TabIndex = 12;
             this.listViewServices.UseCompatibleStateImageBehavior = false;
             this.listViewServices.View = System.Windows.Forms.View.Details;
@@ -1148,7 +1154,7 @@
             // buttonServiceDelete
             // 
             this.buttonServiceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceDelete.Location = new System.Drawing.Point(987, 417);
+            this.buttonServiceDelete.Location = new System.Drawing.Point(889, 373);
             this.buttonServiceDelete.Name = "buttonServiceDelete";
             this.buttonServiceDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonServiceDelete.TabIndex = 32;
@@ -1170,7 +1176,7 @@
             // buttonServiceCreate
             // 
             this.buttonServiceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceCreate.Location = new System.Drawing.Point(906, 417);
+            this.buttonServiceCreate.Location = new System.Drawing.Point(808, 373);
             this.buttonServiceCreate.Name = "buttonServiceCreate";
             this.buttonServiceCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonServiceCreate.TabIndex = 31;
@@ -1183,24 +1189,25 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(923, 352);
+            this.label18.Location = new System.Drawing.Point(767, 199);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(46, 14);
+            this.label18.Size = new System.Drawing.Size(53, 14);
             this.label18.TabIndex = 30;
-            this.label18.Text = "Label:";
+            this.label18.Text = "Labels:";
             // 
             // textBoxServicesName
             // 
-            this.textBoxServicesName.Location = new System.Drawing.Point(926, 314);
+            this.textBoxServicesName.Location = new System.Drawing.Point(822, 115);
             this.textBoxServicesName.Name = "textBoxServicesName";
             this.textBoxServicesName.Size = new System.Drawing.Size(115, 26);
             this.textBoxServicesName.TabIndex = 27;
             // 
             // textBoxServicesLabels
             // 
-            this.textBoxServicesLabels.Location = new System.Drawing.Point(926, 369);
+            this.textBoxServicesLabels.Location = new System.Drawing.Point(770, 216);
+            this.textBoxServicesLabels.Multiline = true;
             this.textBoxServicesLabels.Name = "textBoxServicesLabels";
-            this.textBoxServicesLabels.Size = new System.Drawing.Size(115, 26);
+            this.textBoxServicesLabels.Size = new System.Drawing.Size(288, 117);
             this.textBoxServicesLabels.TabIndex = 29;
             // 
             // label19
@@ -1209,11 +1216,33 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(923, 297);
+            this.label19.Location = new System.Drawing.Point(819, 98);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(48, 14);
             this.label19.TabIndex = 28;
             this.label19.Text = "Name:";
+            // 
+            // textBoxNamespacesAnnotations
+            // 
+            this.textBoxNamespacesAnnotations.Location = new System.Drawing.Point(761, 294);
+            this.textBoxNamespacesAnnotations.Multiline = true;
+            this.textBoxNamespacesAnnotations.Name = "textBoxNamespacesAnnotations";
+            this.textBoxNamespacesAnnotations.Size = new System.Drawing.Size(288, 78);
+            this.textBoxNamespacesAnnotations.TabIndex = 15;
+            this.NameTooltop.SetToolTip(this.textBoxNamespacesAnnotations, "The name must consist of alphanumeric characters, \'-\', \'_\' or \'.\', and must start" +
+        " and end with an alphanumeric character.");
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(758, 277);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(88, 14);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Annotations:";
             // 
             // Form1
             // 
@@ -1364,6 +1393,8 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ToolTip LabelsToolTipNamespaces;
         private System.Windows.Forms.ToolTip NameTooltop;
+        private System.Windows.Forms.TextBox textBoxNamespacesAnnotations;
+        private System.Windows.Forms.Label label22;
     }
 }
 

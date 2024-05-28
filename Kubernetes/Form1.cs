@@ -23,6 +23,8 @@ using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
 using Kubernetes.Utils;
+using System.Reflection.Emit;
+using Newtonsoft.Json.Linq;
 
 namespace Kubernetes
 {
@@ -37,7 +39,7 @@ namespace Kubernetes
         private NamespaceList namespaceList;
         private NodeList nodeList;
         private ServiceList serviceList;
-        private Validator validator;
+        private Validator validator = new Validator();
 
 
         public Form1()
@@ -497,7 +499,7 @@ namespace Kubernetes
             //throw new NotImplementedException();
         }
 
-        private void buttonNamespaceCreate_Click(object sender, EventArgs e)
+        private async void buttonNamespaceCreate_Click(object sender, EventArgs e)
         {
             
             if (textBoxNamespaceName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxNamespaceName.Text))
@@ -520,7 +522,52 @@ namespace Kubernetes
                 return;
             }
 
+            NamespaceItem namespaceItem = CreateNamespaceFromForms();
+            await kubernetesService.CreateNamespace(namespaceItem);
         }
 
+        private NamespaceItem CreateNamespaceFromForms()
+        {
+            NamespaceItem namespaceItem = new NamespaceItem();
+            namespaceItem.Metadata = new Model.Namespaces.Metadata();
+            namespaceItem.Metadata.Name = textBoxNamespaceName.Text;
+
+            string[] lines = textBoxNamespaceLabels.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string line in lines)
+            {
+                // Split the line into key and value
+                string[] parts = line.Trim().Split(':');
+                if (parts.Length == 2)
+                {
+                    string key = parts[0].Trim().Trim('"');
+                    string value = parts[1].Trim().Trim('"');
+                    Dictionary<string, string> Labels = new Dictionary<string, string>
+                            {
+                                { key, value }
+                            };
+                    namespaceItem.Metadata.Labels = Labels;
+                }
+            }
+            string[] anno = textBoxNamespacesAnnotations.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string ann in anno)
+            {
+                // Split the line into key and value
+                string[] parts = ann.Trim().Split(':');
+                if (parts.Length == 2)
+                {
+                    string key = parts[0].Trim().Trim('"');
+                    string value = parts[1].Trim().Trim('"');
+                    Dictionary<string, string> Annotations = new Dictionary<string, string>
+                            {
+                                { key, value }
+                            };
+                    namespaceItem.Metadata.Annotations = Annotations;
+                }
+            }
+
+            return namespaceItem;
+
+        }
     }
 }
