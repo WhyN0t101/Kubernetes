@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Kubernetes.Model.Ingress;
 using Kubernetes.Model.Service;
+using Kubernetes.Model.PodMetrics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Newtonsoft.Json.Linq;
 using System.Reflection.Emit;
@@ -206,5 +207,23 @@ namespace Kubernetes.Controller
             string jsonPayload = payload.ToString();
             return await httpClient.PostAsync(apiUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
         }
+        public async Task<PodMetrics> RetrievePodMetrics(string namespaceName, string podName)
+        {
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/apis/metrics.k8s.io/v1beta1/namespaces/{namespaceName}/pods/{podName}");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<PodMetrics>(responseBody);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception or handle it accordingly
+                MessageBox.Show("No metrics found for this pod");
+                return null;
+            }
+        }
+
+   
     }
 }
