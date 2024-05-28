@@ -530,11 +530,6 @@ namespace Kubernetes
                 return;
             }
 
-        private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
-            PopulatePods(nameSpaceSelected);
-        }
             foreach (var namespaceLocal in namespaceList.Items)
             {
                 if (textBoxNamespaceName.Text == namespaceLocal.Metadata.Name)
@@ -595,6 +590,12 @@ namespace Kubernetes
 
             return namespaceItem;
 
+        }
+
+        private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
+            PopulatePods(nameSpaceSelected);
         }
     }
 }

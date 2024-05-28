@@ -133,8 +133,6 @@
             this.textBoxServicesName = new System.Windows.Forms.TextBox();
             this.textBoxServicesLabels = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.LabelsToolTipNamespaces = new System.Windows.Forms.ToolTip(this.components);
-            this.NameTooltop = new System.Windows.Forms.ToolTip(this.components);
             this.textBoxNamespacesAnnotations = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -567,8 +565,6 @@
             this.textBoxNamespaceName.Name = "textBoxNamespaceName";
             this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 26);
             this.textBoxNamespaceName.TabIndex = 9;
-            this.NameTooltop.SetToolTip(this.textBoxNamespaceName, "The name must consist of alphanumeric characters, \'-\', \'_\' or \'.\', and must start" +
-        " and end with an alphanumeric character.");
             // 
             // label8
             // 
@@ -601,8 +597,7 @@
             this.textBoxNamespaceLabels.Name = "textBoxNamespaceLabels";
             this.textBoxNamespaceLabels.Size = new System.Drawing.Size(288, 117);
             this.textBoxNamespaceLabels.TabIndex = 11;
-            this.LabelsToolTipNamespaces.SetToolTip(this.textBoxNamespaceLabels, "Make a new Line for each Label;\r\nLabels should be in the format of \"key\": \"value\"" +
-        "");
+           
             // 
             // PodsTab
             // 
@@ -1145,8 +1140,7 @@
             this.textBoxNamespacesAnnotations.Name = "textBoxNamespacesAnnotations";
             this.textBoxNamespacesAnnotations.Size = new System.Drawing.Size(288, 78);
             this.textBoxNamespacesAnnotations.TabIndex = 15;
-            this.NameTooltop.SetToolTip(this.textBoxNamespacesAnnotations, "The name must consist of alphanumeric characters, \'-\', \'_\' or \'.\', and must start" +
-        " and end with an alphanumeric character.");
+
             // 
             // label22
             // 
