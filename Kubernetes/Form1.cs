@@ -21,6 +21,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Kubernetes.Model.Service;
 using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Text.RegularExpressions;
+using Kubernetes.Utils;
 
 namespace Kubernetes
 {
@@ -35,6 +37,7 @@ namespace Kubernetes
         private NamespaceList namespaceList;
         private NodeList nodeList;
         private ServiceList serviceList;
+        private Validator validator;
 
 
         public Form1()
@@ -310,7 +313,8 @@ namespace Kubernetes
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             // Update ListView data for namespaces
-            Invoke((MethodInvoker)delegate {
+            Invoke((MethodInvoker)delegate
+            {
                 PopulateListViewNamespaces();
                 PopulateNodeInfoAsync();
                 PopulateServiceAsync();
@@ -493,6 +497,30 @@ namespace Kubernetes
             //throw new NotImplementedException();
         }
 
+        private void buttonNamespaceCreate_Click(object sender, EventArgs e)
+        {
+            
+            if (textBoxNamespaceName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxNamespaceName.Text))
+            {
+                MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+
+            foreach (var namespaceLocal in namespaceList.Items)
+            {
+                if (textBoxNamespaceName.Text == namespaceLocal.Metadata.Name)
+                {
+                    MessageBox.Show($"Namespace: {textBoxNamespaceName.Text} already exists.");
+                    return;
+                }
+            }
+            if (textBoxNamespaceLabels.Text.Trim() == "" || !validator.ValidateLabels(textBoxNamespaceLabels.Text))
+            {
+                MessageBox.Show("Please Choose the desired labels");
+                return;
+            }
+
+        }
 
     }
 }
