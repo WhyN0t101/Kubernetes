@@ -54,7 +54,6 @@
             this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
-            this.comboPodNameChart = new System.Windows.Forms.ComboBox();
             this.comboNameSpaceChart = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -143,7 +142,6 @@
             this.textBoxServicesName = new System.Windows.Forms.TextBox();
             this.textBoxServicesLabels = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -315,9 +313,7 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Controls.Add(this.label21);
             this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.comboPodNameChart);
             this.panel2.Controls.Add(this.comboNameSpaceChart);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.chart1);
@@ -337,21 +333,15 @@
             this.label20.TabIndex = 9;
             this.label20.Text = "Namespace:";
             // 
-            // comboPodNameChart
-            // 
-            this.comboPodNameChart.FormattingEnabled = true;
-            this.comboPodNameChart.Location = new System.Drawing.Point(23, 187);
-            this.comboPodNameChart.Name = "comboPodNameChart";
-            this.comboPodNameChart.Size = new System.Drawing.Size(121, 31);
-            this.comboPodNameChart.TabIndex = 8;
-            // 
             // comboNameSpaceChart
             // 
             this.comboNameSpaceChart.FormattingEnabled = true;
             this.comboNameSpaceChart.Location = new System.Drawing.Point(23, 63);
             this.comboNameSpaceChart.Name = "comboNameSpaceChart";
-            this.comboNameSpaceChart.Size = new System.Drawing.Size(121, 31);
+            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 31);
             this.comboNameSpaceChart.TabIndex = 7;
+            this.comboNameSpaceChart.SelectedIndexChanged += new System.EventHandler(this.comboNameSpaceChart_SelectedIndexChanged);
+            this.comboNameSpaceChart.Enter += new System.EventHandler(this.comboNameSpaceChart_Enter);
             // 
             // label4
             // 
@@ -361,9 +351,9 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(666, 334);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 20);
+            this.label4.Size = new System.Drawing.Size(147, 20);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Chart 1";
+            this.label4.Text = "Memory usage";
             // 
             // chart1
             // 
@@ -390,9 +380,9 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(220, 334);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.Size = new System.Drawing.Size(109, 20);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Chart 1";
+            this.label3.Text = "CPU usage";
             // 
             // chart2
             // 
@@ -1197,15 +1187,6 @@
             this.label19.TabIndex = 28;
             this.label19.Text = "Name:";
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 152);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(58, 23);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "Pod:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -1256,10 +1237,6 @@
         private System.Windows.Forms.TabPage PodsTab;
         private System.Windows.Forms.TabPage DeploymentsTab;
         private System.Windows.Forms.ListView listViewNodes;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeName;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeLabels;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeCpuUsed;
@@ -1350,9 +1327,11 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox comboPodNameChart;
         private System.Windows.Forms.ComboBox comboNameSpaceChart;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }
 }
 

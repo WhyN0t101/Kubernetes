@@ -21,6 +21,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Kubernetes.Model.Service;
 using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
+using Kubernetes.Model.PodMetrics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Kubernetes
 {
@@ -35,8 +38,8 @@ namespace Kubernetes
         private NamespaceList namespaceList;
         private NodeList nodeList;
         private ServiceList serviceList;
-
-
+        private string selectedNamespace;
+    
         public Form1()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
@@ -46,6 +49,7 @@ namespace Kubernetes
             pictureBox1.BackColor = Color.Transparent;
             textBoxLoginIp.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
+
 
         }
 
@@ -166,7 +170,6 @@ namespace Kubernetes
 
                 // Attempt to connect to the router
                 await Connect(baseUrl, token, control);
-
                 // If connection successful, display success message
                 MessageBox.Show("Connected to " + ipAddress, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -310,10 +313,13 @@ namespace Kubernetes
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             // Update ListView data for namespaces
-            Invoke((MethodInvoker)delegate {
+            Invoke((MethodInvoker)delegate
+            {
                 PopulateListViewNamespaces();
                 PopulateNodeInfoAsync();
                 PopulateServiceAsync();
+                PopulateComboBoxesNameSpace();
+
             });
         }
         private void InitializeTimer()
@@ -326,8 +332,7 @@ namespace Kubernetes
         }
 
 
-
-        private async void comboBoxNamespacePod_Enter(object sender, EventArgs e)
+        private async void PopulateComboBoxesNameSpace()
         {
             try
             {
@@ -339,13 +344,14 @@ namespace Kubernetes
 
                 // Clear existing items in the combo box
                 comboBoxNamespacePod.Items.Clear();
-
+                comboNameSpaceChart.Items.Clear();
                 // Add fetched namespaces to the combo box, excluding default namespaces
                 foreach (string ns in namespaces)
                 {
                     if (!defaultNamespaces.Contains(ns))
                     {
                         comboBoxNamespacePod.Items.Add(ns);
+                        comboNameSpaceChart.Items.Add(ns);
                     }
                 }
             }
@@ -356,13 +362,10 @@ namespace Kubernetes
             }
         }
 
-
-        private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
+        private async void comboBoxNamespacePod_Enter(object sender, EventArgs e)
         {
-            string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
-            PopulatePods(nameSpaceSelected);
+            PopulateComboBoxesNameSpace();
         }
-
         private async void PopulateNodeInfoAsync()
         {
             try
@@ -377,11 +380,6 @@ namespace Kubernetes
                 {
                     ListViewItem item = new ListViewItem(node.Metadata.Name);
 
-                    /*// Labels (if available)
-                    //string labels = string.Join(", ", node.Metadata.Labels?.Select(kv => $"{kv.Key}: {kv.Value}") ?? Enumerable.Empty<string>());
-                    string labels = node.Metadata.Labels != null ? string.Join
-                        (", ", node.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
-                    item.SubItems.Add(labels);*/
 
                     // Labels (if available)
                     string labels = node.Metadata.Labels != null ? string.Join
@@ -492,7 +490,34 @@ namespace Kubernetes
             }
             //throw new NotImplementedException();
         }
+      
 
+        
+        private void comboNameSpaceChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check if the selected item is not null
+            if (comboNameSpaceChart.SelectedItem != null)
+            {
+                // Update the selected namespace
+                selectedNamespace = comboNameSpaceChart.SelectedItem.ToString();
 
+                // Populate the pods combo box with pods in the selected namespace
+                if (!string.IsNullOrEmpty(selectedNamespace))
+                {
+                   // (selectedNamespace);
+                }
+            }
+        }
+
+        private void comboNameSpaceChart_Enter(object sender, EventArgs e)
+        {
+            PopulateComboBoxesNameSpace();
+        }
+
+        private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
+            PopulatePods(nameSpaceSelected);
+        }
     }
 }
