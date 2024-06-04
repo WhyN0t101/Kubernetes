@@ -602,5 +602,32 @@ namespace Kubernetes
             string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
             PopulatePods(nameSpaceSelected);
         }
+
+        private async void buttonNamespaceDelete_Click(object sender, EventArgs e)
+        {
+            if (textBoxNamespaceName.Text.Trim() == "")
+            {
+                MessageBox.Show("Please Choose a name");
+                return;
+            }
+
+            bool namespaceDeleted = false;
+
+            foreach (var namespaceLocal in namespaceList.Items)
+            {
+                if (textBoxNamespaceName.Text == namespaceLocal.Metadata.Name)
+                {
+                    await kubernetesService.DeleteNamespace(textBoxNamespaceName.Text);
+                    namespaceDeleted = true;
+                    break;
+                }
+            }
+            if (!namespaceDeleted)
+            {
+                MessageBox.Show($"Namespace: {textBoxNamespaceName.Text} does not exist.");
+                return;
+            }
+
+        }
     }
 }

@@ -518,6 +518,7 @@
             this.buttonNamespaceDelete.TabIndex = 14;
             this.buttonNamespaceDelete.Text = "Delete";
             this.buttonNamespaceDelete.UseVisualStyleBackColor = true;
+            this.buttonNamespaceDelete.Click += new System.EventHandler(this.buttonNamespaceDelete_Click);
             // 
             // listViewNamespaces
             // 
