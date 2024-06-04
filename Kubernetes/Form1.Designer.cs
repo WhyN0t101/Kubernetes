@@ -83,6 +83,8 @@
             this.textBoxNamespaceLabels = new System.Windows.Forms.TextBox();
             this.PodsTab = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.imagePodCombobox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonPodDelete = new System.Windows.Forms.Button();
             this.listViewPods = new System.Windows.Forms.ListView();
@@ -138,8 +140,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
-            this.imagePodCombobox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -330,7 +330,7 @@
             this.comboNameSpaceChart.FormattingEnabled = true;
             this.comboNameSpaceChart.Location = new System.Drawing.Point(23, 63);
             this.comboNameSpaceChart.Name = "comboNameSpaceChart";
-            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 26);
+            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 31);
             this.comboNameSpaceChart.TabIndex = 7;
             this.comboNameSpaceChart.SelectedIndexChanged += new System.EventHandler(this.comboNameSpaceChart_SelectedIndexChanged);
             this.comboNameSpaceChart.Enter += new System.EventHandler(this.comboNameSpaceChart_Enter);
@@ -495,7 +495,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(758, 277);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(88, 14);
+            this.label22.Size = new System.Drawing.Size(104, 18);
             this.label22.TabIndex = 16;
             this.label22.Text = "Annotations:";
             // 
@@ -653,6 +653,26 @@
             this.panel5.Size = new System.Drawing.Size(1085, 447);
             this.panel5.TabIndex = 21;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(767, 202);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 18);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Image:";
+            // 
+            // imagePodCombobox
+            // 
+            this.imagePodCombobox.FormattingEnabled = true;
+            this.imagePodCombobox.Location = new System.Drawing.Point(768, 223);
+            this.imagePodCombobox.Name = "imagePodCombobox";
+            this.imagePodCombobox.Size = new System.Drawing.Size(121, 31);
+            this.imagePodCombobox.TabIndex = 21;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -741,6 +761,7 @@
             this.buttonPodCreate.TabIndex = 19;
             this.buttonPodCreate.Text = "Create";
             this.buttonPodCreate.UseVisualStyleBackColor = true;
+            this.buttonPodCreate.Click += new System.EventHandler(this.buttonPodCreate_Click);
             // 
             // comboBoxNamespacePod
             // 
@@ -1164,26 +1185,6 @@
             this.label21.Size = new System.Drawing.Size(45, 18);
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
-            // 
-            // imagePodCombobox
-            // 
-            this.imagePodCombobox.FormattingEnabled = true;
-            this.imagePodCombobox.Location = new System.Drawing.Point(768, 223);
-            this.imagePodCombobox.Name = "imagePodCombobox";
-            this.imagePodCombobox.Size = new System.Drawing.Size(121, 31);
-            this.imagePodCombobox.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(767, 202);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 18);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "Image:";
             // 
             // Form1
             // 

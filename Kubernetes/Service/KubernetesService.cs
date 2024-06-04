@@ -227,6 +227,38 @@ namespace Kubernetes.Controller
             }
         }
 
-   
+        public async Task CreatePod(PodItem podItem, string namespaceSelected)
+        {
+            try
+            {
+                JObject payload = podItem.ToJObject();
+
+                payload.Remove("status");
+                ((JObject)payload["metadata"]).Remove("OwnerReferences");
+                ((JObject)payload["metadata"]).Remove("creationTimestamp");
+
+                if (podItem.Metadata.Labels == null)
+                {
+                    ((JObject)payload["metadata"]).Remove("labels");
+                }
+                if (podItem.Spec.NodeName == null)
+                {
+                    ((JObject)payload["spec"]).Remove("nodeName");
+                }
+
+
+                string apiUrl = baseUrl + "api/v1/namespaces/" + namespaceSelected + "/pods";
+                HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Pod created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to Create Pod");
+            }
+
+        }
+
     }
 }

@@ -40,6 +40,7 @@ namespace Kubernetes
         private KubernetesService kubernetesService;
         private System.Timers.Timer timer;
         private NamespaceList namespaceList;
+        private PodList podList;
         private NodeList nodeList;
         private ServiceList serviceList;
         private Validator validator = new Validator();
@@ -98,7 +99,6 @@ namespace Kubernetes
                     PopulateListViewNamespaces();
                     break;
                 case 4:
-                    PopulatePods("default");
                     break;
                 case 6:
                     PopulateServiceAsync();
@@ -312,7 +312,10 @@ namespace Kubernetes
                 return "N/A";
             }
 
-            var ports = containers.SelectMany(c => c.Ports).Select(p => p.ContainerPort.ToString());
+            var ports = containers
+                .SelectMany(c => c.Ports?.Select(p => p.ContainerPort.ToString()) ?? Enumerable.Empty<string>())
+                .ToList();
+
             return ports.Any() ? string.Join(", ", ports) : "N/A";
         }
 
@@ -597,10 +600,70 @@ namespace Kubernetes
 
         }
 
+        private PodItem CreatePodFromForms()
+        {
+            PodItem podItem = new PodItem();
+            podItem.Metadata = new PodMetadata();
+            podItem.Metadata.Name = textBoxPodName.Text;
+
+            string[] lines = textBoxPodLabel.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string line in lines)
+            {
+                // Split the line into key and value
+                string[] parts = line.Trim().Split(':');
+                if (parts.Length == 2)
+                {
+                    string key = parts[0].Trim().Trim('"');
+                    string value = parts[1].Trim().Trim('"');
+                    Dictionary<string, string> Labels = new Dictionary<string, string>
+                            {
+                                { key, value }
+                            };
+                    podItem.Metadata.Labels = Labels;
+                }
+            }
+            return podItem;
+
+        }
         private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
             PopulatePods(nameSpaceSelected);
+        }
+
+        private async void buttonPodCreate_Click(object sender, EventArgs e)
+        {
+
+            if (textBoxPodName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxPodName.Text))
+            {
+                MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+
+            foreach (var podLocal in podList.Items)
+            {
+                if (textBoxPodName.Text == podLocal.Metadata.Name)
+                {
+                    MessageBox.Show($"Pod: {textBoxPodName.Text} already exists.");
+                    return;
+                }
+            }
+            if (!validator.ValidateLabels(textBoxPodLabel.Text))
+            {
+                MessageBox.Show("Please Choose a valid labels");
+                return;
+            }
+            if (comboBoxNamespacePod.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a namespace");
+                return;
+            }
+   
+            string namespaceItem = comboBoxNamespacePod.SelectedItem.ToString().Trim();
+
+            PodItem podItem = CreatePodFromForms();
+            await kubernetesService.CreatePod(podItem, namespaceItem);
         }
     }
 }

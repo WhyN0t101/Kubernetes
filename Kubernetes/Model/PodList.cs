@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +21,10 @@ namespace Kubernetes.Model.PodList
 
         [JsonProperty("status")]
         public PodStatus Status { get; set; }
+        public JObject ToJObject()
+        {
+            return JObject.FromObject(this);
+        }
     }
 
     internal class PodMetadata
