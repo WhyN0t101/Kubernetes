@@ -543,6 +543,11 @@ namespace Kubernetes
                 MessageBox.Show("Please Choose a valid labels");
                 return;
             }
+            if (!validator.ValidateAnnotations(textBoxNamespacesAnnotations.Text))
+            {
+                MessageBox.Show("Please Choose a valid annotation");
+                return;
+            }
 
             NamespaceItem namespaceItem = CreateNamespaceFromForms();
             await kubernetesService.CreateNamespace(namespaceItem);

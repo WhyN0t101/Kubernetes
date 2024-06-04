@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
@@ -47,7 +48,6 @@
             this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.comboNameSpaceChart = new System.Windows.Forms.ComboBox();
             this.NodesTab = new System.Windows.Forms.TabPage();
@@ -66,6 +66,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.NamespacesTab = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.textBoxNamespacesAnnotations = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonNamespaceDelete = new System.Windows.Forms.Button();
             this.listViewNamespaces = new System.Windows.Forms.ListView();
@@ -133,8 +135,9 @@
             this.textBoxServicesName = new System.Windows.Forms.TextBox();
             this.textBoxServicesLabels = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBoxNamespacesAnnotations = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -311,15 +314,6 @@
             this.panel2.Size = new System.Drawing.Size(1067, 375);
             this.panel2.TabIndex = 7;
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 152);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(45, 18);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "Pod:";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -334,7 +328,7 @@
             this.comboNameSpaceChart.FormattingEnabled = true;
             this.comboNameSpaceChart.Location = new System.Drawing.Point(23, 63);
             this.comboNameSpaceChart.Name = "comboNameSpaceChart";
-            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 31);
+            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 26);
             this.comboNameSpaceChart.TabIndex = 7;
             this.comboNameSpaceChart.SelectedIndexChanged += new System.EventHandler(this.comboNameSpaceChart_SelectedIndexChanged);
             this.comboNameSpaceChart.Enter += new System.EventHandler(this.comboNameSpaceChart_Enter);
@@ -480,6 +474,29 @@
             this.panel4.Size = new System.Drawing.Size(1085, 447);
             this.panel4.TabIndex = 15;
             // 
+            // textBoxNamespacesAnnotations
+            // 
+            this.textBoxNamespacesAnnotations.Location = new System.Drawing.Point(761, 294);
+            this.textBoxNamespacesAnnotations.Multiline = true;
+            this.textBoxNamespacesAnnotations.Name = "textBoxNamespacesAnnotations";
+            this.textBoxNamespacesAnnotations.Size = new System.Drawing.Size(288, 78);
+            this.textBoxNamespacesAnnotations.TabIndex = 15;
+            this.toolTipAnno.SetToolTip(this.textBoxNamespacesAnnotations, "Invalid annotations key format. Allowed characters: A-Z, a-z, 0-9, -, _, and . Ke" +
+        "y must start and end with alphanumeric characters.\r\nFormat of the annotations sh" +
+        "ould be \"key:value\"");
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(758, 277);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(88, 14);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Annotations:";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -597,7 +614,9 @@
             this.textBoxNamespaceLabels.Name = "textBoxNamespaceLabels";
             this.textBoxNamespaceLabels.Size = new System.Drawing.Size(288, 117);
             this.textBoxNamespaceLabels.TabIndex = 11;
-           
+            this.toolTipLabels.SetToolTip(this.textBoxNamespaceLabels, "Invalid label key format. Allowed characters: A-Z, a-z, 0-9, -, _, and . Key must" +
+        " start and end with alphanumeric characters.\r\nFormat of the label should be \"key" +
+        ":value\"");
             // 
             // PodsTab
             // 
@@ -1133,26 +1152,14 @@
             this.label19.TabIndex = 28;
             this.label19.Text = "Name:";
             // 
-            // textBoxNamespacesAnnotations
+            // label21
             // 
-            this.textBoxNamespacesAnnotations.Location = new System.Drawing.Point(761, 294);
-            this.textBoxNamespacesAnnotations.Multiline = true;
-            this.textBoxNamespacesAnnotations.Name = "textBoxNamespacesAnnotations";
-            this.textBoxNamespacesAnnotations.Size = new System.Drawing.Size(288, 78);
-            this.textBoxNamespacesAnnotations.TabIndex = 15;
-
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(758, 277);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(88, 14);
-            this.label22.TabIndex = 16;
-            this.label22.Text = "Annotations:";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(23, 152);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(45, 18);
+            this.label21.TabIndex = 10;
+            this.label21.Text = "Pod:";
             // 
             // Form1
             // 
@@ -1298,6 +1305,8 @@
         private System.Windows.Forms.ToolTip NameTooltop;
         private System.Windows.Forms.TextBox textBoxNamespacesAnnotations;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ToolTip toolTipAnno;
+        private System.Windows.Forms.ToolTip toolTipLabels;
     }
 }
 

@@ -26,7 +26,6 @@ namespace Kubernetes.Utils
                 string[] parts = line.Trim().Split(':');
                 if (parts.Length != 2)
                 {
-                    Console.WriteLine($"Invalid label format: {line}");
                     return false;
                 }
 
@@ -35,13 +34,43 @@ namespace Kubernetes.Utils
 
                 if (!Regex.IsMatch(key, labelPattern))
                 {
-                    Console.WriteLine($"Invalid label key: {key}");
                     return false;
                 }
 
                 if (!Regex.IsMatch(value, labelPattern))
                 {
-                    Console.WriteLine($"Invalid label value: {value}");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        public bool ValidateAnnotations(string annotationText)
+        {
+            string labelPattern = @"^[A-Za-z0-9]([-A-Za-z0-9_.]*[A-Za-z0-9])?$";
+
+            string[] annolLines = annotationText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string line in annolLines)
+            {
+                string[] parts = line.Trim().Split(':');
+                if (parts.Length != 2)
+                {
+                    return false;
+                }
+
+                string key = parts[0].Trim().Trim('"');
+                string value = parts[1].Trim().Trim('"');
+
+                if (!Regex.IsMatch(key, labelPattern))
+                {
+                    return false;
+                }
+
+                if (!Regex.IsMatch(value, labelPattern))
+                {
                     return false;
                 }
             }
