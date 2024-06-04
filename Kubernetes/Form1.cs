@@ -604,7 +604,7 @@ namespace Kubernetes
         {
             PodItem podItem = new PodItem();
             podItem.Metadata = new PodMetadata();
-            podItem.Metadata.Name = textBoxPodName.Text;
+           // podItem.Spec.Containers = imagePodCombobox.SelectedItem.ToString();
 
             string[] lines = textBoxPodLabel.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -659,7 +659,12 @@ namespace Kubernetes
                 MessageBox.Show("Please select a namespace");
                 return;
             }
-   
+            if (imagePodCombobox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a image");
+                return;
+            }
+
             string namespaceItem = comboBoxNamespacePod.SelectedItem.ToString().Trim();
 
             PodItem podItem = CreatePodFromForms();
