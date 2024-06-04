@@ -232,7 +232,7 @@ namespace Kubernetes
                     {
                 ns.Metadata.Name,
                 ns.Metadata.Labels != null ? string.Join(", ", ns.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "",
-                ns.Metadata.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                ns.Metadata.CreationTimestamp.ToString("yyyy-MM-ddTHH:mm:ss"),
                 ns.Spec.Finalizers != null ? string.Join(", ", ns.Spec.Finalizers) : "",
                 ns.Status.Phase,
             });
@@ -538,9 +538,14 @@ namespace Kubernetes
                     return;
                 }
             }
-            if (textBoxNamespaceLabels.Text.Trim() == "" || !validator.ValidateLabels(textBoxNamespaceLabels.Text))
+            if (!validator.ValidateLabels(textBoxNamespaceLabels.Text))
             {
-                MessageBox.Show("Please Choose the desired labels");
+                MessageBox.Show("Please Choose a valid labels");
+                return;
+            }
+            if (!validator.ValidateAnnotations(textBoxNamespacesAnnotations.Text))
+            {
+                MessageBox.Show("Please Choose a valid annotation");
                 return;
             }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
@@ -134,6 +135,9 @@
             this.textBoxServicesName = new System.Windows.Forms.TextBox();
             this.textBoxServicesLabels = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
             this.label21 = new System.Windows.Forms.Label();
             this.imagePodCombobox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -327,7 +331,7 @@
             this.comboNameSpaceChart.FormattingEnabled = true;
             this.comboNameSpaceChart.Location = new System.Drawing.Point(23, 63);
             this.comboNameSpaceChart.Name = "comboNameSpaceChart";
-            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 31);
+            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 26);
             this.comboNameSpaceChart.TabIndex = 7;
             this.comboNameSpaceChart.SelectedIndexChanged += new System.EventHandler(this.comboNameSpaceChart_SelectedIndexChanged);
             this.comboNameSpaceChart.Enter += new System.EventHandler(this.comboNameSpaceChart_Enter);
@@ -480,6 +484,9 @@
             this.textBoxNamespacesAnnotations.Name = "textBoxNamespacesAnnotations";
             this.textBoxNamespacesAnnotations.Size = new System.Drawing.Size(288, 78);
             this.textBoxNamespacesAnnotations.TabIndex = 15;
+            this.toolTipAnno.SetToolTip(this.textBoxNamespacesAnnotations, "Invalid annotations key format. Allowed characters: A-Z, a-z, 0-9, -, _, and . Ke" +
+        "y must start and end with alphanumeric characters.\r\nFormat of the annotations sh" +
+        "ould be \"key:value\"");
             // 
             // label22
             // 
@@ -489,7 +496,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(758, 277);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(104, 18);
+            this.label22.Size = new System.Drawing.Size(88, 14);
             this.label22.TabIndex = 16;
             this.label22.Text = "Annotations:";
             // 
@@ -610,6 +617,9 @@
             this.textBoxNamespaceLabels.Name = "textBoxNamespaceLabels";
             this.textBoxNamespaceLabels.Size = new System.Drawing.Size(288, 117);
             this.textBoxNamespaceLabels.TabIndex = 11;
+            this.toolTipLabels.SetToolTip(this.textBoxNamespaceLabels, "Invalid label key format. Allowed characters: A-Z, a-z, 0-9, -, _, and . Key must" +
+        " start and end with alphanumeric characters.\r\nFormat of the label should be \"key" +
+        ":value\"");
             // 
             // PodsTab
             // 
@@ -1320,6 +1330,8 @@
         private System.Windows.Forms.ToolTip NameTooltop;
         private System.Windows.Forms.TextBox textBoxNamespacesAnnotations;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ToolTip toolTipAnno;
+        private System.Windows.Forms.ToolTip toolTipLabels;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox imagePodCombobox;
     }
