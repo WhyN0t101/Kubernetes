@@ -175,20 +175,23 @@ namespace Kubernetes.Controller
             {
                 JObject payload = namespaceItem.ToJObject();
 
-                /*
-                JObject payload = new JObject
+                payload.Remove("spec");
+                payload.Remove("status");
+                ((JObject)payload["metadata"]).Remove("resourceVersion");
+                ((JObject)payload["metadata"]).Remove("creationTimestamp");
+                ((JObject)payload["metadata"]).Remove("managedFields");
+                ((JObject)payload["metadata"]).Remove("uid");
+
+                if(namespaceItem.Metadata.Labels == null )
                 {
-                    ["name"] = namespaceItem.Metadata.Name
-                };
-                foreach (var label in namespaceItem.Metadata.Labels)
-                {
-                    payload[label.Key] = label.Value;
+                    ((JObject)payload["metadata"]).Remove("labels");
                 }
-                foreach (var annos in namespaceItem.Metadata.Annotations)
+                if(namespaceItem.Metadata.Annotations == null)
                 {
-                    payload[annos.Key] = annos.Value;
+                    ((JObject)payload["metadata"]).Remove("annotations");
+
                 }
-                */
+
                 string apiUrl = baseUrl + "/api/v1/namespaces";
                 HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
                 response.EnsureSuccessStatusCode();
