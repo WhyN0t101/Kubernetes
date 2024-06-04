@@ -91,14 +91,19 @@ namespace Kubernetes
             TabControl tabControl = (TabControl)sender;
             switch (tabControl.SelectedIndex)
             {
+                case 1:
+                    PopulateComboBoxesNameSpace();
+                    break;
                 case 2:
                     PopulateNodeInfoAsync();
                     break;
                 case 3:
                     PopulateListViewNamespaces();
+                    PopulateComboBoxesNameSpace();
                     break;
                 case 4:
                     PopulatePods("default");
+                    PopulateComboBoxesNameSpace();
                     break;
                 case 6:
                     PopulateServiceAsync();
@@ -352,6 +357,7 @@ namespace Kubernetes
                 // Clear existing items in the combo box
                 comboBoxNamespacePod.Items.Clear();
                 comboNameSpaceChart.Items.Clear();
+                comboBoxNamespaceDelete.Items.Clear();
                 // Add fetched namespaces to the combo box, excluding default namespaces
                 foreach (string ns in namespaces)
                 {
@@ -359,6 +365,7 @@ namespace Kubernetes
                     {
                         comboBoxNamespacePod.Items.Add(ns);
                         comboNameSpaceChart.Items.Add(ns);
+                        comboBoxNamespaceDelete.Items.Add(ns);
                     }
                 }
             }
@@ -605,29 +612,8 @@ namespace Kubernetes
 
         private async void buttonNamespaceDelete_Click(object sender, EventArgs e)
         {
-            if (textBoxNamespaceName.Text.Trim() == "")
-            {
-                MessageBox.Show("Please Choose a name");
-                return;
-            }
-
-            bool namespaceDeleted = false;
-
-            foreach (var namespaceLocal in namespaceList.Items)
-            {
-                if (textBoxNamespaceName.Text == namespaceLocal.Metadata.Name)
-                {
-                    await kubernetesService.DeleteNamespace(textBoxNamespaceName.Text);
-                    namespaceDeleted = true;
-                    break;
-                }
-            }
-            if (!namespaceDeleted)
-            {
-                MessageBox.Show($"Namespace: {textBoxNamespaceName.Text} does not exist.");
-                return;
-            }
-
+            await kubernetesService.DeleteNamespace(comboBoxNamespaceDelete.SelectedItem.ToString());
         }
+
     }
 }
