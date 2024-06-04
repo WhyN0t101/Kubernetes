@@ -260,5 +260,22 @@ namespace Kubernetes.Controller
 
         }
 
+        public async Task DeleteNamespace(string text)
+        {
+            try
+            {
+                string apiUrl = baseUrl + "/api/v1/namespaces/" + text;
+                HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Namespace Deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to Delete Namespace");
+            }
+        }
+
+
     }
 }

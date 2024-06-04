@@ -92,13 +92,19 @@ namespace Kubernetes
             TabControl tabControl = (TabControl)sender;
             switch (tabControl.SelectedIndex)
             {
+                case 1:
+                    PopulateComboBoxesNameSpace();
+                    break;
                 case 2:
                     PopulateNodeInfoAsync();
                     break;
                 case 3:
                     PopulateListViewNamespaces();
+                    PopulateComboBoxesNameSpace();
                     break;
                 case 4:
+                    PopulatePods("default");
+                    PopulateComboBoxesNameSpace();
                     break;
                 case 6:
                     PopulateServiceAsync();
@@ -355,6 +361,7 @@ namespace Kubernetes
                 // Clear existing items in the combo box
                 comboBoxNamespacePod.Items.Clear();
                 comboNameSpaceChart.Items.Clear();
+                comboBoxNamespaceDelete.Items.Clear();
                 // Add fetched namespaces to the combo box, excluding default namespaces
                 foreach (string ns in namespaces)
                 {
@@ -362,6 +369,7 @@ namespace Kubernetes
                     {
                         comboBoxNamespacePod.Items.Add(ns);
                         comboNameSpaceChart.Items.Add(ns);
+                        comboBoxNamespaceDelete.Items.Add(ns);
                     }
                 }
             }
@@ -670,5 +678,11 @@ namespace Kubernetes
             PodItem podItem = CreatePodFromForms();
             await kubernetesService.CreatePod(podItem, namespaceItem);
         }
+
+        private async void buttonNamespaceDelete_Click(object sender, EventArgs e)
+        {
+            await kubernetesService.DeleteNamespace(comboBoxNamespaceDelete.SelectedItem.ToString());
+        }
+
     }
 }
