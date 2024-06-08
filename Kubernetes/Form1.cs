@@ -19,6 +19,7 @@ using System.Timers;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Kubernetes.Model.Service;
+using Kubernetes.Model.Deployments;
 using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
@@ -43,11 +44,12 @@ namespace Kubernetes
         private PodList podList;
         private NodeList nodeList;
         private ServiceList serviceList;
+        private DeploymentsList deployments;
         private Validator validator = new Validator();
 
 
         private string selectedNamespace;
-    
+
         public Form1()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
@@ -58,6 +60,7 @@ namespace Kubernetes
             textBoxLoginIp.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             podList = new PodList { Items = new List<PodItem>() };
+            deployments = new DeploymentsList { Items = new List<DeploymentItem>() };
 
 
         }
@@ -105,6 +108,9 @@ namespace Kubernetes
                     break;
                 case 4:
                     PopulatePods("default");
+                    PopulateComboBoxesNameSpace();
+                    break;
+                case 5:
                     PopulateComboBoxesNameSpace();
                     break;
                 case 6:
@@ -363,10 +369,12 @@ namespace Kubernetes
                 // Save current selections
                 var selectedNamespacePod = comboBoxNamespacePod.SelectedItem;
                 var selectedNamespaceChart = comboNameSpaceChart.SelectedItem;
+                var selectedDeploymentNamespace = comboBoxDeploymentNamespace.SelectedItem;
 
                 // Clear existing items in the combo boxes
                 comboBoxNamespacePod.Items.Clear();
                 comboNameSpaceChart.Items.Clear();
+                comboBoxDeploymentNamespace.Items.Clear();
 
                 // Add fetched namespaces to the combo boxes, excluding default namespaces
                 foreach (string ns in namespaces)
@@ -375,6 +383,7 @@ namespace Kubernetes
                     {
                         comboBoxNamespacePod.Items.Add(ns);
                         comboNameSpaceChart.Items.Add(ns);
+                        comboBoxDeploymentNamespace.Items.Add(ns);
                     }
                 }
 
@@ -387,6 +396,10 @@ namespace Kubernetes
                 {
                     comboNameSpaceChart.SelectedItem = selectedNamespaceChart;
                 }
+                if (selectedDeploymentNamespace != null && comboBoxDeploymentNamespace.Items.Contains(selectedDeploymentNamespace))
+                {
+                    comboBoxDeploymentNamespace.SelectedItem = selectedDeploymentNamespace;
+                }
 
             }
             catch (Exception ex)
@@ -397,10 +410,6 @@ namespace Kubernetes
         }
 
 
-        private void comboBoxNamespacePod_Enter(object sender, EventArgs e)
-        {
-            PopulateComboBoxesNameSpace();
-        }
         private async void PopulateNodeInfoAsync()
         {
             try
@@ -525,9 +534,9 @@ namespace Kubernetes
             }
             //throw new NotImplementedException();
         }
-      
 
-        
+
+
         private void comboNameSpaceChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Check if the selected item is not null
@@ -539,7 +548,7 @@ namespace Kubernetes
                 // Populate the pods combo box with pods in the selected namespace
                 if (!string.IsNullOrEmpty(selectedNamespace))
                 {
-                   // (selectedNamespace);
+                    // (selectedNamespace);
                 }
             }
         }
@@ -551,7 +560,7 @@ namespace Kubernetes
 
         private async void buttonNamespaceCreate_Click(object sender, EventArgs e)
         {
-            
+
             if (textBoxNamespaceName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxNamespaceName.Text))
             {
                 MessageBox.Show("Please Choose a Valid name");
@@ -631,8 +640,8 @@ namespace Kubernetes
             {
                 Metadata = new PodMetadata
                 {
-                    Name = textBoxPodName.Text, 
-                    Namespace = comboBoxNamespacePod.SelectedItem.ToString(), 
+                    Name = textBoxPodName.Text,
+                    Namespace = comboBoxNamespacePod.SelectedItem.ToString(),
                     Labels = new Dictionary<string, string>()
                 },
                 Spec = new PodSpec
@@ -641,7 +650,7 @@ namespace Kubernetes
             {
                 new PodContainer
                 {
-                    Name = containerNameText.Text, 
+                    Name = containerNameText.Text,
                     Image = imagePodCombobox.SelectedItem.ToString()
                 }
             }
@@ -796,6 +805,7 @@ namespace Kubernetes
         {
             foreach (string image in defaultImages)
             {
+                imageDeployment.Items.Add(image);
                 imagePodCombobox.Items.Add(image);
             }
         }
@@ -841,6 +851,199 @@ namespace Kubernetes
 
                 MessageBox.Show("Pod(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void comboBoxDeploymentNamespace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nameSpaceSelected = comboBoxDeploymentNamespace.SelectedItem.ToString();
+            PopulateDeployments(nameSpaceSelected);
+        }
+        private async void PopulateDeployments(string namespaceText)
+        {
+            try
+            {
+                // Fetch deployments from the Kubernetes service for the specified namespace
+                DeploymentsList deploymentList = await kubernetesService.RetrieveDeployments(namespaceText);
+                if (deploymentList == null || deploymentList.Items == null)
+                {
+                    return;
+                }
+                var defaultNamespaces = new HashSet<string> { "kube-system", "kube-public", "kube-node-lease", "default" };
+
+                // Clear existing items in the ListView
+                listViewDeployments.Items.Clear();
+
+                // Add new items or update existing items in the ListView
+                foreach (var deployment in deploymentList.Items)
+                {
+                    // Skip deployments that belong to default namespaces
+                    if (defaultNamespaces.Contains(deployment.Metadata?.Namespace))
+                    {
+                        continue;
+                    }
+
+                    string containerImage = GetContainerImage(deployment.Spec?.Template?.Spec?.Containers);
+                    string containerPorts = GetContainerPorts(deployment.Spec?.Template?.Spec?.Containers);
+
+                    ListViewItem item = new ListViewItem(new[]
+                    {
+                deployment.Metadata?.Name ?? "N/A",
+                deployment.Metadata?.Namespace ?? "N/A",
+                deployment.Metadata?.CreationTimestamp?.ToString("yyyy-MM-ddTHH:mm:ss") ?? "N/A",
+                deployment.Metadata.Labels != null ? string.Join(", ", deployment.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A",
+                "Deployment",
+                containerImage,
+                containerPorts
+            });
+                    listViewDeployments.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or display an error message
+                MessageBox.Show("Error fetching deployments: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string GetContainerImage(List<DeploymentContainer> containers)
+        {
+            if (containers == null || containers.Count == 0)
+            {
+                return "N/A";
+            }
+
+            return containers[0]?.Image ?? "N/A";
+        }
+
+        private string GetContainerPorts(List<DeploymentContainer> containers)
+        {
+            if (containers == null || containers.Count == 0)
+            {
+                return "N/A";
+            }
+
+            var ports = containers.SelectMany(c => c.Ports?.Select(p => p.ContainerPort.ToString()) ?? Enumerable.Empty<string>()).ToList();
+
+            return ports.Any() ? string.Join(", ", ports) : "N/A";
+        }
+
+        private async void buttonDeploymentCreate_Click(object sender, EventArgs e)
+        {
+
+            if (comboBoxDeploymentNamespace.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a namespace");
+                return;
+            }
+            if (textBoxDeploymentName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxDeploymentName.Text))
+            {
+                MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+            if (containerNameDeploy.Text.Trim() == "" || !validator.ValidateNamespace(containerNameDeploy.Text))
+            {
+                MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+
+            // Check if podList is null before accessing it
+            if (deployments == null || deployments.Items == null)
+            {
+                MessageBox.Show("Deployments list is not initialized. Please try again.");
+                return;
+            }
+
+            foreach (var deployment in deployments.Items)
+            {
+                if (textBoxDeploymentName.Text == deployment.Metadata.Name)
+                {
+                    MessageBox.Show($"Pod: {textBoxDeploymentName.Text} already exists.");
+                    return;
+                }
+            }
+
+            if (!validator.ValidateLabels(textBoxDeploymentLabel.Text))
+            {
+                MessageBox.Show("Please Choose valid labels");
+                return;
+            }
+            if(!validator.ValidatePorts(PortsDeploy.Text))
+            {
+                MessageBox.Show("Please type ports correctly example: 80,443,(...)");
+                return;
+            }
+
+            if (imageDeployment.SelectedItem.ToString() == null)
+            {
+                MessageBox.Show("Please select an image");
+                return;
+            }
+
+            string namespaceItem = comboBoxDeploymentNamespace.SelectedItem.ToString().Trim();
+
+            DeploymentItem deploymentItem = CreateDeployment();
+            await kubernetesService.CreateDeployment(deploymentItem, namespaceItem);
+        }
+
+        private DeploymentItem CreateDeployment()
+        {
+            // Create a DeploymentItem object
+            DeploymentItem deploymentItem = new DeploymentItem
+            {
+                Metadata = new DeploymentMetadata
+                {
+                    Name = textBoxDeploymentName.Text.Trim(),
+                    Namespace = comboBoxDeploymentNamespace.SelectedItem.ToString().Trim(),
+                    Labels = new Dictionary<string, string>()
+                },
+                Spec = new DeploymentSpec
+                {
+                    Replicas = int.Parse(replicasUpDownDeploy.Text.Trim()), // Assuming you have a textbox for replicas
+                    Template = new DeploymentTemplate
+                    {
+                        Metadata = new DeploymentMetadata
+                        {
+                            Labels = new Dictionary<string, string>()
+                        },
+                        Spec = new DeploymentPodSpec
+                        {
+                            Containers = new List<DeploymentContainer>
+                    {
+                        new DeploymentContainer
+                        {
+                            Name = containerNameDeploy.Text.Trim(),
+                            Image = imageDeployment.SelectedItem.ToString().Trim(),
+                            Ports = new List<DeploymentPort>() // Initialize an empty list for ports
+                        }
+                    }
+                        }
+                    }
+                }
+            };
+
+            // Add labels to metadata
+            string[] labelLines = textBoxDeploymentLabel.Text.Trim().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string line in labelLines)
+            {
+                string[] parts = line.Trim().Split(':');
+                string key = parts[0].Trim().Trim('"');
+                string value = parts[1].Trim().Trim('"');
+                deploymentItem.Metadata.Labels.Add(key, value);
+                deploymentItem.Spec.Template.Metadata.Labels.Add(key, value);
+            }
+
+            // Add ports to the container
+            string[] ports = PortsDeploy.Text.Trim().Split(',');
+            foreach (string port in ports)
+            {
+                int portNumber;
+                if (int.TryParse(port.Trim(), out portNumber))
+                {
+                    deploymentItem.Spec.Template.Spec.Containers[0].Ports.Add(new DeploymentPort { ContainerPort = portNumber });
+                }
+            }
+
+            return deploymentItem;
         }
 
     }

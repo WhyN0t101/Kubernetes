@@ -58,7 +58,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Deployments.cs" />
+    <Compile Include="Model\DeploymentsList.cs" />
     <Compile Include="Model\Ingress.cs" />
     <Compile Include="Model\NamespacesList.cs" />
     <Compile Include="Model\NodeList.cs" />

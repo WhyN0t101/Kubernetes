@@ -77,6 +77,32 @@ namespace Kubernetes.Utils
 
             return true;
         }
+        public bool ValidatePorts(string portsText)
+        {
+            string portPattern = @"^\d+(,\d+)*$"; // Regex pattern for validating comma-separated numbers
+
+            // Check if the ports text matches the pattern
+            if (!Regex.IsMatch(portsText, portPattern))
+            {
+                return false;
+            }
+
+            // Split the ports text by commas
+            string[] ports = portsText.Split(',');
+
+            // Validate each port individually
+            foreach (string port in ports)
+            {
+                // Convert port to integer and check if it's within valid range (1-65535)
+                if (!int.TryParse(port, out int portNumber) || portNumber < 1 || portNumber > 65535)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
 
     }
 }

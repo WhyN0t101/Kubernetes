@@ -17,6 +17,7 @@ using Kubernetes.Model.PodMetrics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Newtonsoft.Json.Linq;
 using System.Reflection.Emit;
+using Kubernetes.Model.Deployments;
 
 namespace Kubernetes.Controller
 {
@@ -300,6 +301,80 @@ namespace Kubernetes.Controller
                 MessageBox.Show("Failed to Delete Namespace");
             }
         }
+        public async Task<DeploymentsList> RetrieveDeployments(string namespaceName)
+        {
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/apis/apps/v1/namespaces/{namespaceName}/deployments");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<DeploymentsList>(responseBody);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to fetch Deployments");
+                return null;
+            }
+        }
+
+        public async Task CreateDeployment(DeploymentItem deploymentItem, string namespaceSelected)
+        {
+            try
+            {
+                // Create a new JObject to hold the modified payload
+                JObject payload = new JObject();
+
+                // Add kind to payload
+                payload["kind"] = deploymentItem.Kind;
+
+                // Add metadata to payload
+                JObject metadata = JObject.FromObject(deploymentItem.Metadata);
+                metadata.Remove("creationTimestamp"); // Remove creationTimestamp
+                payload["metadata"] = metadata;
+
+                // Add spec to payload
+                JObject spec = JObject.FromObject(deploymentItem.Spec);
+                spec.Remove("revisionHistoryLimit"); // Remove revisionHistoryLimit
+                spec.Remove("progressDeadlineSeconds"); // Remove progressDeadlineSeconds
+
+                // Construct matchLabels separately
+                JObject matchLabels = new JObject();
+                matchLabels["app"] = "my-app";
+                JObject selector = new JObject();
+                selector["matchLabels"] = matchLabels;
+                spec["selector"] = selector;
+
+                // Set strategy
+                JObject strategy = new JObject();
+                strategy["type"] = "Recreate";
+                spec["strategy"] = strategy;
+
+                // Remove metadata from template
+                ((JObject)spec["template"]["metadata"]).Remove("name");
+                ((JObject)spec["template"]["metadata"]).Remove("namespace");
+                ((JObject)spec["template"]["metadata"]).Remove("creationTimestamp");
+
+                // Set labels in the template metadata to match selector matchLabels
+                ((JObject)spec["template"]["metadata"]).Remove("labels");
+                ((JObject)spec["template"]["metadata"]).Add("labels", matchLabels);
+
+                payload["spec"] = spec;
+
+                // Send the HTTP request with the payload
+                string apiUrl = baseUrl + "/apis/apps/v1/namespaces/" + namespaceSelected + "/deployments";
+                HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Deployment created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to create Deployment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
 
     }
