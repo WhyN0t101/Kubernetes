@@ -234,7 +234,7 @@ namespace Kubernetes.Controller
                 JObject payload = podItem.ToJObject();
 
                 payload.Remove("status");
-                ((JObject)payload["metadata"]).Remove("OwnerReferences");
+                ((JObject)payload["metadata"]).Remove("ownerReferences");
                 ((JObject)payload["metadata"]).Remove("creationTimestamp");
 
                 if (podItem.Metadata.Labels == null)
@@ -245,9 +245,18 @@ namespace Kubernetes.Controller
                 {
                     ((JObject)payload["spec"]).Remove("nodeName");
                 }
+                if (payload["spec"]["containers"] is JArray containersArray)
+                {
+                    foreach (JObject container in containersArray)
+                    {
+                        if (container["ports"]?.HasValues != true)
+                        {
+                            container.Remove("ports");
+                        }
+                    }
+                }
 
-
-                string apiUrl = baseUrl + "api/v1/namespaces/" + namespaceSelected + "/pods";
+                string apiUrl = baseUrl + "/api/v1/namespaces/" + namespaceSelected + "/pods";
                 HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
                 response.EnsureSuccessStatusCode();
                 MessageBox.Show("Pod created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -258,6 +267,22 @@ namespace Kubernetes.Controller
                 MessageBox.Show("Failed to Create Pod");
             }
 
+        }
+        public async Task DeletePod(string namespaceSelected, string podName)
+        {
+            try
+            {
+                // Construct the API URL for deleting the pod
+                string apiUrl = baseUrl + $"/api/v1/namespaces/{namespaceSelected}/pods/{podName}";
+
+                // Send a DELETE request to the API URL
+                HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to delete pod {podName}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public async Task DeleteNamespace(string text)

@@ -57,6 +57,7 @@ namespace Kubernetes
             pictureBox1.BackColor = Color.Transparent;
             textBoxLoginIp.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
+            podList = new PodList { Items = new List<PodItem>() };
 
 
         }
@@ -335,6 +336,7 @@ namespace Kubernetes
                 PopulateNodeInfoAsync();
                 PopulateServiceAsync();
                 PopulateComboBoxesNameSpace();
+                PopulateImageCombobox();
 
             });
         }
@@ -358,20 +360,34 @@ namespace Kubernetes
                 // List of default namespaces to exclude
                 var defaultNamespaces = new HashSet<string> { "kube-system", "kube-public", "kube-node-lease", "default" };
 
-                // Clear existing items in the combo box
+                // Save current selections
+                var selectedNamespacePod = comboBoxNamespacePod.SelectedItem;
+                var selectedNamespaceChart = comboNameSpaceChart.SelectedItem;
+
+                // Clear existing items in the combo boxes
                 comboBoxNamespacePod.Items.Clear();
                 comboNameSpaceChart.Items.Clear();
-                comboBoxNamespaceDelete.Items.Clear();
-                // Add fetched namespaces to the combo box, excluding default namespaces
+
+                // Add fetched namespaces to the combo boxes, excluding default namespaces
                 foreach (string ns in namespaces)
                 {
                     if (!defaultNamespaces.Contains(ns))
                     {
                         comboBoxNamespacePod.Items.Add(ns);
                         comboNameSpaceChart.Items.Add(ns);
-                        comboBoxNamespaceDelete.Items.Add(ns);
                     }
                 }
+
+                // Restore previous selections if they still exist in the items
+                if (selectedNamespacePod != null && comboBoxNamespacePod.Items.Contains(selectedNamespacePod))
+                {
+                    comboBoxNamespacePod.SelectedItem = selectedNamespacePod;
+                }
+                if (selectedNamespaceChart != null && comboNameSpaceChart.Items.Contains(selectedNamespaceChart))
+                {
+                    comboNameSpaceChart.SelectedItem = selectedNamespaceChart;
+                }
+
             }
             catch (Exception ex)
             {
@@ -380,7 +396,8 @@ namespace Kubernetes
             }
         }
 
-        private async void comboBoxNamespacePod_Enter(object sender, EventArgs e)
+
+        private void comboBoxNamespacePod_Enter(object sender, EventArgs e)
         {
             PopulateComboBoxesNameSpace();
         }
@@ -610,30 +627,44 @@ namespace Kubernetes
 
         private PodItem CreatePodFromForms()
         {
-            PodItem podItem = new PodItem();
-            podItem.Metadata = new PodMetadata();
-           // podItem.Spec.Containers = imagePodCombobox.SelectedItem.ToString();
+            PodItem podItem = new PodItem
+            {
+                Metadata = new PodMetadata
+                {
+                    Name = textBoxPodName.Text, 
+                    Namespace = comboBoxNamespacePod.SelectedItem.ToString(), 
+                    Labels = new Dictionary<string, string>()
+                },
+                Spec = new PodSpec
+                {
+                    Containers = new List<PodContainer>
+            {
+                new PodContainer
+                {
+                    Name = containerNameText.Text, 
+                    Image = imagePodCombobox.SelectedItem.ToString()
+                }
+            }
+                }
+            };
 
             string[] lines = textBoxPodLabel.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string line in lines)
             {
-                // Split the line into key and value
                 string[] parts = line.Trim().Split(':');
                 if (parts.Length == 2)
                 {
                     string key = parts[0].Trim().Trim('"');
                     string value = parts[1].Trim().Trim('"');
-                    Dictionary<string, string> Labels = new Dictionary<string, string>
-                            {
-                                { key, value }
-                            };
-                    podItem.Metadata.Labels = Labels;
+                    podItem.Metadata.Labels[key] = value;
                 }
             }
-            return podItem;
 
+            return podItem;
         }
+
+
         private void comboBoxNamespacePod_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nameSpaceSelected = comboBoxNamespacePod.SelectedItem.ToString();
@@ -643,9 +674,26 @@ namespace Kubernetes
         private async void buttonPodCreate_Click(object sender, EventArgs e)
         {
 
+            if (comboBoxNamespacePod.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a namespace");
+                return;
+            }
             if (textBoxPodName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxPodName.Text))
             {
                 MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+            if (containerNameText.Text.Trim() == "" || !validator.ValidateNamespace(containerNameText.Text))
+            {
+                MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+
+            // Check if podList is null before accessing it
+            if (podList == null || podList.Items == null)
+            {
+                MessageBox.Show("Pod list is not initialized. Please try again.");
                 return;
             }
 
@@ -657,19 +705,16 @@ namespace Kubernetes
                     return;
                 }
             }
+
             if (!validator.ValidateLabels(textBoxPodLabel.Text))
             {
-                MessageBox.Show("Please Choose a valid labels");
+                MessageBox.Show("Please Choose valid labels");
                 return;
             }
-            if (comboBoxNamespacePod.SelectedItem == null)
+
+            if (imagePodCombobox.SelectedItem.ToString() == null)
             {
-                MessageBox.Show("Please select a namespace");
-                return;
-            }
-            if (imagePodCombobox.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a image");
+                MessageBox.Show("Please select an image");
                 return;
             }
 
@@ -681,7 +726,121 @@ namespace Kubernetes
 
         private async void buttonNamespaceDelete_Click(object sender, EventArgs e)
         {
-            await kubernetesService.DeleteNamespace(comboBoxNamespaceDelete.SelectedItem.ToString());
+            // Check if any namespace is selected in the ListView
+            if (listViewNamespaces.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select one or more namespaces to delete.");
+                return;
+            }
+
+            // Confirm with the user before deleting namespaces and their pods
+            DialogResult result = MessageBox.Show("Are you sure you want to delete the selected namespaces and their pods? This action cannot be undone.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    // Iterate over each selected item in the ListView
+                    foreach (ListViewItem item in listViewNamespaces.SelectedItems)
+                    {
+                        string namespaceToDelete = item.SubItems[0].Text; // Assuming the namespace is in the first column
+
+                        // Delete the namespace and its pods
+                        await kubernetesService.DeleteNamespace(namespaceToDelete);
+                    }
+
+                    // Refresh the ListView after deleting the namespaces and their pods
+                    PopulateListViewNamespaces();
+
+                    MessageBox.Show("Selected namespaces and their pods deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to delete namespaces: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        List<string> defaultImages = new List<string>
+        {
+            "nginx:latest",
+            "nginx:stable",
+            "nginx:alpine",
+            "redis:latest",
+            "redis:alpine",
+            "mysql:latest",
+            "mysql:5.7",
+            "mysql:8.0",
+            "postgres:latest",
+            "postgres:alpine",
+            "postgres:12",
+            "ubuntu:latest",
+            "ubuntu:18.04",
+            "ubuntu:20.04",
+            "alpine:latest",
+            "alpine:3.12",
+            "alpine:3.13",
+            "busybox:latest",
+            "busybox:1.32",
+            "node:latest",
+            "node:alpine",
+            "node:14",
+            "node:16",
+            "python:latest",
+            "python:3.8",
+            "python:3.9",
+            "mongo:latest",
+            "mongo:4.4",
+            "mongo:5.0"
+        };
+        private void PopulateImageCombobox()
+        {
+            foreach (string image in defaultImages)
+            {
+                imagePodCombobox.Items.Add(image);
+            }
+        }
+
+        private async void buttonPodDelete_Click(object sender, EventArgs e)
+        {
+            // Get the selected namespace from the ComboBox
+            string selectedNamespace = comboBoxNamespacePod.SelectedItem?.ToString();
+
+            // Check if a namespace is selected
+            if (string.IsNullOrEmpty(selectedNamespace))
+            {
+                MessageBox.Show("Please select a namespace.");
+                return;
+            }
+
+            // Get the selected pod names from the ListView
+            List<string> selectedPodNames = new List<string>();
+            foreach (ListViewItem item in listViewPods.SelectedItems)
+            {
+                selectedPodNames.Add(item.Text); // Assuming the pod name is in the first column
+            }
+
+            // Check if any pod is selected
+            if (selectedPodNames.Count == 0)
+            {
+                MessageBox.Show("Please select at least one pod to delete.");
+                return;
+            }
+
+            // Confirm with the user before deleting pods
+            DialogResult result = MessageBox.Show($"Are you sure you want to delete {selectedPodNames.Count} pod(s)?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                // Delete each selected pod
+                foreach (string podName in selectedPodNames)
+                {
+                    await kubernetesService.DeletePod(selectedNamespace, podName);
+                }
+
+                // Refresh the ListView after deleting pods
+                PopulatePods(selectedNamespace);
+
+                MessageBox.Show("Pod(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
     }

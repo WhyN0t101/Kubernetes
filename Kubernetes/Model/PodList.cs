@@ -89,4 +89,5 @@ namespace Kubernetes.Model.PodList
         [JsonProperty("phase")]
         public string Phase { get; set; }
     }
+
 }
