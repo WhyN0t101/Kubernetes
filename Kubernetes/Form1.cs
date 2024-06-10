@@ -1046,5 +1046,47 @@ namespace Kubernetes
             return deploymentItem;
         }
 
+        private async void buttonDeploymentDelete_Click(object sender, EventArgs e)
+        {
+            // Get the selected namespace from the ComboBox
+            string selectedNamespace = comboBoxDeploymentNamespace.SelectedItem?.ToString();
+
+            // Check if a namespace is selected
+            if (string.IsNullOrEmpty(selectedNamespace))
+            {
+                MessageBox.Show("Please select a namespace.");
+                return;
+            }
+
+            // Get the selected pod names from the ListView
+            List<string> selectedDeployments = new List<string>();
+            foreach (ListViewItem item in listViewDeployments.SelectedItems)
+            {
+                selectedDeployments.Add(item.Text); // Assuming the pod name is in the first column
+            }
+
+            // Check if any pod is selected
+            if (selectedDeployments.Count == 0)
+            {
+                MessageBox.Show("Please select at least one pod to delete.");
+                return;
+            }
+
+            // Confirm with the user before deleting pods
+            DialogResult result = MessageBox.Show($"Are you sure you want to delete {selectedDeployments.Count} deployments(s)?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                // Delete each selected pod
+                foreach (string deploymentName in selectedDeployments)
+                {
+                    await kubernetesService.DeleteDeployment(selectedNamespace, deploymentName);
+                }
+
+                // Refresh the ListView after deleting pods
+                PopulatePods(selectedNamespace);
+
+                MessageBox.Show("Deployments(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

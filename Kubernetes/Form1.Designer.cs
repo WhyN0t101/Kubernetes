@@ -118,12 +118,22 @@
             this.textBoxPodName = new System.Windows.Forms.TextBox();
             this.DeploymentsTab = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.containerNameDeploy = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.PortsDeploy = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.imageDeployment = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.replicasUpDownDeploy = new System.Windows.Forms.NumericUpDown();
             this.listViewDeployments = new System.Windows.Forms.ListView();
             this.columnHeaderDeploymentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDeploymentLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDeploymentNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDeploymentCreationTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDeploymentType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonDeploymentDelete = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.buttonDeploymentCreate = new System.Windows.Forms.Button();
@@ -152,16 +162,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.replicasUpDownDeploy = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.imageDeployment = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.PortsDeploy = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.containerNameDeploy = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -176,9 +176,9 @@
             this.panel5.SuspendLayout();
             this.DeploymentsTab.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).BeginInit();
             this.ServiceIngressTab.SuspendLayout();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -984,6 +984,93 @@
             this.panel6.Size = new System.Drawing.Size(1085, 447);
             this.panel6.TabIndex = 27;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(927, 115);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(136, 18);
+            this.label26.TabIndex = 33;
+            this.label26.Text = "Container Name:";
+            // 
+            // containerNameDeploy
+            // 
+            this.containerNameDeploy.Location = new System.Drawing.Point(930, 136);
+            this.containerNameDeploy.Name = "containerNameDeploy";
+            this.containerNameDeploy.Size = new System.Drawing.Size(115, 30);
+            this.containerNameDeploy.TabIndex = 32;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(760, 115);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(54, 18);
+            this.label25.TabIndex = 31;
+            this.label25.Text = "Ports:";
+            // 
+            // PortsDeploy
+            // 
+            this.PortsDeploy.Location = new System.Drawing.Point(763, 136);
+            this.PortsDeploy.Name = "PortsDeploy";
+            this.PortsDeploy.Size = new System.Drawing.Size(115, 30);
+            this.PortsDeploy.TabIndex = 30;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.Black;
+            this.label24.Location = new System.Drawing.Point(927, 197);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(62, 18);
+            this.label24.TabIndex = 29;
+            this.label24.Text = "Image:";
+            // 
+            // imageDeployment
+            // 
+            this.imageDeployment.FormattingEnabled = true;
+            this.imageDeployment.Location = new System.Drawing.Point(930, 218);
+            this.imageDeployment.Name = "imageDeployment";
+            this.imageDeployment.Size = new System.Drawing.Size(121, 31);
+            this.imageDeployment.TabIndex = 28;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(760, 198);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 18);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Replicas:";
+            // 
+            // replicasUpDownDeploy
+            // 
+            this.replicasUpDownDeploy.Location = new System.Drawing.Point(763, 219);
+            this.replicasUpDownDeploy.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.replicasUpDownDeploy.Name = "replicasUpDownDeploy";
+            this.replicasUpDownDeploy.Size = new System.Drawing.Size(120, 30);
+            this.replicasUpDownDeploy.TabIndex = 27;
+            this.replicasUpDownDeploy.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // listViewDeployments
             // 
             this.listViewDeployments.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1035,6 +1122,14 @@
             this.columnHeaderDeploymentType.Text = "Type";
             this.columnHeaderDeploymentType.Width = 64;
             // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Container Image";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Ports";
+            // 
             // buttonDeploymentDelete
             // 
             this.buttonDeploymentDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1044,6 +1139,7 @@
             this.buttonDeploymentDelete.TabIndex = 26;
             this.buttonDeploymentDelete.Text = "Delete";
             this.buttonDeploymentDelete.UseVisualStyleBackColor = true;
+            this.buttonDeploymentDelete.Click += new System.EventHandler(this.buttonDeploymentDelete_Click);
             // 
             // label11
             // 
@@ -1289,101 +1385,6 @@
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
             // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Container Image";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Ports";
-            // 
-            // replicasUpDownDeploy
-            // 
-            this.replicasUpDownDeploy.Location = new System.Drawing.Point(763, 219);
-            this.replicasUpDownDeploy.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.replicasUpDownDeploy.Name = "replicasUpDownDeploy";
-            this.replicasUpDownDeploy.Size = new System.Drawing.Size(120, 30);
-            this.replicasUpDownDeploy.TabIndex = 27;
-            this.replicasUpDownDeploy.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(760, 198);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 18);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Replicas:";
-            // 
-            // imageDeployment
-            // 
-            this.imageDeployment.FormattingEnabled = true;
-            this.imageDeployment.Location = new System.Drawing.Point(930, 218);
-            this.imageDeployment.Name = "imageDeployment";
-            this.imageDeployment.Size = new System.Drawing.Size(121, 31);
-            this.imageDeployment.TabIndex = 28;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(927, 197);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(62, 18);
-            this.label24.TabIndex = 29;
-            this.label24.Text = "Image:";
-            // 
-            // PortsDeploy
-            // 
-            this.PortsDeploy.Location = new System.Drawing.Point(763, 136);
-            this.PortsDeploy.Name = "PortsDeploy";
-            this.PortsDeploy.Size = new System.Drawing.Size(115, 30);
-            this.PortsDeploy.TabIndex = 30;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(760, 115);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(54, 18);
-            this.label25.TabIndex = 31;
-            this.label25.Text = "Ports:";
-            // 
-            // containerNameDeploy
-            // 
-            this.containerNameDeploy.Location = new System.Drawing.Point(930, 136);
-            this.containerNameDeploy.Name = "containerNameDeploy";
-            this.containerNameDeploy.Size = new System.Drawing.Size(115, 30);
-            this.containerNameDeploy.TabIndex = 32;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(927, 115);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(136, 18);
-            this.label26.TabIndex = 33;
-            this.label26.Text = "Container Name:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -1417,10 +1418,10 @@
             this.DeploymentsTab.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).EndInit();
             this.ServiceIngressTab.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).EndInit();
             this.ResumeLayout(false);
 
         }

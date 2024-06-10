@@ -374,7 +374,24 @@ namespace Kubernetes.Controller
             }
         }
 
+        public async Task DeleteDeployment(string namespaceSelected, string deploymentName)
+        {
+            try
+            {
+                // Construct the API URL for the deployment
+                string apiUrl = baseUrl + "/apis/apps/v1/namespaces/" + namespaceSelected + "/deployments/" + deploymentName;
 
+                // Send the DELETE request
+                HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Deployment deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to delete Deployment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
     }
