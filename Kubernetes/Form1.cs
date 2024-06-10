@@ -1068,7 +1068,7 @@ namespace Kubernetes
             // Check if any pod is selected
             if (selectedDeployments.Count == 0)
             {
-                MessageBox.Show("Please select at least one pod to delete.");
+                MessageBox.Show("Please select at least one deployment to delete (Double Click).");
                 return;
             }
 
