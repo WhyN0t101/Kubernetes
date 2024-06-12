@@ -1403,5 +1403,10 @@ namespace Kubernetes
             }
            
         }
+
+        private void namespaceComboSer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateServiceAndIngress();
+        }
     }
 }

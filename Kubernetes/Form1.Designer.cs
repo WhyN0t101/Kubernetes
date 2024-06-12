@@ -1343,6 +1343,7 @@
             this.namespaceComboSer.Name = "namespaceComboSer";
             this.namespaceComboSer.Size = new System.Drawing.Size(121, 31);
             this.namespaceComboSer.TabIndex = 35;
+            this.namespaceComboSer.SelectedIndexChanged += new System.EventHandler(this.namespaceComboSer_SelectedIndexChanged);
             // 
             // listViewServices
             // 
