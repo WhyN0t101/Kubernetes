@@ -145,6 +145,9 @@
             this.textBoxDeploymentName = new System.Windows.Forms.TextBox();
             this.ServiceIngressTab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.portsServ = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.typeCombobox = new System.Windows.Forms.ComboBox();
@@ -166,8 +169,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
-            this.label27 = new System.Windows.Forms.Label();
-            this.portsServ = new System.Windows.Forms.TextBox();
+            this.targetPortsText = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1246,6 +1248,8 @@
             this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.Controls.Add(this.targetPortsText);
+            this.panel7.Controls.Add(this.label30);
             this.panel7.Controls.Add(this.label27);
             this.panel7.Controls.Add(this.portsServ);
             this.panel7.Controls.Add(this.label29);
@@ -1264,6 +1268,37 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1085, 447);
             this.panel7.TabIndex = 33;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(886, 122);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(97, 18);
+            this.label30.TabIndex = 41;
+            this.label30.Text = "Target Port:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(760, 122);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(54, 18);
+            this.label27.TabIndex = 40;
+            this.label27.Text = "Ports:";
+            // 
+            // portsServ
+            // 
+            this.portsServ.Location = new System.Drawing.Point(763, 143);
+            this.portsServ.Name = "portsServ";
+            this.portsServ.Size = new System.Drawing.Size(115, 30);
+            this.portsServ.TabIndex = 39;
             // 
             // label29
             // 
@@ -1370,6 +1405,7 @@
             this.buttonServiceDelete.TabIndex = 32;
             this.buttonServiceDelete.Text = "Delete";
             this.buttonServiceDelete.UseVisualStyleBackColor = true;
+            this.buttonServiceDelete.Click += new System.EventHandler(this.buttonServiceDelete_Click);
             // 
             // label17
             // 
@@ -1442,24 +1478,12 @@
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
             // 
-            // label27
+            // targetPortsText
             // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(760, 122);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(54, 18);
-            this.label27.TabIndex = 40;
-            this.label27.Text = "Ports:";
-            // 
-            // portsServ
-            // 
-            this.portsServ.Location = new System.Drawing.Point(763, 143);
-            this.portsServ.Name = "portsServ";
-            this.portsServ.Size = new System.Drawing.Size(115, 30);
-            this.portsServ.TabIndex = 39;
+            this.targetPortsText.Location = new System.Drawing.Point(889, 143);
+            this.targetPortsText.Name = "targetPortsText";
+            this.targetPortsText.Size = new System.Drawing.Size(115, 30);
+            this.targetPortsText.TabIndex = 42;
             // 
             // Form1
             // 
@@ -1637,6 +1661,8 @@
         private System.Windows.Forms.ComboBox namespaceComboSer;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox portsServ;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox targetPortsText;
     }
 }
 

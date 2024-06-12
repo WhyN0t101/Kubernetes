@@ -1191,12 +1191,19 @@ namespace Kubernetes
                 MessageBox.Show("Please Choose valid labels");
                 return;
             }
-            if (!validator.ValidatePorts(portsServ.Text))
+            if (!typeCombobox.SelectedItem.ToString().Equals("ingresses"))
             {
-                MessageBox.Show("Please type ports correctly example: 80,443,(...)");
-                return;
+                if (!validator.ValidatePorts(portsServ.Text))
+                {
+                    MessageBox.Show("Please type ports correctly example: 80,443,(...)");
+                    return;
+                }
+                if (!validator.ValidatePorts(targetPortsText.Text))
+                {
+                    MessageBox.Show("Please type ports correctly example: 80,443,(...)");
+                    return;
+                }
             }
-
             string namespaceItem = namespaceComboSer.SelectedItem.ToString().Trim();
             if (typeCombobox.SelectedItem.ToString().Equals("ingresses"))
             {
@@ -1228,35 +1235,64 @@ namespace Kubernetes
                 {
                     Type = typeCombobox.SelectedItem.ToString(), // Set the service type from the combobox
                     ClusterIP = "", // Populate cluster IP as needed
-                    Ports = new List<Port>() // Initialize ports list
+                    Ports = new List<Port>(), // Initialize ports list
+                    Selector = new Dictionary<string, string>() // Initialize selector dictionary
                 },
                 Created = DateTime.Now, // Set created timestamp
                 InternalEndpoints = new List<string>(), // Populate internal endpoints as needed
                 ExternalEndpoints = new List<string>() // Populate external endpoints as needed
             };
 
-            // Add ports
+            // Split the input from portsServ textbox to get ports and target ports
             string[] ports = portsServ.Text.Trim().Split(',');
-            foreach (string port in ports)
+            string[] targetPorts = targetPortsText.Text.Trim().Split(',');
+
+            // Validate if the number of ports and target ports match
+            if (ports.Length != targetPorts.Length)
             {
-                string[] portParts = port.Trim().Split(':');
-                if (portParts.Length == 3 && int.TryParse(portParts[1], out int portNumber) && int.TryParse(portParts[2], out int targetPortNumber))
-                {
-                    serviceItem.Spec.Ports.Add(new Port
-                    {
-                        Name = portParts[0].Trim(),
-                        Protocol = "TCP", // Default protocol
-                        PortNumber = portNumber,
-                        TargetPortNumber = targetPortNumber
-                    });
-                }
+                MessageBox.Show("Number of ports and target ports should match.");
+                return null; // Or handle the error accordingly
             }
+
+            for (int i = 0; i < ports.Length; i++)
+            {
+                string port = ports[i].Trim();
+                string targetPort = targetPorts[i].Trim();
+
+                // Parse port and target port
+                if (!int.TryParse(port, out int portNumber) || !int.TryParse(targetPort, out int targetPortNumber))
+                {
+                    MessageBox.Show($"Invalid port or target port format at index {i + 1}.");
+                    return null; // Or handle the error accordingly
+                }
+
+                serviceItem.Spec.Ports.Add(new Port
+                {
+                    Name = "port" + (i + 1), // Assign a default name or customize as needed
+                    Protocol = "TCP", // Default protocol
+                    PortNumber = portNumber,
+                    TargetPortNumber = targetPortNumber
+                });
+            }
+
+            // Populate selector
+            serviceItem.Spec.Selector.Add("app", textBoxServicesName.Text.Trim());
 
             return serviceItem;
         }
 
+
         private IngressItem CreateIngress()
         {
+            // Extract port number from the textbox
+            int portNumber;
+            if (!int.TryParse(portsServ.Text.Trim(), out portNumber))
+            {
+                // Handle invalid input, e.g., show error message
+                MessageBox.Show("Invalid port number entered.");
+                return null;
+            }
+
             IngressItem ingressItem = new IngressItem
             {
                 Metadata = new Model.Ingress.Metadata
@@ -1267,7 +1303,17 @@ namespace Kubernetes
                 },
                 Spec = new Model.Ingress.Spec
                 {
-                    // Populate spec properties as needed
+                    DefaultBackend = new DefaultBackend
+                    {
+                        Service = new ServiceRef
+                        {
+                            Name = "default-backend",
+                            Port = new ServicePort
+                            {
+                                Number = portNumber // Assign the extracted port number here
+                            }
+                        }
+                    }
                 },
                 Endpoints = new List<string>(), // Populate endpoints as needed
                 Hosts = new List<string>(), // Populate hosts as needed
@@ -1281,6 +1327,81 @@ namespace Kubernetes
         private void typeCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateServiceAndIngress();
+            if (typeCombobox.SelectedItem.ToString().Equals("ingresses"))
+            {
+                targetPortsText.Clear();
+                targetPortsText.Enabled = false;
+            }
+            else
+            {
+                targetPortsText.Clear();
+                targetPortsText.Enabled = true;
+            }
+        }
+
+        private async void buttonServiceDelete_Click(object sender, EventArgs e)
+        {
+            // Get the selected namespace from the ComboBox
+            string selectedNamespace = namespaceComboSer.SelectedItem?.ToString();
+
+            // Check if a namespace is selected
+            if (string.IsNullOrEmpty(selectedNamespace))
+            {
+                MessageBox.Show("Please select a namespace.");
+                return;
+            }
+
+            // Get the selected pod names from the ListView
+            List<string> selectedItems = new List<string>();
+            foreach (ListViewItem item in listViewServices.SelectedItems)
+            {
+                selectedItems.Add(item.Text); // Assuming the pod name is in the first column
+            }
+
+            // Check if any pod is selected
+            if (selectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one deployment to delete (Double Click).");
+                return;
+            }
+            if (typeCombobox.SelectedItem.ToString().Equals("ingresses"))
+            {
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete {selectedItems.Count} ingresse(s)?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+
+                    // Delete each selected pod
+                    foreach (string ingressItem in selectedItems)
+                    {
+                        await kubernetesService.DeleteIngress(selectedNamespace, ingressItem);
+                    }
+
+                    // Refresh the ListView after deleting pods
+
+                    MessageBox.Show("Ingress(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PopulateServiceAndIngress();
+
+                }
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete {selectedItems.Count} service(s)?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+
+                    // Delete each selected pod
+                    foreach (string ingressItem in selectedItems)
+                    {
+                        await kubernetesService.DeleteService(selectedNamespace, ingressItem);
+                    }
+
+                    // Refresh the ListView after deleting pods
+
+                    MessageBox.Show("Service(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PopulateServiceAndIngress();
+                }
+            }
+           
         }
     }
 }

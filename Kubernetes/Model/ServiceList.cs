@@ -65,6 +65,9 @@ namespace Kubernetes.Model.Service
 
     public class Spec
     {
+        [JsonProperty("selector")]
+        public Dictionary<string, string> Selector { get; set; }
+
         [JsonProperty("type")]
         public string Type { get; set; }
 
@@ -74,6 +77,7 @@ namespace Kubernetes.Model.Service
         [JsonProperty("ports")]
         public List<Port> Ports { get; set; }
     }
+
 
     public class Port
     {

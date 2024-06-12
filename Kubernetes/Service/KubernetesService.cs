@@ -18,6 +18,7 @@ using System.Reflection.Emit;
 using Kubernetes.Model.Deployments;
 using Kubernetes.Model.Service;
 using Kubernetes.Model.Ingress;
+using System.Linq;
 
 namespace Kubernetes.Controller
 {
@@ -455,12 +456,29 @@ namespace Kubernetes.Controller
                 payload["kind"] = "Service";
 
                 // Add metadata to payload
-                JObject metadata = JObject.FromObject(serviceItem.Metadata);
-                metadata.Remove("creationTimestamp"); // Remove creationTimestamp
+                JObject metadata = new JObject();
+                metadata["name"] = serviceItem.Metadata.Name;
+                metadata["namespace"] = namespaceSelected; // Set namespace from the parameter
                 payload["metadata"] = metadata;
 
                 // Add spec to payload
-                JObject spec = JObject.FromObject(serviceItem.Spec);
+                JObject spec = new JObject();
+                spec["selector"] = JObject.FromObject(serviceItem.Spec.Selector);
+
+                // Add ports to spec
+                if (serviceItem.Spec.Ports != null && serviceItem.Spec.Ports.Any())
+                {
+                    var portsArray = new JArray();
+                    foreach (var port in serviceItem.Spec.Ports)
+                    {
+                        var portObject = new JObject();
+                        portObject["port"] = port.PortNumber;
+                        portObject["targetPort"] = port.TargetPortNumber;
+                        portsArray.Add(portObject);
+                    }
+                    spec["ports"] = portsArray;
+                }
+
                 payload["spec"] = spec;
 
                 // Construct the API URL for creating the service
@@ -479,6 +497,49 @@ namespace Kubernetes.Controller
                 MessageBox.Show("Failed to create Service: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public async Task DeleteService(string namespaceSelected, string service)
+        {
+            try
+            {
+                // Construct the API URL for deleting the service
+                string apiUrl = $"{baseUrl}/api/v1/namespaces/{namespaceSelected}/services/{service}";
+
+                // Send the HTTP DELETE request
+                HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+
+                // Show success message
+                MessageBox.Show("Service deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // If the request fails, show an error message
+                MessageBox.Show("Failed to delete Service: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public async Task DeleteIngress(string namespaceSelected, string service)
+        {
+            try
+            {
+                // Construct the API URL for deleting the ingress
+                string apiUrl = $"{baseUrl}/apis/networking.k8s.io/v1/namespaces/{namespaceSelected}/ingresses/{service}";
+
+                // Send the HTTP DELETE request
+                HttpResponseMessage response = await httpClient.DeleteAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+
+                // Show success message
+                MessageBox.Show("Ingress deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // If the request fails, show an error message
+                MessageBox.Show("Failed to delete Ingress: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
 
 
