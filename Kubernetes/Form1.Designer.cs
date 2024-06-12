@@ -203,7 +203,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1107, 487);
+            this.tabControl1.Size = new System.Drawing.Size(1107, 571);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             // 
@@ -215,7 +215,7 @@
             this.loginTab.Location = new System.Drawing.Point(4, 32);
             this.loginTab.Name = "loginTab";
             this.loginTab.Padding = new System.Windows.Forms.Padding(3);
-            this.loginTab.Size = new System.Drawing.Size(1099, 451);
+            this.loginTab.Size = new System.Drawing.Size(1099, 535);
             this.loginTab.TabIndex = 0;
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
@@ -326,12 +326,12 @@
             // 
             // ResourcesTab
             // 
-            this.ResourcesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ResourcesTab.BackColor = System.Drawing.Color.LightCyan;
             this.ResourcesTab.Controls.Add(this.panel2);
             this.ResourcesTab.Location = new System.Drawing.Point(4, 32);
             this.ResourcesTab.Name = "ResourcesTab";
             this.ResourcesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ResourcesTab.Size = new System.Drawing.Size(1099, 451);
+            this.ResourcesTab.Size = new System.Drawing.Size(1099, 535);
             this.ResourcesTab.TabIndex = 1;
             this.ResourcesTab.Text = "Resources";
             // 
@@ -339,7 +339,7 @@
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BackColor = System.Drawing.Color.LightCyan;
             this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.comboNameSpaceChart);
@@ -444,12 +444,12 @@
             // 
             // NodesTab
             // 
-            this.NodesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.NodesTab.BackColor = System.Drawing.Color.LightCyan;
             this.NodesTab.Controls.Add(this.panel3);
             this.NodesTab.Location = new System.Drawing.Point(4, 32);
             this.NodesTab.Name = "NodesTab";
             this.NodesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NodesTab.Size = new System.Drawing.Size(1099, 451);
+            this.NodesTab.Size = new System.Drawing.Size(1099, 535);
             this.NodesTab.TabIndex = 2;
             this.NodesTab.Text = "Nodes";
             // 
@@ -457,10 +457,10 @@
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.BackColor = System.Drawing.Color.LightCyan;
             this.panel3.Controls.Add(this.listViewNodes);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(8, 6);
+            this.panel3.Location = new System.Drawing.Point(8, 48);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1085, 447);
             this.panel3.TabIndex = 7;
@@ -554,12 +554,12 @@
             // 
             // NamespacesTab
             // 
-            this.NamespacesTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.NamespacesTab.BackColor = System.Drawing.Color.LightCyan;
             this.NamespacesTab.Controls.Add(this.panel4);
             this.NamespacesTab.Location = new System.Drawing.Point(4, 32);
             this.NamespacesTab.Name = "NamespacesTab";
             this.NamespacesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NamespacesTab.Size = new System.Drawing.Size(1099, 451);
+            this.NamespacesTab.Size = new System.Drawing.Size(1099, 535);
             this.NamespacesTab.TabIndex = 3;
             this.NamespacesTab.Text = "Namespaces";
             // 
@@ -567,7 +567,7 @@
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BackColor = System.Drawing.Color.LightCyan;
             this.panel4.Controls.Add(this.textBoxNamespacesAnnotations);
             this.panel4.Controls.Add(this.label22);
             this.panel4.Controls.Add(this.label6);
@@ -578,7 +578,7 @@
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.textBoxNamespaceLabels);
-            this.panel4.Location = new System.Drawing.Point(8, 6);
+            this.panel4.Location = new System.Drawing.Point(8, 48);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1085, 447);
             this.panel4.TabIndex = 15;
@@ -623,7 +623,7 @@
             this.buttonNamespaceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonNamespaceDelete.Location = new System.Drawing.Point(855, 378);
             this.buttonNamespaceDelete.Name = "buttonNamespaceDelete";
-            this.buttonNamespaceDelete.Size = new System.Drawing.Size(75, 25);
+            this.buttonNamespaceDelete.Size = new System.Drawing.Size(91, 39);
             this.buttonNamespaceDelete.TabIndex = 14;
             this.buttonNamespaceDelete.Text = "Delete";
             this.buttonNamespaceDelete.UseVisualStyleBackColor = true;
@@ -680,7 +680,7 @@
             this.buttonNamespaceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonNamespaceCreate.Location = new System.Drawing.Point(761, 378);
             this.buttonNamespaceCreate.Name = "buttonNamespaceCreate";
-            this.buttonNamespaceCreate.Size = new System.Drawing.Size(75, 25);
+            this.buttonNamespaceCreate.Size = new System.Drawing.Size(88, 39);
             this.buttonNamespaceCreate.TabIndex = 13;
             this.buttonNamespaceCreate.Text = "Create";
             this.buttonNamespaceCreate.UseVisualStyleBackColor = true;
@@ -730,12 +730,12 @@
             // 
             // PodsTab
             // 
-            this.PodsTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.PodsTab.BackColor = System.Drawing.Color.LightCyan;
             this.PodsTab.Controls.Add(this.panel5);
             this.PodsTab.Location = new System.Drawing.Point(4, 32);
             this.PodsTab.Name = "PodsTab";
             this.PodsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PodsTab.Size = new System.Drawing.Size(1099, 451);
+            this.PodsTab.Size = new System.Drawing.Size(1099, 535);
             this.PodsTab.TabIndex = 4;
             this.PodsTab.Text = "Pods";
             // 
@@ -743,7 +743,7 @@
             // 
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.BackColor = System.Drawing.Color.LightCyan;
             this.panel5.Controls.Add(this.label23);
             this.panel5.Controls.Add(this.containerNameText);
             this.panel5.Controls.Add(this.label3);
@@ -758,7 +758,7 @@
             this.panel5.Controls.Add(this.textBoxPodLabel);
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.textBoxPodName);
-            this.panel5.Location = new System.Drawing.Point(8, 6);
+            this.panel5.Location = new System.Drawing.Point(8, 48);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1085, 447);
             this.panel5.TabIndex = 21;
@@ -769,7 +769,7 @@
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(767, 144);
+            this.label23.Location = new System.Drawing.Point(910, 131);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(134, 18);
             this.label23.TabIndex = 24;
@@ -777,7 +777,7 @@
             // 
             // containerNameText
             // 
-            this.containerNameText.Location = new System.Drawing.Point(768, 165);
+            this.containerNameText.Location = new System.Drawing.Point(913, 152);
             this.containerNameText.Name = "containerNameText";
             this.containerNameText.Size = new System.Drawing.Size(100, 30);
             this.containerNameText.TabIndex = 23;
@@ -819,7 +819,7 @@
             this.buttonPodDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPodDelete.Location = new System.Drawing.Point(872, 412);
             this.buttonPodDelete.Name = "buttonPodDelete";
-            this.buttonPodDelete.Size = new System.Drawing.Size(75, 25);
+            this.buttonPodDelete.Size = new System.Drawing.Size(88, 41);
             this.buttonPodDelete.TabIndex = 20;
             this.buttonPodDelete.Text = "Delete";
             this.buttonPodDelete.UseVisualStyleBackColor = true;
@@ -887,7 +887,7 @@
             this.buttonPodCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPodCreate.Location = new System.Drawing.Point(768, 412);
             this.buttonPodCreate.Name = "buttonPodCreate";
-            this.buttonPodCreate.Size = new System.Drawing.Size(75, 25);
+            this.buttonPodCreate.Size = new System.Drawing.Size(81, 35);
             this.buttonPodCreate.TabIndex = 19;
             this.buttonPodCreate.Text = "Create";
             this.buttonPodCreate.UseVisualStyleBackColor = true;
@@ -940,7 +940,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(767, 57);
+            this.label14.Location = new System.Drawing.Point(767, 131);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 18);
             this.label14.TabIndex = 16;
@@ -948,19 +948,19 @@
             // 
             // textBoxPodName
             // 
-            this.textBoxPodName.Location = new System.Drawing.Point(768, 78);
+            this.textBoxPodName.Location = new System.Drawing.Point(770, 152);
             this.textBoxPodName.Name = "textBoxPodName";
             this.textBoxPodName.Size = new System.Drawing.Size(115, 30);
             this.textBoxPodName.TabIndex = 15;
             // 
             // DeploymentsTab
             // 
-            this.DeploymentsTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DeploymentsTab.BackColor = System.Drawing.Color.LightCyan;
             this.DeploymentsTab.Controls.Add(this.panel6);
             this.DeploymentsTab.Location = new System.Drawing.Point(4, 32);
             this.DeploymentsTab.Name = "DeploymentsTab";
             this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DeploymentsTab.Size = new System.Drawing.Size(1099, 451);
+            this.DeploymentsTab.Size = new System.Drawing.Size(1099, 535);
             this.DeploymentsTab.TabIndex = 5;
             this.DeploymentsTab.Text = "Deployments";
             // 
@@ -968,7 +968,7 @@
             // 
             this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.BackColor = System.Drawing.Color.LightCyan;
             this.panel6.Controls.Add(this.label26);
             this.panel6.Controls.Add(this.containerNameDeploy);
             this.panel6.Controls.Add(this.label25);
@@ -987,7 +987,7 @@
             this.panel6.Controls.Add(this.label12);
             this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.textBoxDeploymentName);
-            this.panel6.Location = new System.Drawing.Point(8, 6);
+            this.panel6.Location = new System.Drawing.Point(8, 48);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1085, 447);
             this.panel6.TabIndex = 27;
@@ -1143,7 +1143,7 @@
             this.buttonDeploymentDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeploymentDelete.Location = new System.Drawing.Point(861, 412);
             this.buttonDeploymentDelete.Name = "buttonDeploymentDelete";
-            this.buttonDeploymentDelete.Size = new System.Drawing.Size(75, 25);
+            this.buttonDeploymentDelete.Size = new System.Drawing.Size(87, 35);
             this.buttonDeploymentDelete.TabIndex = 26;
             this.buttonDeploymentDelete.Text = "Delete";
             this.buttonDeploymentDelete.UseVisualStyleBackColor = true;
@@ -1166,7 +1166,7 @@
             this.buttonDeploymentCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeploymentCreate.Location = new System.Drawing.Point(763, 412);
             this.buttonDeploymentCreate.Name = "buttonDeploymentCreate";
-            this.buttonDeploymentCreate.Size = new System.Drawing.Size(75, 25);
+            this.buttonDeploymentCreate.Size = new System.Drawing.Size(92, 35);
             this.buttonDeploymentCreate.TabIndex = 25;
             this.buttonDeploymentCreate.Text = "Create";
             this.buttonDeploymentCreate.UseVisualStyleBackColor = true;
@@ -1219,7 +1219,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(760, 28);
+            this.label16.Location = new System.Drawing.Point(760, 51);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(59, 18);
             this.label16.TabIndex = 22;
@@ -1227,19 +1227,19 @@
             // 
             // textBoxDeploymentName
             // 
-            this.textBoxDeploymentName.Location = new System.Drawing.Point(763, 49);
+            this.textBoxDeploymentName.Location = new System.Drawing.Point(763, 72);
             this.textBoxDeploymentName.Name = "textBoxDeploymentName";
             this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 30);
             this.textBoxDeploymentName.TabIndex = 21;
             // 
             // ServiceIngressTab
             // 
-            this.ServiceIngressTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ServiceIngressTab.BackColor = System.Drawing.Color.LightCyan;
             this.ServiceIngressTab.Controls.Add(this.panel7);
             this.ServiceIngressTab.Location = new System.Drawing.Point(4, 32);
             this.ServiceIngressTab.Name = "ServiceIngressTab";
             this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ServiceIngressTab.Size = new System.Drawing.Size(1099, 451);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(1099, 535);
             this.ServiceIngressTab.TabIndex = 6;
             this.ServiceIngressTab.Text = " Services/Ingress";
             // 
@@ -1247,7 +1247,7 @@
             // 
             this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.BackColor = System.Drawing.Color.LightCyan;
             this.panel7.Controls.Add(this.targetPortsText);
             this.panel7.Controls.Add(this.label30);
             this.panel7.Controls.Add(this.label27);
@@ -1264,7 +1264,7 @@
             this.panel7.Controls.Add(this.textBoxServicesName);
             this.panel7.Controls.Add(this.textBoxServicesLabels);
             this.panel7.Controls.Add(this.label19);
-            this.panel7.Location = new System.Drawing.Point(8, 6);
+            this.panel7.Location = new System.Drawing.Point(8, 48);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1085, 447);
             this.panel7.TabIndex = 33;
@@ -1275,7 +1275,7 @@
             this.label30.BackColor = System.Drawing.Color.Transparent;
             this.label30.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(886, 122);
+            this.label30.Location = new System.Drawing.Point(893, 196);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(97, 18);
             this.label30.TabIndex = 41;
@@ -1287,7 +1287,7 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(760, 122);
+            this.label27.Location = new System.Drawing.Point(767, 196);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(54, 18);
             this.label27.TabIndex = 40;
@@ -1295,7 +1295,7 @@
             // 
             // portsServ
             // 
-            this.portsServ.Location = new System.Drawing.Point(763, 143);
+            this.portsServ.Location = new System.Drawing.Point(770, 217);
             this.portsServ.Name = "portsServ";
             this.portsServ.Size = new System.Drawing.Size(115, 30);
             this.portsServ.TabIndex = 39;
@@ -1400,9 +1400,9 @@
             // buttonServiceDelete
             // 
             this.buttonServiceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceDelete.Location = new System.Drawing.Point(889, 394);
+            this.buttonServiceDelete.Location = new System.Drawing.Point(878, 394);
             this.buttonServiceDelete.Name = "buttonServiceDelete";
-            this.buttonServiceDelete.Size = new System.Drawing.Size(75, 25);
+            this.buttonServiceDelete.Size = new System.Drawing.Size(86, 48);
             this.buttonServiceDelete.TabIndex = 32;
             this.buttonServiceDelete.Text = "Delete";
             this.buttonServiceDelete.UseVisualStyleBackColor = true;
@@ -1425,7 +1425,7 @@
             this.buttonServiceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonServiceCreate.Location = new System.Drawing.Point(770, 394);
             this.buttonServiceCreate.Name = "buttonServiceCreate";
-            this.buttonServiceCreate.Size = new System.Drawing.Size(75, 25);
+            this.buttonServiceCreate.Size = new System.Drawing.Size(89, 48);
             this.buttonServiceCreate.TabIndex = 31;
             this.buttonServiceCreate.Text = "Create";
             this.buttonServiceCreate.UseVisualStyleBackColor = true;
@@ -1437,7 +1437,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(767, 199);
+            this.label18.Location = new System.Drawing.Point(767, 250);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(61, 18);
             this.label18.TabIndex = 30;
@@ -1445,14 +1445,14 @@
             // 
             // textBoxServicesName
             // 
-            this.textBoxServicesName.Location = new System.Drawing.Point(763, 65);
+            this.textBoxServicesName.Location = new System.Drawing.Point(770, 146);
             this.textBoxServicesName.Name = "textBoxServicesName";
             this.textBoxServicesName.Size = new System.Drawing.Size(115, 30);
             this.textBoxServicesName.TabIndex = 27;
             // 
             // textBoxServicesLabels
             // 
-            this.textBoxServicesLabels.Location = new System.Drawing.Point(770, 216);
+            this.textBoxServicesLabels.Location = new System.Drawing.Point(770, 271);
             this.textBoxServicesLabels.Multiline = true;
             this.textBoxServicesLabels.Name = "textBoxServicesLabels";
             this.textBoxServicesLabels.Size = new System.Drawing.Size(288, 117);
@@ -1464,7 +1464,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(767, 44);
+            this.label19.Location = new System.Drawing.Point(767, 125);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 18);
             this.label19.TabIndex = 28;
@@ -1481,7 +1481,7 @@
             // 
             // targetPortsText
             // 
-            this.targetPortsText.Location = new System.Drawing.Point(889, 143);
+            this.targetPortsText.Location = new System.Drawing.Point(896, 217);
             this.targetPortsText.Name = "targetPortsText";
             this.targetPortsText.Size = new System.Drawing.Size(115, 30);
             this.targetPortsText.TabIndex = 42;
@@ -1491,7 +1491,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1107, 487);
+            this.ClientSize = new System.Drawing.Size(1107, 571);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
