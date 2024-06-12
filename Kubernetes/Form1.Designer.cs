@@ -145,6 +145,10 @@
             this.textBoxDeploymentName = new System.Windows.Forms.TextBox();
             this.ServiceIngressTab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.typeCombobox = new System.Windows.Forms.ComboBox();
+            this.namespaceComboSer = new System.Windows.Forms.ComboBox();
             this.listViewServices = new System.Windows.Forms.ListView();
             this.columnHeaderServiceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderServiceNamespace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -162,6 +166,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
+            this.label27 = new System.Windows.Forms.Label();
+            this.portsServ = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1240,6 +1246,12 @@
             this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.Controls.Add(this.label27);
+            this.panel7.Controls.Add(this.portsServ);
+            this.panel7.Controls.Add(this.label29);
+            this.panel7.Controls.Add(this.label28);
+            this.panel7.Controls.Add(this.typeCombobox);
+            this.panel7.Controls.Add(this.namespaceComboSer);
             this.panel7.Controls.Add(this.listViewServices);
             this.panel7.Controls.Add(this.buttonServiceDelete);
             this.panel7.Controls.Add(this.label17);
@@ -1252,6 +1264,50 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1085, 447);
             this.panel7.TabIndex = 33;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(169, 51);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(50, 18);
+            this.label29.TabIndex = 38;
+            this.label29.Text = "Type:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(9, 51);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(102, 18);
+            this.label28.TabIndex = 37;
+            this.label28.Text = "Namespace:";
+            // 
+            // typeCombobox
+            // 
+            this.typeCombobox.FormattingEnabled = true;
+            this.typeCombobox.Items.AddRange(new object[] {
+            "ingresses",
+            "services"});
+            this.typeCombobox.Location = new System.Drawing.Point(172, 72);
+            this.typeCombobox.Name = "typeCombobox";
+            this.typeCombobox.Size = new System.Drawing.Size(121, 31);
+            this.typeCombobox.TabIndex = 36;
+            this.typeCombobox.SelectedIndexChanged += new System.EventHandler(this.typeCombobox_SelectedIndexChanged);
+            // 
+            // namespaceComboSer
+            // 
+            this.namespaceComboSer.FormattingEnabled = true;
+            this.namespaceComboSer.Location = new System.Drawing.Point(12, 72);
+            this.namespaceComboSer.Name = "namespaceComboSer";
+            this.namespaceComboSer.Size = new System.Drawing.Size(121, 31);
+            this.namespaceComboSer.TabIndex = 35;
             // 
             // listViewServices
             // 
@@ -1268,9 +1324,9 @@
             this.listViewServices.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup6});
             this.listViewServices.HideSelection = false;
-            this.listViewServices.Location = new System.Drawing.Point(11, 44);
+            this.listViewServices.Location = new System.Drawing.Point(11, 109);
             this.listViewServices.Name = "listViewServices";
-            this.listViewServices.Size = new System.Drawing.Size(729, 398);
+            this.listViewServices.Size = new System.Drawing.Size(729, 333);
             this.listViewServices.TabIndex = 12;
             this.listViewServices.UseCompatibleStateImageBehavior = false;
             this.listViewServices.View = System.Windows.Forms.View.Details;
@@ -1278,7 +1334,7 @@
             // columnHeaderServiceName
             // 
             this.columnHeaderServiceName.Text = "Name";
-            this.columnHeaderServiceName.Width = 72;
+            this.columnHeaderServiceName.Width = 107;
             // 
             // columnHeaderServiceNamespace
             // 
@@ -1308,7 +1364,7 @@
             // buttonServiceDelete
             // 
             this.buttonServiceDelete.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceDelete.Location = new System.Drawing.Point(889, 373);
+            this.buttonServiceDelete.Location = new System.Drawing.Point(889, 394);
             this.buttonServiceDelete.Name = "buttonServiceDelete";
             this.buttonServiceDelete.Size = new System.Drawing.Size(75, 25);
             this.buttonServiceDelete.TabIndex = 32;
@@ -1330,12 +1386,13 @@
             // buttonServiceCreate
             // 
             this.buttonServiceCreate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonServiceCreate.Location = new System.Drawing.Point(808, 373);
+            this.buttonServiceCreate.Location = new System.Drawing.Point(770, 394);
             this.buttonServiceCreate.Name = "buttonServiceCreate";
             this.buttonServiceCreate.Size = new System.Drawing.Size(75, 25);
             this.buttonServiceCreate.TabIndex = 31;
             this.buttonServiceCreate.Text = "Create";
             this.buttonServiceCreate.UseVisualStyleBackColor = true;
+            this.buttonServiceCreate.Click += new System.EventHandler(this.buttonServiceCreate_Click);
             // 
             // label18
             // 
@@ -1351,7 +1408,7 @@
             // 
             // textBoxServicesName
             // 
-            this.textBoxServicesName.Location = new System.Drawing.Point(822, 115);
+            this.textBoxServicesName.Location = new System.Drawing.Point(763, 65);
             this.textBoxServicesName.Name = "textBoxServicesName";
             this.textBoxServicesName.Size = new System.Drawing.Size(115, 30);
             this.textBoxServicesName.TabIndex = 27;
@@ -1370,7 +1427,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(819, 98);
+            this.label19.Location = new System.Drawing.Point(767, 44);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 18);
             this.label19.TabIndex = 28;
@@ -1384,6 +1441,25 @@
             this.label21.Size = new System.Drawing.Size(45, 18);
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(760, 122);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(54, 18);
+            this.label27.TabIndex = 40;
+            this.label27.Text = "Ports:";
+            // 
+            // portsServ
+            // 
+            this.portsServ.Location = new System.Drawing.Point(763, 143);
+            this.portsServ.Name = "portsServ";
+            this.portsServ.Size = new System.Drawing.Size(115, 30);
+            this.portsServ.TabIndex = 39;
             // 
             // Form1
             // 
@@ -1482,21 +1558,7 @@
         private System.Windows.Forms.TextBox textBoxDeploymentLabel;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBoxDeploymentName;
-        private System.Windows.Forms.ListView listViewServices;
-        private System.Windows.Forms.ColumnHeader columnHeaderServiceName;
-        private System.Windows.Forms.ColumnHeader columnHeaderServiceNamespace;
-        private System.Windows.Forms.ColumnHeader columnHeaderServiceCreationTime;
-        private System.Windows.Forms.ColumnHeader columnHeaderServiceLabels;
-        private System.Windows.Forms.ColumnHeader columnHeaderServicePort;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button buttonServiceDelete;
-        private System.Windows.Forms.Button buttonServiceCreate;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBoxServicesLabels;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBoxServicesName;
         private System.Windows.Forms.ColumnHeader columnHeaderNodeCreation;
-        private System.Windows.Forms.ColumnHeader columnHeaderServiceClusterIp;
         private System.Windows.Forms.TabPage loginTab;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1512,7 +1574,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox comboNameSpaceChart;
         private System.Windows.Forms.Label label21;
@@ -1555,6 +1616,27 @@
         private System.Windows.Forms.NumericUpDown replicasUpDownDeploy;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox containerNameDeploy;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ListView listViewServices;
+        private System.Windows.Forms.ColumnHeader columnHeaderServiceName;
+        private System.Windows.Forms.ColumnHeader columnHeaderServiceNamespace;
+        private System.Windows.Forms.ColumnHeader columnHeaderServiceCreationTime;
+        private System.Windows.Forms.ColumnHeader columnHeaderServiceLabels;
+        private System.Windows.Forms.ColumnHeader columnHeaderServicePort;
+        private System.Windows.Forms.ColumnHeader columnHeaderServiceClusterIp;
+        private System.Windows.Forms.Button buttonServiceDelete;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button buttonServiceCreate;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBoxServicesName;
+        private System.Windows.Forms.TextBox textBoxServicesLabels;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox typeCombobox;
+        private System.Windows.Forms.ComboBox namespaceComboSer;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox portsServ;
     }
 }
 

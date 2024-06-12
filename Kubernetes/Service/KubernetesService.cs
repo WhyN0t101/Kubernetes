@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using Kubernetes.Model.Ingress;
-using Kubernetes.Model.Service;
 using Kubernetes.Model.PodMetrics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Newtonsoft.Json.Linq;
 using System.Reflection.Emit;
 using Kubernetes.Model.Deployments;
+using Kubernetes.Model.Service;
+using Kubernetes.Model.Ingress;
 
 namespace Kubernetes.Controller
 {
@@ -153,11 +153,11 @@ namespace Kubernetes.Controller
             }
         }
 
-        public async Task<ServiceList> RetrieveServices()
+        public async Task<ServiceList> RetrieveServices(string namespaceName)
         {
             try
             {
-                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/services");
+                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/api/v1/namespaces/{namespaceName}/services");
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<ServiceList>(responseBody);
@@ -169,6 +169,23 @@ namespace Kubernetes.Controller
                 return null;
             }
         }
+        public async Task<IngressList> RetrieveIngress(string namespaceName)
+        {
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{baseUrl}/apis/networking.k8s.io/v1/namespaces/{namespaceName}/ingresses");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IngressList>(responseBody);
+            }
+            catch (Exception)
+            {
+                // If the request fails, throw an exception
+                MessageBox.Show("Failed to fetch Ingress resources");
+                return null;
+            }
+        }
+
 
         public async Task CreateNamespace(NamespaceItem namespaceItem)
         {
@@ -392,6 +409,77 @@ namespace Kubernetes.Controller
                 MessageBox.Show("Failed to delete Deployment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public async Task CreateIngress(IngressItem ingressItem, string namespaceSelected)
+        {
+            try
+            {
+                // Construct the payload for the Ingress
+                JObject payload = new JObject();
+                payload["apiVersion"] = "networking.k8s.io/v1";
+                payload["kind"] = "Ingress";
+
+                // Add metadata to payload
+                JObject metadata = JObject.FromObject(ingressItem.Metadata);
+                metadata.Remove("creationTimestamp"); // Remove creationTimestamp
+                payload["metadata"] = metadata;
+
+                // Add spec to payload
+                JObject spec = JObject.FromObject(ingressItem.Spec);
+                payload["spec"] = spec;
+
+                // Construct the API URL for creating the ingress
+                string apiUrl = baseUrl + "/apis/networking.k8s.io/v1/namespaces/" + namespaceSelected + "/ingresses";
+
+                // Send the HTTP POST request with the payload
+                HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
+                response.EnsureSuccessStatusCode();
+
+                // Show success message
+                MessageBox.Show("Ingress created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // If the request fails, show an error message
+                MessageBox.Show("Failed to create Ingress: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public async Task CreateService(ServiceItem serviceItem, string namespaceSelected)
+        {
+            try
+            {
+                // Construct the payload for the Service
+                JObject payload = new JObject();
+                payload["apiVersion"] = "v1";
+                payload["kind"] = "Service";
+
+                // Add metadata to payload
+                JObject metadata = JObject.FromObject(serviceItem.Metadata);
+                metadata.Remove("creationTimestamp"); // Remove creationTimestamp
+                payload["metadata"] = metadata;
+
+                // Add spec to payload
+                JObject spec = JObject.FromObject(serviceItem.Spec);
+                payload["spec"] = spec;
+
+                // Construct the API URL for creating the service
+                string apiUrl = baseUrl + "/api/v1/namespaces/" + namespaceSelected + "/services";
+
+                // Send the HTTP POST request with the payload
+                HttpResponseMessage response = await SendPostRequest(apiUrl, payload);
+                response.EnsureSuccessStatusCode();
+
+                // Show success message
+                MessageBox.Show("Service created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // If the request fails, show an error message
+                MessageBox.Show("Failed to create Service: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
     }

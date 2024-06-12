@@ -18,7 +18,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Kubernetes.Model.Service;
 using Kubernetes.Model.Deployments;
 using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -29,6 +28,8 @@ using Newtonsoft.Json.Linq;
 using Kubernetes.Model.PodMetrics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Windows.Forms.DataVisualization.Charting;
+using Kubernetes.Model.Service;
+using Kubernetes.Model.Ingress;
 
 namespace Kubernetes
 {
@@ -43,8 +44,9 @@ namespace Kubernetes
         private NamespaceList namespaceList;
         private PodList podList;
         private NodeList nodeList;
-        private ServiceList serviceList;
         private DeploymentsList deployments;
+        private IngressList ingresses;
+        private ServiceList services;
         private Validator validator = new Validator();
 
 
@@ -61,6 +63,8 @@ namespace Kubernetes
             textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             podList = new PodList { Items = new List<PodItem>() };
             deployments = new DeploymentsList { Items = new List<DeploymentItem>() };
+            ingresses = new IngressList { Items = new List<IngressItem>()};
+            services = new ServiceList { Items = new List<ServiceItem>() }; 
 
 
         }
@@ -114,7 +118,8 @@ namespace Kubernetes
                     PopulateComboBoxesNameSpace();
                     break;
                 case 6:
-                    PopulateServiceAsync();
+                    PopulateServiceAndIngress();
+                    PopulateComboBoxesNameSpace();
                     break;
             }
 
@@ -340,7 +345,6 @@ namespace Kubernetes
             {
                 PopulateListViewNamespaces();
                 PopulateNodeInfoAsync();
-                PopulateServiceAsync();
                 PopulateComboBoxesNameSpace();
                 PopulateImageCombobox();
 
@@ -370,11 +374,12 @@ namespace Kubernetes
                 var selectedNamespacePod = comboBoxNamespacePod.SelectedItem;
                 var selectedNamespaceChart = comboNameSpaceChart.SelectedItem;
                 var selectedDeploymentNamespace = comboBoxDeploymentNamespace.SelectedItem;
-
+                var selectedNameSpaceComboSer = namespaceComboSer.SelectedItem;
                 // Clear existing items in the combo boxes
                 comboBoxNamespacePod.Items.Clear();
                 comboNameSpaceChart.Items.Clear();
                 comboBoxDeploymentNamespace.Items.Clear();
+                namespaceComboSer.Items.Clear();
 
                 // Add fetched namespaces to the combo boxes, excluding default namespaces
                 foreach (string ns in namespaces)
@@ -384,6 +389,7 @@ namespace Kubernetes
                         comboBoxNamespacePod.Items.Add(ns);
                         comboNameSpaceChart.Items.Add(ns);
                         comboBoxDeploymentNamespace.Items.Add(ns);
+                        namespaceComboSer.Items.Add(ns);
                     }
                 }
 
@@ -399,6 +405,10 @@ namespace Kubernetes
                 if (selectedDeploymentNamespace != null && comboBoxDeploymentNamespace.Items.Contains(selectedDeploymentNamespace))
                 {
                     comboBoxDeploymentNamespace.SelectedItem = selectedDeploymentNamespace;
+                }
+                if (selectedNameSpaceComboSer != null && namespaceComboSer.Items.Contains(selectedNameSpaceComboSer))
+                {
+                    namespaceComboSer.SelectedItem = selectedNameSpaceComboSer;
                 }
 
             }
@@ -485,56 +495,107 @@ namespace Kubernetes
             }
         }
 
-        private async void PopulateServiceAsync()
+        private async void PopulateServiceAndIngress()
         {
             try
             {
-                serviceList = await kubernetesService.RetrieveServices();
-
-                //Clear existing items
-                listViewServices.Items.Clear();
-
-                foreach (var service in serviceList.Items)
+                if (string.IsNullOrEmpty(namespaceComboSer.Text) || string.IsNullOrEmpty(typeCombobox.Text))
                 {
-                    //Name
-                    ListViewItem listView = new ListViewItem(service.Metadata.Name);
-
-                    //namespace
-                    listView.SubItems.Add(service.Metadata.Namespace);
-
-                    //CreationTimeStamp
-                    string created = service.Metadata.CreationTimeStamp.ToString("yyyy-MM-ddTHH:mm:ss");
-                    listView.SubItems.Add(created);
-
-                    // Labels (if available)
-                    //string labels = string.Join(", ", node.Metadata.Labels?.Select(kv => $"{kv.Key}: {kv.Value}") ?? Enumerable.Empty<string>());
-                    string labels = service.Metadata.Labels != null ? string.Join
-                        (", ", service.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
-                    listView.SubItems.Add(labels);
-
-                    //Port
-                    string ports = service.Spec.Ports != null
-                     ? string.Join(", ", service.Spec.Ports.Select(p => $"{p.Name} ({p.Protocol}): {p.IpPort}->{p.TargetPort}"))
-                     : "N/A";
-                    listView.SubItems.Add(ports);
-
-                    //ClusterIps
-                    listView.SubItems.Add(service.Spec.ClusterIP);
-
-                    // Add the ListViewItem to the ListView
-                    listViewServices.Items.Add(listView);
-
+                    return;
                 }
 
+                string selectedNamespace = namespaceComboSer.Text;
+                string selectedType = typeCombobox.Text;
 
+                // Clear existing columns and items
+                listViewServices.Columns.Clear();
+                listViewServices.Items.Clear();
+
+                if (selectedType.Equals("ingresses"))
+                {
+                    // Set column headers for Ingress
+                    listViewServices.Columns.Add("Name", 100);
+                    listViewServices.Columns.Add("Labels", 200);
+                    listViewServices.Columns.Add("Endpoints", 150);
+                    listViewServices.Columns.Add("Hosts", 150);
+                    listViewServices.Columns.Add("Created", 150);
+
+                    var ingresses = await kubernetesService.RetrieveIngress(selectedNamespace);
+
+                    foreach (var ingress in ingresses.Items)
+                    {
+                        // Name
+                        ListViewItem listViewItem = new ListViewItem(ingress.Metadata.Name);
+
+                        // Labels (if available)
+                        string labels = ingress.Metadata.Labels != null ? string.Join(", ", ingress.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
+                        listViewItem.SubItems.Add(labels);
+
+                        // Endpoints
+                        // If Endpoints property exists, show its count, otherwise show "N/A"
+                        string endpoints = ingress.Endpoints != null ? ingress.Endpoints.Count.ToString() : "N/A";
+                        listViewItem.SubItems.Add(endpoints);
+
+                        // Hosts
+                        string hosts = ingress.Hosts != null ? string.Join(", ", ingress.Hosts) : "N/A";
+                        listViewItem.SubItems.Add(hosts);
+
+                        // Created
+                        listViewItem.SubItems.Add(ingress.Created.ToString("yyyy-MM-ddTHH:mm:ss"));
+
+                        // Add the ListViewItem to the ListView
+                        listViewServices.Items.Add(listViewItem);
+                    }
+                }
+                else
+                {
+                    // Set column headers for Service
+                    listViewServices.Columns.Add("Name", 100);
+                    listViewServices.Columns.Add("Labels", 200);
+                    listViewServices.Columns.Add("Type", 100);
+                    listViewServices.Columns.Add("Cluster IP", 150);
+                    listViewServices.Columns.Add("Internal Endpoints", 150);
+                    listViewServices.Columns.Add("External Endpoints", 150);
+                    listViewServices.Columns.Add("Created", 150);
+
+                    var services = await kubernetesService.RetrieveServices(selectedNamespace);
+
+                    foreach (var service in services.Items)
+                    {
+                        // Name
+                        ListViewItem listViewItem = new ListViewItem(service.Metadata.Name);
+
+                        // Labels (if available)
+                        string labels = service.Metadata.Labels != null ? string.Join(", ", service.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A";
+                        listViewItem.SubItems.Add(labels);
+
+                        // Type
+                        listViewItem.SubItems.Add(service.Spec.Type);
+
+                        // Cluster IP
+                        listViewItem.SubItems.Add(service.Spec.ClusterIP);
+
+                        // Internal Endpoints
+                        string internalEndpoints = service.InternalEndpoints != null ? string.Join(", ", service.InternalEndpoints) : "N/A";
+                        listViewItem.SubItems.Add(internalEndpoints);
+
+                        // External Endpoints
+                        string externalEndpoints = service.ExternalEndpoints != null ? string.Join(", ", service.ExternalEndpoints) : "N/A";
+                        listViewItem.SubItems.Add(externalEndpoints);
+
+                        // Created
+                        listViewItem.SubItems.Add(service.Created.ToString("yyyy-MM-ddTHH:mm:ss"));
+
+                        // Add the ListViewItem to the ListView
+                        listViewServices.Items.Add(listViewItem);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error Populating List: " + ex.Message);
             }
-            //throw new NotImplementedException();
         }
-
 
 
         private void comboNameSpaceChart_SelectedIndexChanged(object sender, EventArgs e)
@@ -837,7 +898,7 @@ namespace Kubernetes
             }
 
             // Confirm with the user before deleting pods
-            DialogResult result = MessageBox.Show($"Are you sure you want to delete {selectedPodNames.Count} pod(s)?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show($"Are you sure you want to delete {selectedPodNames.Count} pods and deployments?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 // Delete each selected pod
@@ -957,7 +1018,7 @@ namespace Kubernetes
             {
                 if (textBoxDeploymentName.Text == deployment.Metadata.Name)
                 {
-                    MessageBox.Show($"Pod: {textBoxDeploymentName.Text} already exists.");
+                    MessageBox.Show($"Deployment: {textBoxDeploymentName.Text} already exists.");
                     return;
                 }
             }
@@ -1087,6 +1148,139 @@ namespace Kubernetes
 
                 MessageBox.Show("Deployments(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private async void buttonServiceCreate_Click(object sender, EventArgs e)
+        {
+
+
+            if (namespaceComboSer.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a namespace");
+                return;
+            }
+            if(typeCombobox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a type");
+                return;
+            }
+            if (textBoxServicesName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxServicesName.Text))
+            {
+                MessageBox.Show("Please Choose a Valid name");
+                return;
+            }
+            foreach (var ingressItem in ingresses.Items)
+            {
+                if (textBoxServicesName.Text == ingressItem.Metadata.Name)
+                {
+                    MessageBox.Show($"Ingress: {textBoxServicesName.Text} already exists.");
+                    return;
+                }
+            }
+            foreach (var serviceItem in services.Items)
+            {
+                if (textBoxServicesName.Text == serviceItem.Metadata.Name)
+                {
+                    MessageBox.Show($"Service: {textBoxServicesName.Text} already exists.");
+                    return;
+                }
+            }
+
+            if (!validator.ValidateLabels(textBoxServicesLabels.Text))
+            {
+                MessageBox.Show("Please Choose valid labels");
+                return;
+            }
+            if (!validator.ValidatePorts(portsServ.Text))
+            {
+                MessageBox.Show("Please type ports correctly example: 80,443,(...)");
+                return;
+            }
+
+            string namespaceItem = namespaceComboSer.SelectedItem.ToString().Trim();
+            if (typeCombobox.SelectedItem.ToString().Equals("ingresses"))
+            {
+                IngressItem ingressItem = CreateIngress();
+                await kubernetesService.CreateIngress(ingressItem, namespaceItem);
+                PopulateServiceAndIngress();
+
+            }
+            else
+            {
+                ServiceItem deploymentItem = CreateService();
+                await kubernetesService.CreateService(deploymentItem, namespaceItem);
+                PopulateServiceAndIngress();
+
+            }
+
+        }
+        private ServiceItem CreateService()
+        {
+            ServiceItem serviceItem = new ServiceItem
+            {
+                Metadata = new Model.Service.Metadata
+                {
+                    Name = textBoxServicesName.Text.Trim(),
+                    Labels = new Dictionary<string, string>(), // Populate labels as needed
+                    CreationTimeStamp = DateTime.Now // Set creation timestamp
+                },
+                Spec = new Model.Service.Spec
+                {
+                    Type = typeCombobox.SelectedItem.ToString(), // Set the service type from the combobox
+                    ClusterIP = "", // Populate cluster IP as needed
+                    Ports = new List<Port>() // Initialize ports list
+                },
+                Created = DateTime.Now, // Set created timestamp
+                InternalEndpoints = new List<string>(), // Populate internal endpoints as needed
+                ExternalEndpoints = new List<string>() // Populate external endpoints as needed
+            };
+
+            // Add ports
+            string[] ports = portsServ.Text.Trim().Split(',');
+            foreach (string port in ports)
+            {
+                string[] portParts = port.Trim().Split(':');
+                if (portParts.Length == 3 && int.TryParse(portParts[1], out int portNumber) && int.TryParse(portParts[2], out int targetPortNumber))
+                {
+                    serviceItem.Spec.Ports.Add(new Port
+                    {
+                        Name = portParts[0].Trim(),
+                        Protocol = "TCP", // Default protocol
+                        PortNumber = portNumber,
+                        TargetPortNumber = targetPortNumber
+                    });
+                }
+            }
+
+            return serviceItem;
+        }
+
+        private IngressItem CreateIngress()
+        {
+            IngressItem ingressItem = new IngressItem
+            {
+                Metadata = new Model.Ingress.Metadata
+                {
+                    Name = textBoxServicesName.Text.Trim(),
+                    Labels = new Dictionary<string, string>(), // Populate labels as needed
+                    CreationTimeStamp = DateTime.Now // Set creation timestamp
+                },
+                Spec = new Model.Ingress.Spec
+                {
+                    // Populate spec properties as needed
+                },
+                Endpoints = new List<string>(), // Populate endpoints as needed
+                Hosts = new List<string>(), // Populate hosts as needed
+                Created = DateTime.Now // Set created timestamp
+            };
+
+            return ingressItem;
+        }
+
+
+        private void typeCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateServiceAndIngress();
         }
     }
 }

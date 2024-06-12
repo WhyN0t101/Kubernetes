@@ -22,28 +22,7 @@ namespace Kubernetes.Model.Service
         [JsonProperty("items")]
         public List<ServiceItem> Items { get; set; }
 
-        public JObject ToJObject()
-        {
-            return JObject.FromObject(this);
-        }
-    }
-
-    public class Metadata
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("namespace")]
-        public string Namespace { get; set; }
-
-        [JsonProperty("creationTimeStamp")]
-        public DateTime CreationTimeStamp { get; set; }
-
-        [JsonProperty("labels")]
-        public Dictionary<string, string> Labels { get; set; }
-
-        [JsonProperty("annotations")]
-        public Dictionary<string, string> Annotations { get; set; }
+ 
     }
 
     public class ServiceItem
@@ -57,27 +36,43 @@ namespace Kubernetes.Model.Service
         [JsonProperty("status")]
         public ServiceStatus Status { get; set; }
 
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
+
+        [JsonProperty("internalEndpoints")]
+        public List<string> InternalEndpoints { get; set; }
+
+        [JsonProperty("externalEndpoints")]
+        public List<string> ExternalEndpoints { get; set; }
+
+        public JObject ToJObject()
+        {
+            return JObject.FromObject(this);
+        }
+    }
+
+    public class Metadata
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("labels")]
+        public Dictionary<string, string> Labels { get; set; }
+
+        [JsonProperty("creationTimeStamp")]
+        public DateTime CreationTimeStamp { get; set; }
     }
 
     public class Spec
     {
-        [JsonProperty("selector")]
-        public Dictionary<string, string> Selector { get; set; }
-
-        [JsonProperty("ports")]
-        public List<Port> Ports { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         [JsonProperty("clusterIP")]
         public string ClusterIP { get; set; }
 
-        [JsonProperty("clusterIPs")]
-        public List<string> ClusterIPs { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        [JsonProperty("ipFamilies")]
-        public List<string> IPFamilies { get; set; }
+        [JsonProperty("ports")]
+        public List<Port> Ports { get; set; }
     }
 
     public class Port
@@ -89,11 +84,12 @@ namespace Kubernetes.Model.Service
         public string Protocol { get; set; }
 
         [JsonProperty("port")]
-        public string IpPort { get; set; }
+        public int PortNumber { get; set; }
 
         [JsonProperty("targetPort")]
-        public string TargetPort { get; set; }
+        public int TargetPortNumber { get; set; }
     }
+
     public class ServiceStatus
     {
         [JsonProperty("loadBalancer")]
@@ -102,6 +98,7 @@ namespace Kubernetes.Model.Service
 
     public class LoadBalancer
     {
-
+        // Add load balancer properties if needed
     }
+
 }
