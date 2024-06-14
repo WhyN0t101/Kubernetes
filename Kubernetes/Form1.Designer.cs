@@ -316,11 +316,10 @@
             // 
             this.checkBoxHttps.AutoSize = true;
             this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxHttps.Location = new System.Drawing.Point(329, 266);
+            this.checkBoxHttps.Location = new System.Drawing.Point(329, 273);
             this.checkBoxHttps.Name = "checkBoxHttps";
             this.checkBoxHttps.Size = new System.Drawing.Size(77, 22);
             this.checkBoxHttps.TabIndex = 6;
-            this.checkBoxHttps.Text = "Token";
             this.checkBoxHttps.UseVisualStyleBackColor = false;
             this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
@@ -1287,7 +1286,7 @@
             // 
             this.targetPortsText.Location = new System.Drawing.Point(896, 217);
             this.targetPortsText.Name = "targetPortsText";
-            this.targetPortsText.Size = new System.Drawing.Size(115, 26);
+            this.targetPortsText.Size = new System.Drawing.Size(115, 30);
             this.targetPortsText.TabIndex = 42;
             // 
             // label30
