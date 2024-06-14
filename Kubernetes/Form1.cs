@@ -54,8 +54,8 @@ namespace Kubernetes
             textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             podList = new PodList { Items = new List<PodItem>() };
             deployments = new DeploymentsList { Items = new List<DeploymentItem>() };
-            ingresses = new IngressList { Items = new List<IngressItem>()};
-            services = new ServiceList { Items = new List<ServiceItem>() }; 
+            ingresses = new IngressList { Items = new List<IngressItem>() };
+            services = new ServiceList { Items = new List<ServiceItem>() };
 
 
         }
@@ -64,7 +64,7 @@ namespace Kubernetes
         {
 
         }
-      
+
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check if the Enter key was pressed
@@ -597,7 +597,7 @@ namespace Kubernetes
         private async void PopulatePodMetrics(string ns)
         {
             try
-            { 
+            {
                 // Fetch pods from the Kubernetes service for the specified namespace
                 PodMetricsList podMetricsList = await kubernetesService.RetrievePodMetricsList(ns);
                 comboBoxResPod.Items.Clear();
@@ -934,8 +934,6 @@ namespace Kubernetes
 
                 // Refresh the ListView after deleting pods
                 PopulatePods(selectedNamespace);
-
-                MessageBox.Show("Pod(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1053,7 +1051,7 @@ namespace Kubernetes
                 MessageBox.Show("Please Choose valid labels");
                 return;
             }
-            if(!validator.ValidatePorts(PortsDeploy.Text))
+            if (!validator.ValidatePorts(PortsDeploy.Text))
             {
                 MessageBox.Show("Please type ports correctly example: 80,443,(...)");
                 return;
@@ -1170,8 +1168,6 @@ namespace Kubernetes
 
                 // Refresh the ListView after deleting pods
                 PopulatePods(selectedNamespace);
-
-                MessageBox.Show("Deployments(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1184,7 +1180,7 @@ namespace Kubernetes
                 MessageBox.Show("Please select a namespace");
                 return;
             }
-            if(typeCombobox.SelectedItem == null)
+            if (typeCombobox.SelectedItem == null)
             {
                 MessageBox.Show("Please select a type");
                 return;
@@ -1403,7 +1399,6 @@ namespace Kubernetes
 
                     // Refresh the ListView after deleting pods
 
-                    MessageBox.Show("Ingress(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PopulateServiceAndIngress();
 
                 }
@@ -1419,14 +1414,10 @@ namespace Kubernetes
                     {
                         await kubernetesService.DeleteService(selectedNamespace, ingressItem);
                     }
-
-                    // Refresh the ListView after deleting pods
-
-                    MessageBox.Show("Service(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PopulateServiceAndIngress();
                 }
             }
-           
+
         }
 
         private void namespaceComboSer_SelectedIndexChanged(object sender, EventArgs e)
@@ -1475,7 +1466,6 @@ namespace Kubernetes
                 MessageBox.Show("Error fetching Container Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-<<<<<<< HEAD
         private async void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string text = e.Result.Text;
@@ -1514,7 +1504,7 @@ namespace Kubernetes
                             string image = parts[4];
                             textBoxPodName.Text = podName;
                             containerNameText.Text = containerName;
-                            imagePodCombobox.SelectedItem = 1;
+                            imagePodCombobox.SelectedItem = 1;                           
                             buttonPodCreate_Click(this, EventArgs.Empty);
                             break;
                         case "deployment":
@@ -1527,13 +1517,18 @@ namespace Kubernetes
                             string deploymentName = parts[2];
                             string deploymentContainerName = parts[3];
                             string deploymentPorts = parts[4];
-                            string osImage = parts[5];
+                            textBoxDeploymentName.Text = deploymentName;
+                            containerNameDeploy.Text = deploymentContainerName;
+                            PortsDeploy.Text = deploymentPorts;
+                            imageDeployment.SelectedItem = 1;
+                            buttonDeploymentCreate_Click(this, EventArgs.Empty);
                             // Example: createDeploymentMethod(deploymentName, deploymentContainerName, deploymentPorts, osImage);
                             break;
                         case "ingress":
-                            // Implement logic to create Ingress
-                            // Example: createIngressMethod(targetName);
+                         
                             break;
+                        case "service":
+
                         default:
                             Console.WriteLine("Command not recognized or not matching the expected format.");
                             break;
@@ -1563,9 +1558,12 @@ namespace Kubernetes
                             await kubernetesService.DeleteDeployment(targetNamespace, deploymentToDelete);
                             break;
                         case "ingress":
-                            // Implement logic to delete Ingress
-                            // Example: deleteIngressMethod(targetName);
+                            string ingressToDelete = parts[2];
+                            await kubernetesService.DeleteIngress(targetNamespace, ingressToDelete);
                             break;
+                        case "service":
+                            string serviceToDelete = parts[2];
+                            await kubernetesService.DeleteService(targetNamespace, serviceToDelete);
                         default:
                             Console.WriteLine("Command not recognized or not matching the expected format.");
                             break;
@@ -1614,8 +1612,13 @@ namespace Kubernetes
             }
         }
 
+            private void button1_Click(object sender, EventArgs e)
+            {
+                Wizard wizardForm = new Wizard();
+                wizardForm.ShowDialog();
+            }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             if (!isListening)
             {
@@ -1627,13 +1630,6 @@ namespace Kubernetes
                 StopSpeechRecognition();
                 isListening = false;
             }
-=======
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Wizard wizardForm = new Wizard();
-            wizardForm.ShowDialog();
->>>>>>> b7190fc557b3ba47989f2c884faa53c54e0e4be9
         }
     }
-}
+    } 
