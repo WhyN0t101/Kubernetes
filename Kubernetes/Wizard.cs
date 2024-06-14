@@ -254,7 +254,7 @@ namespace Kubernetes
                     namespaceItem = CreateNamespaceFromForms();
                     break;
                 case 3:
-                    deploymentsList = await kubernetesService.RetrieveDeployments(textBoxNamespaceName.Text);
+                    podList = await kubernetesService.RetrievePods(textBoxNamespaceName.Text);
                     if (textBoxPodName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxPodName.Text))
                     {
                         MessageBox.Show("Please Choose a Valid name");
@@ -267,7 +267,6 @@ namespace Kubernetes
                         tabControl1.SelectedIndex = previousIndex;
                         return;
                     }
-
                     // Check if podList is null before accessing it
                     if (podList == null || podList.Items == null)
                     {
