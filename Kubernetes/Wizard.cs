@@ -98,7 +98,8 @@ namespace Kubernetes
             {
                 Button backButton = new Button();
                 backButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                backButton.Location = new Point(8, 388);
+                backButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+                backButton.Location = new Point(8, tabPage.Height - 40); // Ajuste conforme necessário
                 backButton.Name = "backButton";
                 backButton.Size = new Size(75, 24);
                 backButton.TabIndex = 1;
@@ -107,9 +108,11 @@ namespace Kubernetes
                 backButton.Click += new EventHandler(backButton_Click);
 
 
+                // Botão "Next"
                 Button nextButton = new Button();
                 nextButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                nextButton.Location = new Point(89, 388);
+                nextButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+                nextButton.Location = new Point(89, tabPage.Height - 40); // Ajuste conforme necessário
                 nextButton.Name = "nextButton";
                 nextButton.Size = new Size(75, 24);
                 nextButton.TabIndex = 0;
@@ -117,10 +120,11 @@ namespace Kubernetes
                 nextButton.UseVisualStyleBackColor = true;
                 nextButton.Click += new EventHandler(nextButton_Click);
 
-
+                // Botão "Finish"
                 Button finishButton = new Button();
                 finishButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                finishButton.Location = new Point(688, 388);
+                finishButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                finishButton.Location = new Point(tabPage.Width - 90, tabPage.Height - 40); // Ajuste conforme necessário
                 finishButton.Name = "finishButton";
                 finishButton.Size = new Size(75, 24);
                 finishButton.TabIndex = 2;
