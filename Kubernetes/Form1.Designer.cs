@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loginTab = new System.Windows.Forms.TabPage();
@@ -50,6 +50,12 @@
             this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeaderResContName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderResContCpu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderResContMem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label31 = new System.Windows.Forms.Label();
+            this.comboBoxResPod = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeaderResName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderResLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -164,12 +170,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
-            this.label31 = new System.Windows.Forms.Label();
-            this.comboBoxResPod = new System.Windows.Forms.ComboBox();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeaderResContName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderResContCpu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderResContMem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -318,9 +318,9 @@
             this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxHttps.Location = new System.Drawing.Point(329, 266);
             this.checkBoxHttps.Name = "checkBoxHttps";
-            this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
+            this.checkBoxHttps.Size = new System.Drawing.Size(77, 22);
             this.checkBoxHttps.TabIndex = 6;
-            this.checkBoxHttps.Text = "https";
+            this.checkBoxHttps.Text = "Token";
             this.checkBoxHttps.UseVisualStyleBackColor = false;
             this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
@@ -350,6 +350,58 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1067, 414);
             this.panel2.TabIndex = 7;
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderResContName,
+            this.columnHeaderResContCpu,
+            this.columnHeaderResContMem});
+            this.listView2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(657, 63);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(407, 329);
+            this.listView2.TabIndex = 13;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderResContName
+            // 
+            this.columnHeaderResContName.Text = "Container Name";
+            this.columnHeaderResContName.Width = 121;
+            // 
+            // columnHeaderResContCpu
+            // 
+            this.columnHeaderResContCpu.Text = "CPU Usage";
+            this.columnHeaderResContCpu.Width = 122;
+            // 
+            // columnHeaderResContMem
+            // 
+            this.columnHeaderResContMem.Text = "Memory Usage";
+            this.columnHeaderResContMem.Width = 169;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(23, 102);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(45, 18);
+            this.label31.TabIndex = 12;
+            this.label31.Text = "Pod:";
+            // 
+            // comboBoxResPod
+            // 
+            this.comboBoxResPod.FormattingEnabled = true;
+            this.comboBoxResPod.Location = new System.Drawing.Point(23, 134);
+            this.comboBoxResPod.Name = "comboBoxResPod";
+            this.comboBoxResPod.Size = new System.Drawing.Size(184, 26);
+            this.comboBoxResPod.TabIndex = 11;
+            this.comboBoxResPod.SelectedIndexChanged += new System.EventHandler(this.comboBoxResPod_SelectedIndexChanged);
             // 
             // listView1
             // 
@@ -1447,58 +1499,6 @@
             this.label21.Size = new System.Drawing.Size(45, 18);
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(23, 102);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(45, 18);
-            this.label31.TabIndex = 12;
-            this.label31.Text = "Pod:";
-            // 
-            // comboBoxResPod
-            // 
-            this.comboBoxResPod.FormattingEnabled = true;
-            this.comboBoxResPod.Location = new System.Drawing.Point(23, 134);
-            this.comboBoxResPod.Name = "comboBoxResPod";
-            this.comboBoxResPod.Size = new System.Drawing.Size(184, 26);
-            this.comboBoxResPod.TabIndex = 11;
-            this.comboBoxResPod.SelectedIndexChanged += new System.EventHandler(this.comboBoxResPod_SelectedIndexChanged);
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderResContName,
-            this.columnHeaderResContCpu,
-            this.columnHeaderResContMem});
-            this.listView2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(657, 63);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(407, 329);
-            this.listView2.TabIndex = 13;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeaderResContName
-            // 
-            this.columnHeaderResContName.Text = "Container Name";
-            this.columnHeaderResContName.Width = 121;
-            // 
-            // columnHeaderResContCpu
-            // 
-            this.columnHeaderResContCpu.Text = "CPU Usage";
-            this.columnHeaderResContCpu.Width = 122;
-            // 
-            // columnHeaderResContMem
-            // 
-            this.columnHeaderResContMem.Text = "Memory Usage";
-            this.columnHeaderResContMem.Width = 169;
             // 
             // Form1
             // 
