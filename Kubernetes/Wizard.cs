@@ -418,7 +418,7 @@ namespace Kubernetes
                 Metadata = new PodMetadata
                 {
                     Name = textBoxPodName.Text,
-                    Namespace = textBoxPodName.Text,
+                    Namespace = textBoxNamespaceName.Text,
                     Labels = new Dictionary<string, string>()
                 },
                 Spec = new PodSpec
