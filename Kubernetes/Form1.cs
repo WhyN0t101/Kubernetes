@@ -54,8 +54,8 @@ namespace Kubernetes
             textBoxLoginToken.KeyPress += new KeyPressEventHandler(TextBox_KeyPress);
             podList = new PodList { Items = new List<PodItem>() };
             deployments = new DeploymentsList { Items = new List<DeploymentItem>() };
-            ingresses = new IngressList { Items = new List<IngressItem>()};
-            services = new ServiceList { Items = new List<ServiceItem>() }; 
+            ingresses = new IngressList { Items = new List<IngressItem>() };
+            services = new ServiceList { Items = new List<ServiceItem>() };
 
 
         }
@@ -64,7 +64,7 @@ namespace Kubernetes
         {
 
         }
-      
+
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check if the Enter key was pressed
@@ -597,7 +597,7 @@ namespace Kubernetes
         private async void PopulatePodMetrics(string ns)
         {
             try
-            { 
+            {
                 // Fetch pods from the Kubernetes service for the specified namespace
                 PodMetricsList podMetricsList = await kubernetesService.RetrievePodMetricsList(ns);
                 comboBoxResPod.Items.Clear();
@@ -1053,7 +1053,7 @@ namespace Kubernetes
                 MessageBox.Show("Please Choose valid labels");
                 return;
             }
-            if(!validator.ValidatePorts(PortsDeploy.Text))
+            if (!validator.ValidatePorts(PortsDeploy.Text))
             {
                 MessageBox.Show("Please type ports correctly example: 80,443,(...)");
                 return;
@@ -1184,7 +1184,7 @@ namespace Kubernetes
                 MessageBox.Show("Please select a namespace");
                 return;
             }
-            if(typeCombobox.SelectedItem == null)
+            if (typeCombobox.SelectedItem == null)
             {
                 MessageBox.Show("Please select a type");
                 return;
@@ -1426,7 +1426,7 @@ namespace Kubernetes
                     PopulateServiceAndIngress();
                 }
             }
-           
+
         }
 
         private void namespaceComboSer_SelectedIndexChanged(object sender, EventArgs e)
@@ -1475,7 +1475,6 @@ namespace Kubernetes
                 MessageBox.Show("Error fetching Container Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-<<<<<<< HEAD
         private async void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string text = e.Result.Text;
@@ -1614,8 +1613,13 @@ namespace Kubernetes
             }
         }
 
+            private void button1_Click(object sender, EventArgs e)
+            {
+                Wizard wizardForm = new Wizard();
+                wizardForm.ShowDialog();
+            }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             if (!isListening)
             {
@@ -1627,13 +1631,6 @@ namespace Kubernetes
                 StopSpeechRecognition();
                 isListening = false;
             }
-=======
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Wizard wizardForm = new Wizard();
-            wizardForm.ShowDialog();
->>>>>>> b7190fc557b3ba47989f2c884faa53c54e0e4be9
         }
     }
-}
+    } 

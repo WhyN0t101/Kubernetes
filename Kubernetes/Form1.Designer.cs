@@ -171,6 +171,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -212,6 +213,7 @@
             // 
             this.loginTab.BackgroundImage = global::Kubernetes.Properties.Resources.background1;
             this.loginTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginTab.Controls.Add(this.button2);
             this.loginTab.Controls.Add(this.panel1);
             this.loginTab.Location = new System.Drawing.Point(4, 32);
             this.loginTab.Name = "loginTab";
@@ -1511,6 +1513,16 @@
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(996, 458);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(95, 60);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Speech";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -1689,6 +1701,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderResContCpu;
         private System.Windows.Forms.ColumnHeader columnHeaderResContMem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
