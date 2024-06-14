@@ -170,16 +170,12 @@ namespace Kubernetes
             string port = (checkBoxHttps.Checked) ? ":16443" : ":8001";
             int control = (checkBoxHttps.Checked) ? 1 : 0;
 
-            if (control == 1)
-            {
-                //token = getToken(ipAddress);
-            }
-
             try
             {
                 // Construct the base URL using the determined protocol and IP address
                 //string baseUrl = protocol + ipAddress;
                 string baseUrl = protocol + ipAddress + port;
+
 
                 // Instantiate MethodsController class with user credentials and base URL
                 kubernetesService = new KubernetesService(baseUrl, token, control);
@@ -1564,6 +1560,7 @@ namespace Kubernetes
                         case "service":
                             string serviceToDelete = parts[2];
                             await kubernetesService.DeleteService(targetNamespace, serviceToDelete);
+                            break;
                         default:
                             Console.WriteLine("Command not recognized or not matching the expected format.");
                             break;
@@ -1612,11 +1609,22 @@ namespace Kubernetes
             }
         }
 
-            private void button1_Click(object sender, EventArgs e)
-            {
-                Wizard wizardForm = new Wizard();
-                wizardForm.ShowDialog();
-            }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string ipAddress = textBoxLoginIp.Text.Trim();
+            string token = textBoxLoginToken.Text.Trim();
+
+            // Determine the protocol (HTTP or HTTPS) based on user selection
+            string protocol = (checkBoxHttps.Checked) ? "https://" : "http://";
+            string port = (checkBoxHttps.Checked) ? ":16443" : ":8001";
+            int control = (checkBoxHttps.Checked) ? 1 : 0;
+            string baseUrl = protocol + ipAddress + port;
+
+
+            Wizard wizardForm = new Wizard(ipAddress, token, control, baseUrl);
+            //*Wizard wizardForm = new Wizard(kubernetesService);
+            wizardForm.ShowDialog();
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
