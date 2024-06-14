@@ -94,56 +94,12 @@ namespace Kubernetes
 
         private void AddButtonToTabPages()
         {
-            foreach (TabPage tabPage in tabControl1.TabPages)
-            {
-                Button backButton = new Button();
-                backButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                backButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-                backButton.Location = new Point(8, tabPage.Height - 40); // Ajuste conforme necessário
-                backButton.Name = "backButton";
-                backButton.Size = new Size(75, 24);
-                backButton.TabIndex = 1;
-                backButton.Text = "&Back\r\n";
-                backButton.UseVisualStyleBackColor = true;
-                backButton.Click += new EventHandler(backButton_Click);
-
-
-                // Botão "Next"
-                Button nextButton = new Button();
-                nextButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                nextButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-                nextButton.Location = new Point(89, tabPage.Height - 40); // Ajuste conforme necessário
-                nextButton.Name = "nextButton";
-                nextButton.Size = new Size(75, 24);
-                nextButton.TabIndex = 0;
-                nextButton.Text = "&Next";
-                nextButton.UseVisualStyleBackColor = true;
-                nextButton.Click += new EventHandler(nextButton_Click);
-
-                // Botão "Finish"
-                Button finishButton = new Button();
-                finishButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                finishButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-                finishButton.Location = new Point(tabPage.Width - 90, tabPage.Height - 40); // Ajuste conforme necessário
-                finishButton.Name = "finishButton";
-                finishButton.Size = new Size(75, 24);
-                finishButton.TabIndex = 2;
-                finishButton.Text = "&Finish";
-                finishButton.UseVisualStyleBackColor = true;
-                finishButton.Click += new EventHandler(finishButton_Click);
-
-
-                tabPage.Controls.Add(backButton);
-                tabPage.Controls.Add(nextButton);
-                tabPage.Controls.Add(finishButton);
-            }
+            
         }
         private void UpdateButtonStates()
         {
             foreach (TabPage tabPage in tabControl1.TabPages)
             {
-                var backButton = tabPage.Controls.OfType<Button>().FirstOrDefault(b => b.Name == "backButton");
-                var nextButton = tabPage.Controls.OfType<Button>().FirstOrDefault(b => b.Name == "nextButton");
 
                 if (tabControl1.SelectedIndex == 0)
                 {

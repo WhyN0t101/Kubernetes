@@ -117,29 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox4.Text" xml:space="preserve">
-    <value>Now, let's deploy your application within the Kubernetes cluster. This involves creating a deployment, which manages a set of identical pods and ensures their availability and scalability.
-
-Deployment Name: Enter a name for your Kubernetes deployment. This name should reflect the application or service being deployed.
-Example: my-app-deployment
-
-Ports: Specify the ports that your application will expose. This enables communication with services outside the pod.
-Example: HTTP (80/tcp), HTTPS (443/tcp)
-
-Container Name: Specify a name for the container within the deployment. This name is used to reference the container configuration.
-Example: web-server
-
-Replicas: Specify the number of identical pod replicas you want to create. Kubernetes will manage these replicas to ensure high availability and scalability.
-Example: 3
-
-Docker Image: Choose an image from a predefined list of Docker images. This image defines the application or service that each pod in the deployment will run.
-Example options: nginx:latest, node:14, python:3.9
-
-Labels (Optional): Add labels to the deployment for better organization and identification.
-Example: app: backend, environment: production
-
-Click Next to review your setup and complete the setup process and deploy your application.</value>
-  </data>
   <data name="textBox2.Text" xml:space="preserve">
     <value>Let's start by setting up a new namespace where your Kubernetes resources will reside.
 
@@ -170,5 +147,28 @@ Labels (Optional): Add labels to the pod for better organization and identificat
 Example: app: frontend, tier: web
 
 Click Next to proceed to the next step.</value>
+  </data>
+  <data name="textBox4.Text" xml:space="preserve">
+    <value>Now, let's deploy your application within the Kubernetes cluster. This involves creating a deployment, which manages a set of identical pods and ensures their availability and scalability.
+
+Deployment Name: Enter a name for your Kubernetes deployment. This name should reflect the application or service being deployed.
+Example: my-app-deployment
+
+Ports: Specify the ports that your application will expose. This enables communication with services outside the pod.
+Example: HTTP (80/tcp), HTTPS (443/tcp)
+
+Container Name: Specify a name for the container within the deployment. This name is used to reference the container configuration.
+Example: web-server
+
+Replicas: Specify the number of identical pod replicas you want to create. Kubernetes will manage these replicas to ensure high availability and scalability.
+Example: 3
+
+Docker Image: Choose an image from a predefined list of Docker images. This image defines the application or service that each pod in the deployment will run.
+Example options: nginx:latest, node:14, python:3.9
+
+Labels (Optional): Add labels to the deployment for better organization and identification.
+Example: app: backend, environment: production
+
+Click Next to review your setup and complete the setup process and deploy your application.</value>
   </data>
 </root>

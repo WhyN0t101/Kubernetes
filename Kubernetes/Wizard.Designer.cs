@@ -1,4 +1,8 @@
-﻿namespace Kubernetes
+﻿using System.Drawing;
+using System.Windows.Forms;
+using System;
+
+namespace Kubernetes
 {
     partial class Wizard
     {
@@ -31,28 +35,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wizard));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.IntroductionTab = new System.Windows.Forms.TabPage();
-            this.namespaceTab = new System.Windows.Forms.TabPage();
-            this.podTab = new System.Windows.Forms.TabPage();
-            this.deploymentTab = new System.Windows.Forms.TabPage();
-            this.ConclusionTab = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.namespaceTab = new System.Windows.Forms.TabPage();
             this.textBoxNamespacesAnnotations = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.textBoxNamespaceName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxNamespaceLabels = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.podTab = new System.Windows.Forms.TabPage();
             this.label23 = new System.Windows.Forms.Label();
             this.containerNameText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -61,6 +57,9 @@
             this.textBoxPodLabel = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBoxPodName = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.deploymentTab = new System.Windows.Forms.TabPage();
             this.label26 = new System.Windows.Forms.Label();
             this.containerNameDeploy = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -73,15 +72,23 @@
             this.textBoxDeploymentLabel = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.textBoxDeploymentName = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ConclusionTab = new System.Windows.Forms.TabPage();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
+            this.nextButton = new System.Windows.Forms.Button();
+            this.finishButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.IntroductionTab.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.namespaceTab.SuspendLayout();
             this.podTab.SuspendLayout();
             this.deploymentTab.SuspendLayout();
-            this.ConclusionTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).BeginInit();
+            this.ConclusionTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -91,12 +98,11 @@
             this.tabControl1.Controls.Add(this.podTab);
             this.tabControl1.Controls.Add(this.deploymentTab);
             this.tabControl1.Controls.Add(this.ConclusionTab);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(962, 450);
+            this.tabControl1.Size = new System.Drawing.Size(950, 407);
             this.tabControl1.TabIndex = 0;
             // 
             // IntroductionTab
@@ -107,10 +113,51 @@
             this.IntroductionTab.Location = new System.Drawing.Point(4, 27);
             this.IntroductionTab.Name = "IntroductionTab";
             this.IntroductionTab.Padding = new System.Windows.Forms.Padding(3);
-            this.IntroductionTab.Size = new System.Drawing.Size(954, 419);
+            this.IntroductionTab.Size = new System.Drawing.Size(942, 376);
             this.IntroductionTab.TabIndex = 0;
             this.IntroductionTab.Text = "Introduction";
             this.IntroductionTab.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(8, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(340, 363);
+            this.panel1.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Kubernetes.Properties.Resources.tool;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(91, 82);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(354, 72);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(427, 186);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "Welcome to the Kubernetes Setup Wizard! \r\n\r\nThis wizard will guide you through th" +
+    "e process of setting up a Kubernetes environment, creating a namespace, deployin" +
+    "g a pod, and deploying an application.";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(354, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(348, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Welcome to the Kubernetes setup Wizard";
             // 
             // namespaceTab
             // 
@@ -125,152 +172,10 @@
             this.namespaceTab.Location = new System.Drawing.Point(4, 27);
             this.namespaceTab.Name = "namespaceTab";
             this.namespaceTab.Padding = new System.Windows.Forms.Padding(3);
-            this.namespaceTab.Size = new System.Drawing.Size(954, 419);
+            this.namespaceTab.Size = new System.Drawing.Size(942, 376);
             this.namespaceTab.TabIndex = 1;
             this.namespaceTab.Text = "Namespace";
             this.namespaceTab.UseVisualStyleBackColor = true;
-            // 
-            // podTab
-            // 
-            this.podTab.Controls.Add(this.label23);
-            this.podTab.Controls.Add(this.containerNameText);
-            this.podTab.Controls.Add(this.label6);
-            this.podTab.Controls.Add(this.imagePodCombobox);
-            this.podTab.Controls.Add(this.label13);
-            this.podTab.Controls.Add(this.textBoxPodLabel);
-            this.podTab.Controls.Add(this.label14);
-            this.podTab.Controls.Add(this.textBoxPodName);
-            this.podTab.Controls.Add(this.textBox3);
-            this.podTab.Controls.Add(this.label3);
-            this.podTab.Location = new System.Drawing.Point(4, 27);
-            this.podTab.Name = "podTab";
-            this.podTab.Padding = new System.Windows.Forms.Padding(3);
-            this.podTab.Size = new System.Drawing.Size(954, 419);
-            this.podTab.TabIndex = 2;
-            this.podTab.Text = "Pod";
-            this.podTab.UseVisualStyleBackColor = true;
-            // 
-            // deploymentTab
-            // 
-            this.deploymentTab.Controls.Add(this.label26);
-            this.deploymentTab.Controls.Add(this.containerNameDeploy);
-            this.deploymentTab.Controls.Add(this.label25);
-            this.deploymentTab.Controls.Add(this.PortsDeploy);
-            this.deploymentTab.Controls.Add(this.label24);
-            this.deploymentTab.Controls.Add(this.imageDeployment);
-            this.deploymentTab.Controls.Add(this.label9);
-            this.deploymentTab.Controls.Add(this.replicasUpDownDeploy);
-            this.deploymentTab.Controls.Add(this.label15);
-            this.deploymentTab.Controls.Add(this.textBoxDeploymentLabel);
-            this.deploymentTab.Controls.Add(this.label16);
-            this.deploymentTab.Controls.Add(this.textBoxDeploymentName);
-            this.deploymentTab.Controls.Add(this.textBox4);
-            this.deploymentTab.Controls.Add(this.label4);
-            this.deploymentTab.Location = new System.Drawing.Point(4, 27);
-            this.deploymentTab.Name = "deploymentTab";
-            this.deploymentTab.Padding = new System.Windows.Forms.Padding(3);
-            this.deploymentTab.Size = new System.Drawing.Size(954, 419);
-            this.deploymentTab.TabIndex = 3;
-            this.deploymentTab.Text = "Deployment";
-            this.deploymentTab.UseVisualStyleBackColor = true;
-            // 
-            // ConclusionTab
-            // 
-            this.ConclusionTab.Controls.Add(this.textBox5);
-            this.ConclusionTab.Controls.Add(this.label5);
-            this.ConclusionTab.Location = new System.Drawing.Point(4, 27);
-            this.ConclusionTab.Name = "ConclusionTab";
-            this.ConclusionTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ConclusionTab.Size = new System.Drawing.Size(954, 419);
-            this.ConclusionTab.TabIndex = 4;
-            this.ConclusionTab.Text = "Conclusion";
-            this.ConclusionTab.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(354, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Welcome to the Kubernetes setup Wizard";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(354, 72);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(427, 186);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Welcome to the Kubernetes Setup Wizard! \r\n\r\nThis wizard will guide you through th" +
-    "e process of setting up a Kubernetes environment, creating a namespace, deployin" +
-    "g a pod, and deploying an application.";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Kubernetes.Properties.Resources.tool;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(91, 82);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(8, 15);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(340, 363);
-            this.panel1.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(228, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Step 1: Create Namespace";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Step 2: Create Pod\n";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(223, 18);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Step 3: Deploy Application\n";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(159, 18);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Step 4: Conclusion";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(6, 56);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(624, 316);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
             // textBoxNamespacesAnnotations
             // 
@@ -331,37 +236,45 @@
             this.textBoxNamespaceLabels.Size = new System.Drawing.Size(288, 117);
             this.textBoxNamespaceLabels.TabIndex = 19;
             // 
-            // textBox3
+            // textBox2
             // 
-            this.textBox3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(6, 56);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(642, 316);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Text = resources.GetString("textBox3.Text");
+            this.textBox2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(6, 56);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(624, 316);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
-            // textBox4
+            // label2
             // 
-            this.textBox4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(6, 56);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(641, 316);
-            this.textBox4.TabIndex = 4;
-            this.textBox4.Text = resources.GetString("textBox4.Text");
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(228, 18);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Step 1: Create Namespace";
             // 
-            // textBox5
+            // podTab
             // 
-            this.textBox5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(6, 56);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(624, 316);
-            this.textBox5.TabIndex = 4;
-            this.textBox5.Text = "Congratulations! \r\nYou have successfully configured your Kubernetes environment u" +
-    "sing the Setup Wizard. Below is a summary of your setup:";
+            this.podTab.Controls.Add(this.label23);
+            this.podTab.Controls.Add(this.containerNameText);
+            this.podTab.Controls.Add(this.label6);
+            this.podTab.Controls.Add(this.imagePodCombobox);
+            this.podTab.Controls.Add(this.label13);
+            this.podTab.Controls.Add(this.textBoxPodLabel);
+            this.podTab.Controls.Add(this.label14);
+            this.podTab.Controls.Add(this.textBoxPodName);
+            this.podTab.Controls.Add(this.textBox3);
+            this.podTab.Controls.Add(this.label3);
+            this.podTab.Location = new System.Drawing.Point(4, 27);
+            this.podTab.Name = "podTab";
+            this.podTab.Padding = new System.Windows.Forms.Padding(3);
+            this.podTab.Size = new System.Drawing.Size(942, 376);
+            this.podTab.TabIndex = 2;
+            this.podTab.Text = "Pod";
+            this.podTab.UseVisualStyleBackColor = true;
             // 
             // label23
             // 
@@ -440,6 +353,50 @@
             this.textBoxPodName.Name = "textBoxPodName";
             this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
             this.textBoxPodName.TabIndex = 25;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(6, 56);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(642, 316);
+            this.textBox3.TabIndex = 3;
+            this.textBox3.Text = resources.GetString("textBox3.Text");
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(164, 18);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Step 2: Create Pod\n";
+            // 
+            // deploymentTab
+            // 
+            this.deploymentTab.Controls.Add(this.label26);
+            this.deploymentTab.Controls.Add(this.containerNameDeploy);
+            this.deploymentTab.Controls.Add(this.label25);
+            this.deploymentTab.Controls.Add(this.PortsDeploy);
+            this.deploymentTab.Controls.Add(this.label24);
+            this.deploymentTab.Controls.Add(this.imageDeployment);
+            this.deploymentTab.Controls.Add(this.label9);
+            this.deploymentTab.Controls.Add(this.replicasUpDownDeploy);
+            this.deploymentTab.Controls.Add(this.label15);
+            this.deploymentTab.Controls.Add(this.textBoxDeploymentLabel);
+            this.deploymentTab.Controls.Add(this.label16);
+            this.deploymentTab.Controls.Add(this.textBoxDeploymentName);
+            this.deploymentTab.Controls.Add(this.textBox4);
+            this.deploymentTab.Controls.Add(this.label4);
+            this.deploymentTab.Location = new System.Drawing.Point(4, 27);
+            this.deploymentTab.Name = "deploymentTab";
+            this.deploymentTab.Padding = new System.Windows.Forms.Padding(3);
+            this.deploymentTab.Size = new System.Drawing.Size(942, 376);
+            this.deploymentTab.TabIndex = 3;
+            this.deploymentTab.Text = "Deployment";
+            this.deploymentTab.UseVisualStyleBackColor = true;
             // 
             // label26
             // 
@@ -567,11 +524,104 @@
             this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
             this.textBoxDeploymentName.TabIndex = 34;
             // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(6, 56);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(641, 316);
+            this.textBox4.TabIndex = 4;
+            this.textBox4.Text = resources.GetString("textBox4.Text");
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(223, 18);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Step 3: Deploy Application\n";
+            // 
+            // ConclusionTab
+            // 
+            this.ConclusionTab.Controls.Add(this.textBox5);
+            this.ConclusionTab.Controls.Add(this.label5);
+            this.ConclusionTab.Location = new System.Drawing.Point(4, 27);
+            this.ConclusionTab.Name = "ConclusionTab";
+            this.ConclusionTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ConclusionTab.Size = new System.Drawing.Size(942, 376);
+            this.ConclusionTab.TabIndex = 4;
+            this.ConclusionTab.Text = "Conclusion";
+            this.ConclusionTab.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(6, 56);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(624, 316);
+            this.textBox5.TabIndex = 4;
+            this.textBox5.Text = "Congratulations! \r\nYou have successfully configured your Kubernetes environment u" +
+    "sing the Setup Wizard. Below is a summary of your setup:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(159, 18);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Step 4: Conclusion";
+            // 
+            // backButton
+            // 
+            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.backButton.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(12, 415);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 30);
+            this.backButton.TabIndex = 1;
+            this.backButton.Text = "&Back\r\n";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // nextButton
+            // 
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nextButton.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextButton.Location = new System.Drawing.Point(110, 415);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(75, 30);
+            this.nextButton.TabIndex = 0;
+            this.nextButton.Text = "&Next";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
+            // 
+            // finishButton
+            // 
+            this.finishButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.finishButton.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finishButton.Location = new System.Drawing.Point(871, 415);
+            this.finishButton.Name = "finishButton";
+            this.finishButton.Size = new System.Drawing.Size(75, 30);
+            this.finishButton.TabIndex = 2;
+            this.finishButton.Text = "&Finish";
+            this.finishButton.UseVisualStyleBackColor = true;
+            this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
+            // 
             // Wizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 450);
+            this.Controls.Add(this.finishButton);
+            this.Controls.Add(this.nextButton);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.tabControl1);
             this.Name = "Wizard";
             this.Text = "Wizard";
@@ -579,17 +629,17 @@
             this.tabControl1.ResumeLayout(false);
             this.IntroductionTab.ResumeLayout(false);
             this.IntroductionTab.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.namespaceTab.ResumeLayout(false);
             this.namespaceTab.PerformLayout();
             this.podTab.ResumeLayout(false);
             this.podTab.PerformLayout();
             this.deploymentTab.ResumeLayout(false);
             this.deploymentTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).EndInit();
             this.ConclusionTab.ResumeLayout(false);
             this.ConclusionTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -640,5 +690,8 @@
         private System.Windows.Forms.TextBox textBoxDeploymentLabel;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBoxDeploymentName;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button finishButton;
     }
 }
