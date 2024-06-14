@@ -4,32 +4,21 @@ using Kubernetes.Model.Namespaces;
 using Kubernetes.Model.PodList;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Kubernetes.Model.Deployments;
-using System.Xml.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text.RegularExpressions;
 using Kubernetes.Utils;
-using System.Reflection.Emit;
-using Newtonsoft.Json.Linq;
 using Kubernetes.Model.PodMetrics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Windows.Forms.DataVisualization.Charting;
 using Kubernetes.Model.Service;
 using Kubernetes.Model.Ingress;
+using System.Globalization;
+using System.Speech.Recognition;
 
 namespace Kubernetes
 {
@@ -48,9 +37,11 @@ namespace Kubernetes
         private IngressList ingresses;
         private ServiceList services;
         private Validator validator = new Validator();
+        private SpeechRecognitionEngine recognizer;
+        private bool isListening = false;
 
 
-        private string selectedNamespace;
+
 
         public Form1()
         {
@@ -73,7 +64,7 @@ namespace Kubernetes
         {
 
         }
-
+      
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check if the Enter key was pressed
@@ -1482,6 +1473,157 @@ namespace Kubernetes
             {
                 // Handle the exception or display an error message
                 MessageBox.Show("Error fetching Container Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            string text = e.Result.Text;
+            Console.WriteLine($"Recognized text: {text}");
+
+            string[] parts = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (parts.Length < 3)
+            {
+                Console.WriteLine("Command not recognized or not matching the expected format.");
+                return;
+            }
+
+            string action = parts[0].ToLower(); // Should be "create" or "delete"
+            string targetType = parts[1].ToLower(); // Should be "namespace", "pod", "deployment", "ingress"
+            string targetName = parts[2];
+
+            switch (action)
+            {
+                case "create":
+                    switch (targetType)
+                    {
+                        case "namespace":
+                            textBoxNamespaceName.Text = targetName;
+                            buttonNamespaceCreate_Click(this, EventArgs.Empty);
+                            break;
+                        case "pod":
+                            // Expecting: create pod <podName> <containerName> <image>
+                            if (parts.Length < 5)
+                            {
+                                Console.WriteLine("Insufficient parameters for creating pod.");
+                                return;
+                            }
+                            string podName = parts[2];
+                            string containerName = parts[3];
+                            string image = parts[4];
+                            textBoxPodName.Text = podName;
+                            containerNameText.Text = containerName;
+                            imagePodCombobox.SelectedItem = 1;
+                            break;
+                        case "deployment":
+                            // Expecting: create deployment <deploymentName> <containerName> <ports> <osImage>
+                            if (parts.Length < 6)
+                            {
+                                Console.WriteLine("Insufficient parameters for creating deployment.");
+                                return;
+                            }
+                            string deploymentName = parts[2];
+                            string deploymentContainerName = parts[3];
+                            string deploymentPorts = parts[4];
+                            string osImage = parts[5];
+                            // Example: createDeploymentMethod(deploymentName, deploymentContainerName, deploymentPorts, osImage);
+                            break;
+                        case "ingress":
+                            // Implement logic to create Ingress
+                            // Example: createIngressMethod(targetName);
+                            break;
+                        default:
+                            Console.WriteLine("Command not recognized or not matching the expected format.");
+                            break;
+                    }
+                    break;
+
+                case "delete":
+                    if (parts.Length < 4)
+                    {
+                        Console.WriteLine("Insufficient parameters for deletion command.");
+                        return;
+                    }
+                    string targetNamespace = parts[3]; // Namespace associated with the target
+                    switch (targetType)
+                    {
+                        case "namespace":
+                            await kubernetesService.DeleteNamespace(targetName);
+                            break;
+                        case "pod":
+                            // Expecting: delete pod <podName> <namespace>
+                            string podToDelete = parts[2];
+                            await kubernetesService.DeletePod(targetNamespace, podToDelete);
+                            break;
+                        case "deployment":
+                            // Expecting: delete deployment <deploymentName> <namespace>
+                            string deploymentToDelete = parts[2];
+                            await kubernetesService.DeleteDeployment(targetNamespace, deploymentToDelete);
+                            break;
+                        case "ingress":
+                            // Implement logic to delete Ingress
+                            // Example: deleteIngressMethod(targetName);
+                            break;
+                        default:
+                            Console.WriteLine("Command not recognized or not matching the expected format.");
+                            break;
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Command not recognized or not matching the expected format.");
+                    break;
+            }
+        }
+
+
+        private void InitializeSpeechRecognition()
+        {
+            if (recognizer == null)
+            {
+                recognizer = new SpeechRecognitionEngine(new CultureInfo("en-US"));
+                recognizer.SetInputToDefaultAudioDevice();
+
+                GrammarBuilder gb = new GrammarBuilder();
+                gb.Culture = new CultureInfo("en-US");
+
+                var commands = new Choices();
+                commands.Add("create namespace");
+                commands.Add("delete");
+
+
+                gb.Culture = new CultureInfo("en-US");
+                gb.Append(commands);  // Add the choices to the grammar
+                gb.AppendDictation();
+
+                Grammar grammar = new Grammar(gb);
+                recognizer.LoadGrammar(grammar);
+                recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
+            }
+            Console.WriteLine("Speech recognition initialized and started listening...");
+            recognizer.RecognizeAsync(RecognizeMode.Multiple);
+        }
+        private void StopSpeechRecognition()
+        {
+            if (recognizer != null)
+            {
+                recognizer.RecognizeAsyncStop();
+                Console.WriteLine("Speech recognition stopped.");
+            }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!isListening)
+            {
+                InitializeSpeechRecognition();
+                isListening = true;
+            }
+            else
+            {
+                StopSpeechRecognition();
+                isListening = false;
             }
         }
     }

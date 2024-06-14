@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loginTab = new System.Windows.Forms.TabPage();
@@ -50,6 +50,12 @@
             this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeaderResContName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderResContCpu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderResContMem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label31 = new System.Windows.Forms.Label();
+            this.comboBoxResPod = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeaderResName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderResLabels = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -164,12 +170,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
-            this.label31 = new System.Windows.Forms.Label();
-            this.comboBoxResPod = new System.Windows.Forms.ComboBox();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeaderResContName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderResContCpu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderResContMem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -211,11 +212,12 @@
             // 
             this.loginTab.BackgroundImage = global::Kubernetes.Properties.Resources.background1;
             this.loginTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginTab.Controls.Add(this.button1);
             this.loginTab.Controls.Add(this.panel1);
-            this.loginTab.Location = new System.Drawing.Point(4, 27);
+            this.loginTab.Location = new System.Drawing.Point(4, 32);
             this.loginTab.Name = "loginTab";
             this.loginTab.Padding = new System.Windows.Forms.Padding(3);
-            this.loginTab.Size = new System.Drawing.Size(1099, 540);
+            this.loginTab.Size = new System.Drawing.Size(1099, 535);
             this.loginTab.TabIndex = 0;
             this.loginTab.Text = "Login";
             this.loginTab.UseVisualStyleBackColor = true;
@@ -256,7 +258,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(56, 265);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.Size = new System.Drawing.Size(86, 25);
             this.label2.TabIndex = 5;
             this.label2.Text = "Token:";
             // 
@@ -266,7 +268,7 @@
             this.textBoxLoginToken.Enabled = false;
             this.textBoxLoginToken.Location = new System.Drawing.Point(148, 263);
             this.textBoxLoginToken.Name = "textBoxLoginToken";
-            this.textBoxLoginToken.Size = new System.Drawing.Size(175, 26);
+            this.textBoxLoginToken.Size = new System.Drawing.Size(175, 30);
             this.textBoxLoginToken.TabIndex = 2;
             // 
             // label1
@@ -278,7 +280,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(98, 215);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 20);
+            this.label1.Size = new System.Drawing.Size(44, 25);
             this.label1.TabIndex = 4;
             this.label1.Text = "IP:";
             // 
@@ -287,7 +289,7 @@
             this.textBoxLoginIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLoginIp.Location = new System.Drawing.Point(148, 215);
             this.textBoxLoginIp.Name = "textBoxLoginIp";
-            this.textBoxLoginIp.Size = new System.Drawing.Size(175, 26);
+            this.textBoxLoginIp.Size = new System.Drawing.Size(175, 30);
             this.textBoxLoginIp.TabIndex = 1;
             // 
             // buttonDisconnect
@@ -318,7 +320,7 @@
             this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxHttps.Location = new System.Drawing.Point(329, 273);
             this.checkBoxHttps.Name = "checkBoxHttps";
-            this.checkBoxHttps.Size = new System.Drawing.Size(70, 22);
+            this.checkBoxHttps.Size = new System.Drawing.Size(18, 17);
             this.checkBoxHttps.TabIndex = 6;
             this.checkBoxHttps.UseVisualStyleBackColor = false;
             this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
@@ -327,10 +329,10 @@
             // 
             this.ResourcesTab.BackColor = System.Drawing.Color.LightCyan;
             this.ResourcesTab.Controls.Add(this.panel2);
-            this.ResourcesTab.Location = new System.Drawing.Point(4, 27);
+            this.ResourcesTab.Location = new System.Drawing.Point(4, 32);
             this.ResourcesTab.Name = "ResourcesTab";
             this.ResourcesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ResourcesTab.Size = new System.Drawing.Size(1099, 540);
+            this.ResourcesTab.Size = new System.Drawing.Size(1099, 535);
             this.ResourcesTab.TabIndex = 1;
             this.ResourcesTab.Text = "Resources";
             // 
@@ -349,6 +351,58 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1067, 414);
             this.panel2.TabIndex = 7;
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderResContName,
+            this.columnHeaderResContCpu,
+            this.columnHeaderResContMem});
+            this.listView2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(657, 63);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(407, 329);
+            this.listView2.TabIndex = 13;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderResContName
+            // 
+            this.columnHeaderResContName.Text = "Container Name";
+            this.columnHeaderResContName.Width = 121;
+            // 
+            // columnHeaderResContCpu
+            // 
+            this.columnHeaderResContCpu.Text = "CPU Usage";
+            this.columnHeaderResContCpu.Width = 122;
+            // 
+            // columnHeaderResContMem
+            // 
+            this.columnHeaderResContMem.Text = "Memory Usage";
+            this.columnHeaderResContMem.Width = 169;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(23, 102);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(58, 23);
+            this.label31.TabIndex = 12;
+            this.label31.Text = "Pod:";
+            // 
+            // comboBoxResPod
+            // 
+            this.comboBoxResPod.FormattingEnabled = true;
+            this.comboBoxResPod.Location = new System.Drawing.Point(23, 134);
+            this.comboBoxResPod.Name = "comboBoxResPod";
+            this.comboBoxResPod.Size = new System.Drawing.Size(184, 31);
+            this.comboBoxResPod.TabIndex = 11;
+            this.comboBoxResPod.SelectedIndexChanged += new System.EventHandler(this.comboBoxResPod_SelectedIndexChanged);
             // 
             // listView1
             // 
@@ -389,7 +443,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(23, 31);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(109, 18);
+            this.label20.Size = new System.Drawing.Size(141, 23);
             this.label20.TabIndex = 9;
             this.label20.Text = "Namespace:";
             // 
@@ -398,7 +452,7 @@
             this.comboNameSpaceChart.FormattingEnabled = true;
             this.comboNameSpaceChart.Location = new System.Drawing.Point(23, 63);
             this.comboNameSpaceChart.Name = "comboNameSpaceChart";
-            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 26);
+            this.comboNameSpaceChart.Size = new System.Drawing.Size(184, 31);
             this.comboNameSpaceChart.TabIndex = 7;
             this.comboNameSpaceChart.SelectedIndexChanged += new System.EventHandler(this.comboNameSpaceChart_SelectedIndexChanged);
             this.comboNameSpaceChart.Enter += new System.EventHandler(this.comboNameSpaceChart_Enter);
@@ -407,10 +461,10 @@
             // 
             this.NodesTab.BackColor = System.Drawing.Color.LightCyan;
             this.NodesTab.Controls.Add(this.panel3);
-            this.NodesTab.Location = new System.Drawing.Point(4, 27);
+            this.NodesTab.Location = new System.Drawing.Point(4, 32);
             this.NodesTab.Name = "NodesTab";
             this.NodesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NodesTab.Size = new System.Drawing.Size(1099, 540);
+            this.NodesTab.Size = new System.Drawing.Size(1099, 535);
             this.NodesTab.TabIndex = 2;
             this.NodesTab.Text = "Nodes";
             // 
@@ -509,7 +563,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(8, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 18);
+            this.label5.Size = new System.Drawing.Size(84, 23);
             this.label5.TabIndex = 6;
             this.label5.Text = "Nodes:";
             // 
@@ -517,10 +571,10 @@
             // 
             this.NamespacesTab.BackColor = System.Drawing.Color.LightCyan;
             this.NamespacesTab.Controls.Add(this.panel4);
-            this.NamespacesTab.Location = new System.Drawing.Point(4, 27);
+            this.NamespacesTab.Location = new System.Drawing.Point(4, 32);
             this.NamespacesTab.Name = "NamespacesTab";
             this.NamespacesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.NamespacesTab.Size = new System.Drawing.Size(1099, 540);
+            this.NamespacesTab.Size = new System.Drawing.Size(1099, 535);
             this.NamespacesTab.TabIndex = 3;
             this.NamespacesTab.Text = "Namespaces";
             // 
@@ -563,7 +617,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(758, 277);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(88, 14);
+            this.label22.Size = new System.Drawing.Size(104, 18);
             this.label22.TabIndex = 16;
             this.label22.Text = "Annotations:";
             // 
@@ -575,7 +629,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(8, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 18);
+            this.label6.Size = new System.Drawing.Size(152, 23);
             this.label6.TabIndex = 8;
             this.label6.Text = "Namespaces:";
             // 
@@ -651,7 +705,7 @@
             // 
             this.textBoxNamespaceName.Location = new System.Drawing.Point(761, 76);
             this.textBoxNamespaceName.Name = "textBoxNamespaceName";
-            this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxNamespaceName.Size = new System.Drawing.Size(115, 30);
             this.textBoxNamespaceName.TabIndex = 9;
             // 
             // label8
@@ -662,7 +716,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(758, 125);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 14);
+            this.label8.Size = new System.Drawing.Size(61, 18);
             this.label8.TabIndex = 12;
             this.label8.Text = "Labels:";
             // 
@@ -674,7 +728,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(758, 59);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 14);
+            this.label7.Size = new System.Drawing.Size(59, 18);
             this.label7.TabIndex = 10;
             this.label7.Text = "Name:";
             // 
@@ -693,10 +747,10 @@
             // 
             this.PodsTab.BackColor = System.Drawing.Color.LightCyan;
             this.PodsTab.Controls.Add(this.panel5);
-            this.PodsTab.Location = new System.Drawing.Point(4, 27);
+            this.PodsTab.Location = new System.Drawing.Point(4, 32);
             this.PodsTab.Name = "PodsTab";
             this.PodsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PodsTab.Size = new System.Drawing.Size(1099, 540);
+            this.PodsTab.Size = new System.Drawing.Size(1099, 535);
             this.PodsTab.TabIndex = 4;
             this.PodsTab.Text = "Pods";
             // 
@@ -732,7 +786,7 @@
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(910, 131);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(113, 14);
+            this.label23.Size = new System.Drawing.Size(134, 18);
             this.label23.TabIndex = 24;
             this.label23.Text = "Container name:";
             // 
@@ -740,7 +794,7 @@
             // 
             this.containerNameText.Location = new System.Drawing.Point(913, 152);
             this.containerNameText.Name = "containerNameText";
-            this.containerNameText.Size = new System.Drawing.Size(100, 26);
+            this.containerNameText.Size = new System.Drawing.Size(100, 30);
             this.containerNameText.TabIndex = 23;
             // 
             // label3
@@ -751,7 +805,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(767, 202);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 14);
+            this.label3.Size = new System.Drawing.Size(62, 18);
             this.label3.TabIndex = 22;
             this.label3.Text = "Image:";
             // 
@@ -760,7 +814,7 @@
             this.imagePodCombobox.FormattingEnabled = true;
             this.imagePodCombobox.Location = new System.Drawing.Point(768, 223);
             this.imagePodCombobox.Name = "imagePodCombobox";
-            this.imagePodCombobox.Size = new System.Drawing.Size(121, 26);
+            this.imagePodCombobox.Size = new System.Drawing.Size(121, 31);
             this.imagePodCombobox.TabIndex = 21;
             // 
             // label9
@@ -771,7 +825,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(8, 23);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 18);
+            this.label9.Size = new System.Drawing.Size(69, 23);
             this.label9.TabIndex = 9;
             this.label9.Text = "Pods:";
             // 
@@ -859,7 +913,7 @@
             this.comboBoxNamespacePod.FormattingEnabled = true;
             this.comboBoxNamespacePod.Location = new System.Drawing.Point(11, 60);
             this.comboBoxNamespacePod.Name = "comboBoxNamespacePod";
-            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 26);
+            this.comboBoxNamespacePod.Size = new System.Drawing.Size(121, 31);
             this.comboBoxNamespacePod.TabIndex = 0;
             this.comboBoxNamespacePod.SelectedIndexChanged += new System.EventHandler(this.comboBoxNamespacePod_SelectedIndexChanged);
             // 
@@ -871,7 +925,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(765, 268);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 14);
+            this.label13.Size = new System.Drawing.Size(61, 18);
             this.label13.TabIndex = 18;
             this.label13.Text = "Labels:";
             // 
@@ -883,7 +937,7 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(8, 43);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 14);
+            this.label10.Size = new System.Drawing.Size(102, 18);
             this.label10.TabIndex = 11;
             this.label10.Text = "Namespace:";
             // 
@@ -903,7 +957,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(767, 131);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 14);
+            this.label14.Size = new System.Drawing.Size(59, 18);
             this.label14.TabIndex = 16;
             this.label14.Text = "Name:";
             // 
@@ -911,17 +965,17 @@
             // 
             this.textBoxPodName.Location = new System.Drawing.Point(770, 152);
             this.textBoxPodName.Name = "textBoxPodName";
-            this.textBoxPodName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxPodName.Size = new System.Drawing.Size(115, 30);
             this.textBoxPodName.TabIndex = 15;
             // 
             // DeploymentsTab
             // 
             this.DeploymentsTab.BackColor = System.Drawing.Color.LightCyan;
             this.DeploymentsTab.Controls.Add(this.panel6);
-            this.DeploymentsTab.Location = new System.Drawing.Point(4, 27);
+            this.DeploymentsTab.Location = new System.Drawing.Point(4, 32);
             this.DeploymentsTab.Name = "DeploymentsTab";
             this.DeploymentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DeploymentsTab.Size = new System.Drawing.Size(1099, 540);
+            this.DeploymentsTab.Size = new System.Drawing.Size(1099, 535);
             this.DeploymentsTab.TabIndex = 5;
             this.DeploymentsTab.Text = "Deployments";
             // 
@@ -961,7 +1015,7 @@
             this.label26.ForeColor = System.Drawing.Color.Black;
             this.label26.Location = new System.Drawing.Point(927, 115);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(114, 14);
+            this.label26.Size = new System.Drawing.Size(136, 18);
             this.label26.TabIndex = 33;
             this.label26.Text = "Container Name:";
             // 
@@ -969,7 +1023,7 @@
             // 
             this.containerNameDeploy.Location = new System.Drawing.Point(930, 136);
             this.containerNameDeploy.Name = "containerNameDeploy";
-            this.containerNameDeploy.Size = new System.Drawing.Size(115, 26);
+            this.containerNameDeploy.Size = new System.Drawing.Size(115, 30);
             this.containerNameDeploy.TabIndex = 32;
             // 
             // label25
@@ -980,7 +1034,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(760, 115);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(45, 14);
+            this.label25.Size = new System.Drawing.Size(54, 18);
             this.label25.TabIndex = 31;
             this.label25.Text = "Ports:";
             // 
@@ -988,7 +1042,7 @@
             // 
             this.PortsDeploy.Location = new System.Drawing.Point(763, 136);
             this.PortsDeploy.Name = "PortsDeploy";
-            this.PortsDeploy.Size = new System.Drawing.Size(115, 26);
+            this.PortsDeploy.Size = new System.Drawing.Size(115, 30);
             this.PortsDeploy.TabIndex = 30;
             // 
             // label24
@@ -999,7 +1053,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(927, 197);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(52, 14);
+            this.label24.Size = new System.Drawing.Size(62, 18);
             this.label24.TabIndex = 29;
             this.label24.Text = "Image:";
             // 
@@ -1008,7 +1062,7 @@
             this.imageDeployment.FormattingEnabled = true;
             this.imageDeployment.Location = new System.Drawing.Point(930, 218);
             this.imageDeployment.Name = "imageDeployment";
-            this.imageDeployment.Size = new System.Drawing.Size(121, 26);
+            this.imageDeployment.Size = new System.Drawing.Size(121, 31);
             this.imageDeployment.TabIndex = 28;
             // 
             // label4
@@ -1019,7 +1073,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(760, 198);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 14);
+            this.label4.Size = new System.Drawing.Size(74, 18);
             this.label4.TabIndex = 28;
             this.label4.Text = "Replicas:";
             // 
@@ -1032,7 +1086,7 @@
             0,
             0});
             this.replicasUpDownDeploy.Name = "replicasUpDownDeploy";
-            this.replicasUpDownDeploy.Size = new System.Drawing.Size(120, 26);
+            this.replicasUpDownDeploy.Size = new System.Drawing.Size(120, 30);
             this.replicasUpDownDeploy.TabIndex = 27;
             this.replicasUpDownDeploy.Value = new decimal(new int[] {
             1,
@@ -1118,7 +1172,7 @@
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(8, 23);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 18);
+            this.label11.Size = new System.Drawing.Size(159, 23);
             this.label11.TabIndex = 10;
             this.label11.Text = "Deployments:";
             // 
@@ -1141,7 +1195,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(760, 268);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 14);
+            this.label15.Size = new System.Drawing.Size(61, 18);
             this.label15.TabIndex = 24;
             this.label15.Text = "Labels:";
             // 
@@ -1150,7 +1204,7 @@
             this.comboBoxDeploymentNamespace.FormattingEnabled = true;
             this.comboBoxDeploymentNamespace.Location = new System.Drawing.Point(11, 71);
             this.comboBoxDeploymentNamespace.Name = "comboBoxDeploymentNamespace";
-            this.comboBoxDeploymentNamespace.Size = new System.Drawing.Size(161, 26);
+            this.comboBoxDeploymentNamespace.Size = new System.Drawing.Size(161, 31);
             this.comboBoxDeploymentNamespace.TabIndex = 12;
             this.comboBoxDeploymentNamespace.SelectedIndexChanged += new System.EventHandler(this.comboBoxDeploymentNamespace_SelectedIndexChanged);
             // 
@@ -1170,7 +1224,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(8, 54);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(85, 14);
+            this.label12.Size = new System.Drawing.Size(102, 18);
             this.label12.TabIndex = 13;
             this.label12.Text = "Namespace:";
             // 
@@ -1182,7 +1236,7 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(760, 51);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(48, 14);
+            this.label16.Size = new System.Drawing.Size(59, 18);
             this.label16.TabIndex = 22;
             this.label16.Text = "Name:";
             // 
@@ -1190,17 +1244,17 @@
             // 
             this.textBoxDeploymentName.Location = new System.Drawing.Point(763, 72);
             this.textBoxDeploymentName.Name = "textBoxDeploymentName";
-            this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxDeploymentName.Size = new System.Drawing.Size(115, 30);
             this.textBoxDeploymentName.TabIndex = 21;
             // 
             // ServiceIngressTab
             // 
             this.ServiceIngressTab.BackColor = System.Drawing.Color.LightCyan;
             this.ServiceIngressTab.Controls.Add(this.panel7);
-            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 27);
+            this.ServiceIngressTab.Location = new System.Drawing.Point(4, 32);
             this.ServiceIngressTab.Name = "ServiceIngressTab";
             this.ServiceIngressTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ServiceIngressTab.Size = new System.Drawing.Size(1099, 540);
+            this.ServiceIngressTab.Size = new System.Drawing.Size(1099, 535);
             this.ServiceIngressTab.TabIndex = 6;
             this.ServiceIngressTab.Text = " Services/Ingress";
             // 
@@ -1245,7 +1299,7 @@
             this.label30.ForeColor = System.Drawing.Color.Black;
             this.label30.Location = new System.Drawing.Point(893, 196);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(82, 14);
+            this.label30.Size = new System.Drawing.Size(97, 18);
             this.label30.TabIndex = 41;
             this.label30.Text = "Target Port:";
             // 
@@ -1257,7 +1311,7 @@
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(767, 196);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(45, 14);
+            this.label27.Size = new System.Drawing.Size(54, 18);
             this.label27.TabIndex = 40;
             this.label27.Text = "Ports:";
             // 
@@ -1265,7 +1319,7 @@
             // 
             this.portsServ.Location = new System.Drawing.Point(770, 217);
             this.portsServ.Name = "portsServ";
-            this.portsServ.Size = new System.Drawing.Size(115, 26);
+            this.portsServ.Size = new System.Drawing.Size(115, 30);
             this.portsServ.TabIndex = 39;
             // 
             // label29
@@ -1276,7 +1330,7 @@
             this.label29.ForeColor = System.Drawing.Color.Black;
             this.label29.Location = new System.Drawing.Point(169, 51);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(41, 14);
+            this.label29.Size = new System.Drawing.Size(50, 18);
             this.label29.TabIndex = 38;
             this.label29.Text = "Type:";
             // 
@@ -1288,7 +1342,7 @@
             this.label28.ForeColor = System.Drawing.Color.Black;
             this.label28.Location = new System.Drawing.Point(9, 51);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(85, 14);
+            this.label28.Size = new System.Drawing.Size(102, 18);
             this.label28.TabIndex = 37;
             this.label28.Text = "Namespace:";
             // 
@@ -1300,7 +1354,7 @@
             "services"});
             this.typeCombobox.Location = new System.Drawing.Point(172, 72);
             this.typeCombobox.Name = "typeCombobox";
-            this.typeCombobox.Size = new System.Drawing.Size(121, 26);
+            this.typeCombobox.Size = new System.Drawing.Size(121, 31);
             this.typeCombobox.TabIndex = 36;
             this.typeCombobox.SelectedIndexChanged += new System.EventHandler(this.typeCombobox_SelectedIndexChanged);
             // 
@@ -1309,7 +1363,7 @@
             this.namespaceComboSer.FormattingEnabled = true;
             this.namespaceComboSer.Location = new System.Drawing.Point(12, 72);
             this.namespaceComboSer.Name = "namespaceComboSer";
-            this.namespaceComboSer.Size = new System.Drawing.Size(121, 26);
+            this.namespaceComboSer.Size = new System.Drawing.Size(121, 31);
             this.namespaceComboSer.TabIndex = 35;
             this.namespaceComboSer.SelectedIndexChanged += new System.EventHandler(this.namespaceComboSer_SelectedIndexChanged);
             // 
@@ -1384,7 +1438,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(8, 23);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(156, 18);
+            this.label17.Size = new System.Drawing.Size(202, 23);
             this.label17.TabIndex = 11;
             this.label17.Text = "Services/Ingress:";
             // 
@@ -1407,7 +1461,7 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(767, 250);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(53, 14);
+            this.label18.Size = new System.Drawing.Size(61, 18);
             this.label18.TabIndex = 30;
             this.label18.Text = "Labels:";
             // 
@@ -1415,7 +1469,7 @@
             // 
             this.textBoxServicesName.Location = new System.Drawing.Point(770, 146);
             this.textBoxServicesName.Name = "textBoxServicesName";
-            this.textBoxServicesName.Size = new System.Drawing.Size(115, 26);
+            this.textBoxServicesName.Size = new System.Drawing.Size(115, 30);
             this.textBoxServicesName.TabIndex = 27;
             // 
             // textBoxServicesLabels
@@ -1434,7 +1488,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(767, 125);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(48, 14);
+            this.label19.Size = new System.Drawing.Size(59, 18);
             this.label19.TabIndex = 28;
             this.label19.Text = "Name:";
             // 
@@ -1447,61 +1501,20 @@
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
             // 
-            // label31
+            // button1
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(23, 102);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(45, 18);
-            this.label31.TabIndex = 12;
-            this.label31.Text = "Pod:";
-            // 
-            // comboBoxResPod
-            // 
-            this.comboBoxResPod.FormattingEnabled = true;
-            this.comboBoxResPod.Location = new System.Drawing.Point(23, 134);
-            this.comboBoxResPod.Name = "comboBoxResPod";
-            this.comboBoxResPod.Size = new System.Drawing.Size(184, 26);
-            this.comboBoxResPod.TabIndex = 11;
-            this.comboBoxResPod.SelectedIndexChanged += new System.EventHandler(this.comboBoxResPod_SelectedIndexChanged);
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderResContName,
-            this.columnHeaderResContCpu,
-            this.columnHeaderResContMem});
-            this.listView2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(657, 63);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(407, 329);
-            this.listView2.TabIndex = 13;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeaderResContName
-            // 
-            this.columnHeaderResContName.Text = "Container Name";
-            this.columnHeaderResContName.Width = 121;
-            // 
-            // columnHeaderResContCpu
-            // 
-            this.columnHeaderResContCpu.Text = "CPU Usage";
-            this.columnHeaderResContCpu.Width = 122;
-            // 
-            // columnHeaderResContMem
-            // 
-            this.columnHeaderResContMem.Text = "Memory Usage";
-            this.columnHeaderResContMem.Width = 169;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Location = new System.Drawing.Point(1019, 466);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 61);
+            this.button1.TabIndex = 9;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1107, 571);
@@ -1676,6 +1689,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderResContName;
         private System.Windows.Forms.ColumnHeader columnHeaderResContCpu;
         private System.Windows.Forms.ColumnHeader columnHeaderResContMem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
