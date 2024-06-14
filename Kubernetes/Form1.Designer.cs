@@ -29,25 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.loginTab = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxLoginToken = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxLoginIp = new System.Windows.Forms.TextBox();
-            this.buttonDisconnect = new System.Windows.Forms.Button();
-            this.buttonLogin = new System.Windows.Forms.Button();
-            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.ResourcesTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listView2 = new System.Windows.Forms.ListView();
@@ -171,10 +161,17 @@
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.loginTab = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxLoginToken = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxLoginIp = new System.Windows.Forms.TextBox();
+            this.buttonDisconnect = new System.Windows.Forms.Button();
+            this.buttonLogin = new System.Windows.Forms.Button();
+            this.checkBoxHttps = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
-            this.loginTab.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ResourcesTab.SuspendLayout();
             this.panel2.SuspendLayout();
             this.NodesTab.SuspendLayout();
@@ -188,6 +185,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.replicasUpDownDeploy)).BeginInit();
             this.ServiceIngressTab.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.loginTab.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -341,6 +341,7 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.Color.LightCyan;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.listView2);
             this.panel2.Controls.Add(this.label31);
             this.panel2.Controls.Add(this.comboBoxResPod);
@@ -359,10 +360,10 @@
             this.columnHeaderResContCpu,
             this.columnHeaderResContMem});
             this.listView2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup8.Header = "ListViewGroup";
+            listViewGroup8.Name = "listViewGroup1";
             this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup8});
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(657, 63);
             this.listView2.Name = "listView2";
@@ -411,10 +412,10 @@
             this.columnHeaderResLabels,
             this.columnHeaderResCreated});
             this.listView1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "listViewGroup1";
+            listViewGroup9.Header = "ListViewGroup";
+            listViewGroup9.Name = "listViewGroup1";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup2});
+            listViewGroup9});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(229, 63);
             this.listView1.Name = "listView1";
@@ -494,10 +495,10 @@
             this.columnHeaderNodeOSImg,
             this.columnHeaderNodeArch});
             this.listViewNodes.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup10.Header = "ListViewGroup";
+            listViewGroup10.Name = "listViewGroup1";
             this.listViewNodes.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3});
+            listViewGroup10});
             this.listViewNodes.HideSelection = false;
             this.listViewNodes.Location = new System.Drawing.Point(11, 55);
             this.listViewNodes.Name = "listViewNodes";
@@ -653,10 +654,10 @@
             this.columnHeaderNamespaceFinalizers,
             this.columnHeaderNamespacePhase});
             this.listViewNamespaces.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup4.Header = "ListViewGroup";
-            listViewGroup4.Name = "listViewGroup1";
+            listViewGroup11.Header = "ListViewGroup";
+            listViewGroup11.Name = "listViewGroup1";
             this.listViewNamespaces.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup4});
+            listViewGroup11});
             this.listViewNamespaces.HideSelection = false;
             this.listViewNamespaces.Location = new System.Drawing.Point(11, 57);
             this.listViewNamespaces.Name = "listViewNamespaces";
@@ -851,10 +852,10 @@
             this.columnHeaderPodNodename,
             this.columnHeaderPodPhase});
             this.listViewPods.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup5.Header = "ListViewGroup";
-            listViewGroup5.Name = "listViewGroup1";
+            listViewGroup12.Header = "ListViewGroup";
+            listViewGroup12.Name = "listViewGroup1";
             this.listViewPods.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5});
+            listViewGroup12});
             this.listViewPods.HideSelection = false;
             this.listViewPods.Location = new System.Drawing.Point(11, 92);
             this.listViewPods.Name = "listViewPods";
@@ -1105,10 +1106,10 @@
             this.columnHeader11,
             this.columnHeader12});
             this.listViewDeployments.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup6.Header = "ListViewGroup";
-            listViewGroup6.Name = "listViewGroup1";
+            listViewGroup13.Header = "ListViewGroup";
+            listViewGroup13.Name = "listViewGroup1";
             this.listViewDeployments.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup6});
+            listViewGroup13});
             this.listViewDeployments.HideSelection = false;
             this.listViewDeployments.Location = new System.Drawing.Point(12, 106);
             this.listViewDeployments.Name = "listViewDeployments";
@@ -1288,7 +1289,7 @@
             // 
             this.targetPortsText.Location = new System.Drawing.Point(896, 217);
             this.targetPortsText.Name = "targetPortsText";
-            this.targetPortsText.Size = new System.Drawing.Size(115, 30);
+            this.targetPortsText.Size = new System.Drawing.Size(115, 26);
             this.targetPortsText.TabIndex = 42;
             // 
             // label30
@@ -1377,10 +1378,10 @@
             this.columnHeaderServicePort,
             this.columnHeaderServiceClusterIp});
             this.listViewServices.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup7.Header = "ListViewGroup";
-            listViewGroup7.Name = "listViewGroup1";
+            listViewGroup14.Header = "ListViewGroup";
+            listViewGroup14.Name = "listViewGroup1";
             this.listViewServices.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup7});
+            listViewGroup14});
             this.listViewServices.HideSelection = false;
             this.listViewServices.Location = new System.Drawing.Point(11, 109);
             this.listViewServices.Name = "listViewServices";
@@ -1503,14 +1504,129 @@
             // 
             // button1
             // 
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Location = new System.Drawing.Point(1019, 466);
+            this.button1.Location = new System.Drawing.Point(47, 286);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 61);
-            this.button1.TabIndex = 9;
+            this.button1.Size = new System.Drawing.Size(123, 44);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Open Setup Wizard";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // loginTab
+            // 
+            this.loginTab.BackgroundImage = global::Kubernetes.Properties.Resources.background1;
+            this.loginTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginTab.Controls.Add(this.panel1);
+            this.loginTab.Location = new System.Drawing.Point(4, 27);
+            this.loginTab.Name = "loginTab";
+            this.loginTab.Padding = new System.Windows.Forms.Padding(3);
+            this.loginTab.Size = new System.Drawing.Size(1099, 540);
+            this.loginTab.TabIndex = 0;
+            this.loginTab.Text = "Login";
+            this.loginTab.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.textBoxLoginToken);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBoxLoginIp);
+            this.panel1.Controls.Add(this.buttonDisconnect);
+            this.panel1.Controls.Add(this.buttonLogin);
+            this.panel1.Controls.Add(this.checkBoxHttps);
+            this.panel1.Location = new System.Drawing.Point(308, 36);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(460, 371);
+            this.panel1.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Kubernetes.Properties.Resources.kuber1;
+            this.pictureBox1.Location = new System.Drawing.Point(148, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(175, 158);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Gainsboro;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(56, 265);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Token:";
+            // 
+            // textBoxLoginToken
+            // 
+            this.textBoxLoginToken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxLoginToken.Enabled = false;
+            this.textBoxLoginToken.Location = new System.Drawing.Point(148, 263);
+            this.textBoxLoginToken.Name = "textBoxLoginToken";
+            this.textBoxLoginToken.Size = new System.Drawing.Size(175, 26);
+            this.textBoxLoginToken.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(98, 215);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "IP:";
+            // 
+            // textBoxLoginIp
+            // 
+            this.textBoxLoginIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxLoginIp.Location = new System.Drawing.Point(148, 215);
+            this.textBoxLoginIp.Name = "textBoxLoginIp";
+            this.textBoxLoginIp.Size = new System.Drawing.Size(175, 26);
+            this.textBoxLoginIp.TabIndex = 1;
+            // 
+            // buttonDisconnect
+            // 
+            this.buttonDisconnect.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDisconnect.Location = new System.Drawing.Point(251, 299);
+            this.buttonDisconnect.Name = "buttonDisconnect";
+            this.buttonDisconnect.Size = new System.Drawing.Size(144, 40);
+            this.buttonDisconnect.TabIndex = 7;
+            this.buttonDisconnect.Text = "Disconnect";
+            this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
+            // 
+            // buttonLogin
+            // 
+            this.buttonLogin.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLogin.Location = new System.Drawing.Point(56, 299);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(147, 40);
+            this.buttonLogin.TabIndex = 3;
+            this.buttonLogin.Text = "Connect";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            // 
+            // checkBoxHttps
+            // 
+            this.checkBoxHttps.AutoSize = true;
+            this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxHttps.Location = new System.Drawing.Point(329, 273);
+            this.checkBoxHttps.Name = "checkBoxHttps";
+            this.checkBoxHttps.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxHttps.TabIndex = 6;
+            this.checkBoxHttps.UseVisualStyleBackColor = false;
+            this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
             // Form1
             // 
@@ -1526,10 +1642,6 @@
             this.Text = "Kubernetes Management Interface";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.loginTab.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResourcesTab.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1549,6 +1661,10 @@
             this.ServiceIngressTab.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.loginTab.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
