@@ -1475,6 +1475,7 @@ namespace Kubernetes
                 MessageBox.Show("Error fetching Container Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+<<<<<<< HEAD
         private async void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string text = e.Result.Text;
@@ -1626,6 +1627,13 @@ namespace Kubernetes
                 StopSpeechRecognition();
                 isListening = false;
             }
+=======
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Wizard wizardForm = new Wizard();
+            wizardForm.ShowDialog();
+>>>>>>> b7190fc557b3ba47989f2c884faa53c54e0e4be9
         }
     }
 }
