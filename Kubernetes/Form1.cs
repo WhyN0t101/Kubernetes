@@ -934,8 +934,6 @@ namespace Kubernetes
 
                 // Refresh the ListView after deleting pods
                 PopulatePods(selectedNamespace);
-
-                MessageBox.Show("Pod(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1170,8 +1168,6 @@ namespace Kubernetes
 
                 // Refresh the ListView after deleting pods
                 PopulatePods(selectedNamespace);
-
-                MessageBox.Show("Deployments(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1403,7 +1399,6 @@ namespace Kubernetes
 
                     // Refresh the ListView after deleting pods
 
-                    MessageBox.Show("Ingress(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PopulateServiceAndIngress();
 
                 }
@@ -1419,10 +1414,6 @@ namespace Kubernetes
                     {
                         await kubernetesService.DeleteService(selectedNamespace, ingressItem);
                     }
-
-                    // Refresh the ListView after deleting pods
-
-                    MessageBox.Show("Service(s) deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PopulateServiceAndIngress();
                 }
             }
