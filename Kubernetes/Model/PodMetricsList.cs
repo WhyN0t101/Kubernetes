@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Kubernetes.Model.PodMetrics
 {
-    public class PodMetrics
+    public class PodMetricsList
     {
         [JsonProperty("kind")]
         public string Kind { get; set; }
@@ -12,7 +13,22 @@ namespace Kubernetes.Model.PodMetrics
         public string ApiVersion { get; set; }
 
         [JsonProperty("metadata")]
+        public object Metadata { get; set; }
+
+        [JsonProperty("items")]
+        public List<PodMetrics> Items { get; set; }
+    }
+
+    public class PodMetrics
+    {
+        [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
+
+        [JsonProperty("timestamp")]
+        public DateTime Timestamp { get; set; }
+
+        [JsonProperty("window")]
+        public string Window { get; set; }
 
         [JsonProperty("containers")]
         public List<Container> Containers { get; set; }
@@ -26,8 +42,11 @@ namespace Kubernetes.Model.PodMetrics
         [JsonProperty("namespace")]
         public string Namespace { get; set; }
 
-        [JsonProperty("selfLink")]
-        public string SelfLink { get; set; }
+        [JsonProperty("creationTimestamp")]
+        public DateTime CreationTimestamp { get; set; }
+
+        [JsonProperty("labels")]
+        public Dictionary<string, string> Labels { get; set; }
     }
 
     public class Container

@@ -347,7 +347,6 @@ namespace Kubernetes
                 PopulateNodeInfoAsync();
                 PopulateComboBoxesNameSpace();
                 PopulateImageCombobox();
-
             });
         }
         private void InitializeTimer()
@@ -600,18 +599,53 @@ namespace Kubernetes
 
         private void comboNameSpaceChart_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Check if the selected item is not null
-            if (comboNameSpaceChart.SelectedItem != null)
-            {
-                // Update the selected namespace
-                selectedNamespace = comboNameSpaceChart.SelectedItem.ToString();
+            string nameSpaceSelected = comboNameSpaceChart.SelectedItem.ToString();
+            PopulatePodMetrics(nameSpaceSelected);
+        }
 
-                // Populate the pods combo box with pods in the selected namespace
-                if (!string.IsNullOrEmpty(selectedNamespace))
+        private async void PopulatePodMetrics(string ns)
+        {
+            try
+            { 
+                // Fetch pods from the Kubernetes service for the specified namespace
+                PodMetricsList podMetricsList = await kubernetesService.RetrievePodMetricsList(ns);
+                comboBoxResPod.Items.Clear();
+                if (podMetricsList == null || podMetricsList.Items == null)
                 {
-                    // (selectedNamespace);
+                    throw new Exception("Pod Metric list is null or empty");
                 }
+                if (podList == null || podList.Items == null)
+                {
+                    throw new Exception("Pod list is null or empty");
+                }
+                foreach (var pod in podMetricsList.Items)
+                {
+                    comboBoxResPod.Items.Add(pod.Metadata.Name);
+                }
+
+                // Clear existing items in the ListView
+                listView1.Items.Clear();
+
+                // Add new items or update existing items in the ListView
+                foreach (var pod in podMetricsList.Items)
+                {
+
+                    ListViewItem item = new ListViewItem(new[]
+                    {
+                        pod.Metadata?.Name ?? "N/A",
+                        pod.Metadata.Labels != null ? string.Join(", ", pod.Metadata.Labels.Select(l => l.Key + "=" + l.Value)) : "N/A",
+                        pod.Metadata?.CreationTimestamp.ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A"
+                });
+                    listView1.Items.Add(item);
+                }
+
             }
+            catch (Exception ex)
+            {
+                // Handle the exception or display an error message
+                MessageBox.Show("Error fetching Pod Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void comboNameSpaceChart_Enter(object sender, EventArgs e)
@@ -1407,6 +1441,48 @@ namespace Kubernetes
         private void namespaceComboSer_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateServiceAndIngress();
+        }
+
+        private async void comboBoxResPod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Fetch pods from the Kubernetes service for the specified namespace
+                PodMetricsList podMetricsList = await kubernetesService.RetrievePodMetricsList(comboNameSpaceChart.Text);
+
+                // Clear existing items in the ListView
+                listView2.Items.Clear();
+
+                // Add new items or update existing items in the ListView
+                foreach (var pod in podMetricsList.Items)
+                {
+                    foreach (var container in pod.Containers)
+                    {
+                        ListViewItem item = new ListViewItem(new[]
+                        {
+
+                        container?.Name ?? "N/A",
+                        container.Usage?.Cpu != null
+                            ? (container.Usage.Cpu.EndsWith("n") && long.TryParse(container.Usage.Cpu.TrimEnd('n'), out long nanoCores)
+                                ? $"{nanoCores / 1000000000.0:F2} Cores"
+                                : container.Usage.Cpu)
+                            : "N/A",
+                        container.Usage?.Memory != null
+                            ? (container.Usage.Memory.EndsWith("Ki") && long.TryParse(container.Usage.Memory.TrimEnd('K', 'i'), out long kiBytes)
+                                ? $"{kiBytes / 1024.0:F2} Mi"
+                                : container.Usage.Memory)
+                            : "N/A"
+                        });
+                        listView2.Items.Add(item);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or display an error message
+                MessageBox.Show("Error fetching Container Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
