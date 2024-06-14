@@ -803,7 +803,7 @@ namespace Kubernetes
                 return;
             }
 
-            if (imagePodCombobox.SelectedItem.ToString() == null)
+            if (imagePodCombobox.SelectedItem == null)
             {
                 MessageBox.Show("Please select an image");
                 return;
@@ -1053,7 +1053,7 @@ namespace Kubernetes
                 return;
             }
 
-            if (imageDeployment.SelectedItem.ToString() == null)
+            if (imageDeployment.SelectedItem == null)
             {
                 MessageBox.Show("Please select an image");
                 return;

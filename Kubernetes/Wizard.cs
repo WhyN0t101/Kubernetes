@@ -223,7 +223,7 @@ namespace Kubernetes
                     }
                     if (containerNameText.Text.Trim() == "" || !validator.ValidateNamespace(containerNameText.Text))
                     {
-                        MessageBox.Show("Please Choose a Valid name");
+                        MessageBox.Show("Please Choose a Valid Container name");
                         tabControl1.SelectedIndex = previousIndex;
                         return;
                     }
@@ -252,7 +252,7 @@ namespace Kubernetes
                         return;
                     }
 
-                    if (imagePodCombobox.SelectedItem.ToString() == null)
+                    if (imagePodCombobox.SelectedItem == null)
                     {
                         MessageBox.Show("Please select an image");
                         tabControl1.SelectedIndex = previousIndex;
@@ -311,7 +311,7 @@ namespace Kubernetes
                         return;
                     }
 
-                    if (imageDeployment.SelectedItem.ToString() == null)
+                    if (imageDeployment.SelectedItem == null)
                     {
                         MessageBox.Show("Please select an image");
                         tabControl1.SelectedIndex = previousIndex;
