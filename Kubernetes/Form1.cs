@@ -1514,6 +1514,7 @@ namespace Kubernetes
                             textBoxPodName.Text = podName;
                             containerNameText.Text = containerName;
                             imagePodCombobox.SelectedItem = 1;
+                            buttonPodCreate_Click(this, EventArgs.Empty);
                             break;
                         case "deployment":
                             // Expecting: create deployment <deploymentName> <containerName> <ports> <osImage>
