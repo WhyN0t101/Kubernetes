@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Kubernetes.Controller;
+using Kubernetes.Model.Deployments;
+using Kubernetes.Model.Namespaces;
+using Kubernetes.Model.PodList;
+using Kubernetes.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,10 +13,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Kubernetes
 {
     public partial class Wizard : Form
     {
+        private KubernetesService kubernetesService;
+        private NamespaceItem namespaceItem;
+        private Validator validator;
+        private PodItem podItem;
+        private DeploymentItem deploymentItem;
+
+        private NamespaceList namespaceList;
+
         public Wizard()
         {
             InitializeComponent();
@@ -118,9 +132,60 @@ namespace Kubernetes
 
             }
         }
-        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateButtonStates();
+            TabControl tabControl = (TabControl)sender;
+
+            // Get the current tab index
+            int currentIndex = tabControl.SelectedIndex;
+
+            // Validate based on the current tab index
+            switch (currentIndex)
+            {
+                case 0:
+                    // This is the first tab, no validation needed to move forward
+                    break;
+                case 1:
+                    namespaceList = await kubernetesService.RetrieveNamespaces();
+                    // Validation for the second tab (namespace)
+                    if (textBoxNamespaceName.Text.Trim() == "" || !validator.ValidateNamespace(textBoxNamespaceName.Text))
+                    {
+                        MessageBox.Show("Please Choose a Valid name");
+                        return;
+                    }
+                    foreach (var namespaceLocal in namespaceList.Items)
+                    {
+                        if (textBoxNamespaceName.Text == namespaceLocal.Metadata.Name)
+                        {
+                            MessageBox.Show($"Namespace: {textBoxNamespaceName.Text} already exists.");
+                            return;
+                        }
+                    }
+                    if (!validator.ValidateLabels(textBoxNamespaceLabels.Text))
+                    {
+                        MessageBox.Show("Please Choose a valid labels");
+                        return;
+                    }
+                    if (!validator.ValidateAnnotations(textBoxNamespacesAnnotations.Text))
+                    {
+                        MessageBox.Show("Please Choose a valid annotation");
+                        return;
+                    }
+                    break;
+                case 2:
+                    // Additional cases for other tabs if needed
+                    break;
+                case 3:
+                    break;
+                    // Add more cases as needed for other tabs
+            }
+
+            // If validation passes or no validation is needed, move to the next tab
+            if (currentIndex < tabControl.TabCount - 1)
+            {
+                tabControl.SelectedIndex = currentIndex + 1;
+            }
         }
 
     }
