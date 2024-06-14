@@ -100,7 +100,7 @@ namespace Kubernetes
                 backButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                 backButton.Location = new Point(8, 388);
                 backButton.Name = "backButton";
-                backButton.Size = new Size(75, 23);
+                backButton.Size = new Size(75, 24);
                 backButton.TabIndex = 1;
                 backButton.Text = "&Back\r\n";
                 backButton.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@ namespace Kubernetes
                 nextButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                 nextButton.Location = new Point(89, 388);
                 nextButton.Name = "nextButton";
-                nextButton.Size = new Size(75, 23);
+                nextButton.Size = new Size(75, 24);
                 nextButton.TabIndex = 0;
                 nextButton.Text = "&Next";
                 nextButton.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@ namespace Kubernetes
                 finishButton.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                 finishButton.Location = new Point(688, 388);
                 finishButton.Name = "finishButton";
-                finishButton.Size = new Size(75, 23);
+                finishButton.Size = new Size(75, 24);
                 finishButton.TabIndex = 2;
                 finishButton.Text = "&Finish";
                 finishButton.UseVisualStyleBackColor = true;
