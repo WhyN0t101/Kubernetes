@@ -1484,5 +1484,11 @@ namespace Kubernetes
                 MessageBox.Show("Error fetching Container Metrics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Wizard wizardForm = new Wizard();
+            wizardForm.ShowDialog();
+        }
     }
 }
