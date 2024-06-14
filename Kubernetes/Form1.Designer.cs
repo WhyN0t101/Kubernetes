@@ -145,6 +145,7 @@
             this.textBoxDeploymentName = new System.Windows.Forms.TextBox();
             this.ServiceIngressTab = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.targetPortsText = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.portsServ = new System.Windows.Forms.TextBox();
@@ -169,7 +170,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.toolTipLabels = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipAnno = new System.Windows.Forms.ToolTip(this.components);
-            this.targetPortsText = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.loginTab.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -316,11 +316,10 @@
             // 
             this.checkBoxHttps.AutoSize = true;
             this.checkBoxHttps.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxHttps.Location = new System.Drawing.Point(329, 266);
+            this.checkBoxHttps.Location = new System.Drawing.Point(329, 273);
             this.checkBoxHttps.Name = "checkBoxHttps";
-            this.checkBoxHttps.Size = new System.Drawing.Size(88, 27);
+            this.checkBoxHttps.Size = new System.Drawing.Size(18, 17);
             this.checkBoxHttps.TabIndex = 6;
-            this.checkBoxHttps.Text = "https";
             this.checkBoxHttps.UseVisualStyleBackColor = false;
             this.checkBoxHttps.CheckedChanged += new System.EventHandler(this.checkBoxHttps_CheckedChanged);
             // 
@@ -1269,6 +1268,13 @@
             this.panel7.Size = new System.Drawing.Size(1085, 447);
             this.panel7.TabIndex = 33;
             // 
+            // targetPortsText
+            // 
+            this.targetPortsText.Location = new System.Drawing.Point(896, 217);
+            this.targetPortsText.Name = "targetPortsText";
+            this.targetPortsText.Size = new System.Drawing.Size(115, 30);
+            this.targetPortsText.TabIndex = 42;
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -1478,13 +1484,6 @@
             this.label21.Size = new System.Drawing.Size(45, 18);
             this.label21.TabIndex = 10;
             this.label21.Text = "Pod:";
-            // 
-            // targetPortsText
-            // 
-            this.targetPortsText.Location = new System.Drawing.Point(896, 217);
-            this.targetPortsText.Name = "targetPortsText";
-            this.targetPortsText.Size = new System.Drawing.Size(115, 30);
-            this.targetPortsText.TabIndex = 42;
             // 
             // Form1
             // 
