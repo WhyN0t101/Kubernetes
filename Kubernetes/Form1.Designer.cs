@@ -391,7 +391,7 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(23, 102);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(58, 23);
+            this.label31.Size = new System.Drawing.Size(45, 18);
             this.label31.TabIndex = 12;
             this.label31.Text = "Pod:";
             // 
@@ -400,7 +400,7 @@
             this.comboBoxResPod.FormattingEnabled = true;
             this.comboBoxResPod.Location = new System.Drawing.Point(23, 134);
             this.comboBoxResPod.Name = "comboBoxResPod";
-            this.comboBoxResPod.Size = new System.Drawing.Size(184, 31);
+            this.comboBoxResPod.Size = new System.Drawing.Size(184, 26);
             this.comboBoxResPod.TabIndex = 11;
             this.comboBoxResPod.SelectedIndexChanged += new System.EventHandler(this.comboBoxResPod_SelectedIndexChanged);
             // 
