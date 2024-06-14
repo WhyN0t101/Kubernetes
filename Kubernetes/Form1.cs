@@ -1504,7 +1504,7 @@ namespace Kubernetes
                             string image = parts[4];
                             textBoxPodName.Text = podName;
                             containerNameText.Text = containerName;
-                            imagePodCombobox.SelectedItem = 1;
+                            imagePodCombobox.SelectedItem = 1;                           
                             buttonPodCreate_Click(this, EventArgs.Empty);
                             break;
                         case "deployment":
@@ -1517,13 +1517,18 @@ namespace Kubernetes
                             string deploymentName = parts[2];
                             string deploymentContainerName = parts[3];
                             string deploymentPorts = parts[4];
-                            string osImage = parts[5];
+                            textBoxDeploymentName.Text = deploymentName;
+                            containerNameDeploy.Text = deploymentContainerName;
+                            PortsDeploy.Text = deploymentPorts;
+                            imageDeployment.SelectedItem = 1;
+                            buttonDeploymentCreate_Click(this, EventArgs.Empty);
                             // Example: createDeploymentMethod(deploymentName, deploymentContainerName, deploymentPorts, osImage);
                             break;
                         case "ingress":
-                            // Implement logic to create Ingress
-                            // Example: createIngressMethod(targetName);
+                         
                             break;
+                        case "service":
+
                         default:
                             Console.WriteLine("Command not recognized or not matching the expected format.");
                             break;
@@ -1553,9 +1558,12 @@ namespace Kubernetes
                             await kubernetesService.DeleteDeployment(targetNamespace, deploymentToDelete);
                             break;
                         case "ingress":
-                            // Implement logic to delete Ingress
-                            // Example: deleteIngressMethod(targetName);
+                            string ingressToDelete = parts[2];
+                            await kubernetesService.DeleteIngress(targetNamespace, ingressToDelete);
                             break;
+                        case "service":
+                            string serviceToDelete = parts[2];
+                            await kubernetesService.DeleteService(targetNamespace, serviceToDelete);
                         default:
                             Console.WriteLine("Command not recognized or not matching the expected format.");
                             break;
